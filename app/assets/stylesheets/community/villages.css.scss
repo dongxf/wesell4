@@ -1,0 +1,529 @@
+// Place all the styles related to the Community::Villages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#community_top > .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// override only for village#show & #offers
+#community_top.community_villages_show,
+#community_top.community_villages_index,
+#community_top.community_villages_offers,
+#community_top.community_village_items_last_week {
+   .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.alert-warning {
+  position: fixed;
+  z-index: 100;
+  padding: 0;
+  background-color: lighten($wine, 15%);
+  color: $white;
+
+  .tips {
+  	font-size: 0.9em;
+  	letter-spacing: 5px;
+  }
+
+  .close {
+  	opacity: 1;
+  }
+
+  .btn {
+  	color: lighten($wine, 10%);
+  	padding: 1px 6px;
+  	font-size: 0.8em;
+  }
+
+  .r1 {
+  	padding: 5px 35px 5px 15px;
+  }
+
+  .r2 {
+  	display: none;
+  	padding-bottom: 10px;
+  	background-color: $white;
+  	color: lighten($wine, 15%);
+
+    .col-xs-12 {
+      // padding-left: 5px;
+      // padding-right: 5px;
+    }
+
+  }
+}
+
+.we-village {
+	a {
+		text-decoration: none;
+	}
+
+	.breadcrumb {
+		background-color: $wine;
+		border-radius: 0;
+		margin-bottom: 0;
+
+		a {
+			color: #fff;
+		}
+
+    .active {
+      color: $silver;
+    }
+	}
+  .tag_row {
+    text-align: center;
+  }
+
+	.tags {
+		margin-top: 10px;
+    display: inline-block;
+
+		.tag {
+			padding-left: 0;
+			padding-right: 0;
+
+			.thumbnail {
+			  border: none;
+			  text-align: center;
+			  margin-bottom: 5px;
+			  padding: 0;
+
+			  a.wrapper {
+			  	display: block;
+			  	vertical-align: middle;
+			  	margin: 5px;
+			  	padding: 5px;
+          border: 1px solid $wine;
+          border-radius: 4px;
+			  	color: darken($wine, 10%);
+			  	text-decoration: none;
+			  	letter-spacing: 2px;
+			  }
+
+			  .wrapper.active {
+		  		color: #fff;
+		  		background-color: $wine;
+		  		transition: all 0.5s ease-in-out 0s;
+		  		text-decoration: none;
+			  }
+
+			  p {
+					vertical-align: middle;
+					margin-bottom: 0;
+					padding: 10px;
+			  }
+			}
+
+			.sub_tags {
+				border-top: 1px solid $gray;
+				border-left: 1px solid $gray;
+
+				position: absolute;
+				margin-top: 3px;
+				z-index: 10;
+				background-color: #fff;
+
+				.sub_tag {
+					border-right: 1px solid $gray;
+					border-bottom: 1px solid $gray;
+					padding-left:0;
+					padding-right: 0;
+
+					.sub_tag_link {
+						display: block;
+            padding: 10px 0;
+            color: $wine;
+            // letter-spacing: 1px;
+					}
+				}
+			}
+		}
+	}
+
+
+	.village_items {
+    margin-bottom: 5px;
+    .col-xs-8 {
+    	padding-right: 0;
+    	padding-left: 0;
+    }
+
+    .list-group-item {
+			padding: 5px 0;
+      border: none;
+      border-top: 1px solid #eee;
+			border-radius: 0;
+
+      &:last-child {
+      	border-bottom: 1px solid #eee;
+      }
+
+			h4 {
+				margin-bottom: 5px;
+
+				.vi-name {
+					margin-left: -2px;
+				}
+			}
+    }
+	}
+
+	.logo {
+		padding-left: 0;
+	}
+
+	.info {
+		h4 {
+			margin-top: 0px;
+			font-size:  16px;
+
+			.list-v {
+				margin-top: -3px;
+			}
+		}
+		h5 {
+      margin-top: 0;
+      margin-bottom: 5px;
+
+      a {
+	      color: $wine;
+      }
+
+      .call_count {
+      	// color: darken(#9A1A2E, 10%);
+      	font-size: 0.8em;
+      }
+		}
+
+		.bold {
+			font-weight: bolder;
+		}
+
+		p {
+			font-size: 0.8em;
+			margin: 0;
+		}
+	}
+
+  .activity {
+  	padding-right: 0;
+  	p {
+  		text-align: right;
+  		font-size: 0.8em;
+  	}
+  }
+
+  // .fa {
+  // 	font-size: 1.4em;
+  // }
+	.fa-heart {
+		color: #9A1A2E
+	}
+	.gray {
+		color: #AAA;
+		.fa-heart {
+			color: #AAA
+		}
+	}
+
+	.favor-count {
+		font-size: 0.8em;
+		margin-top: 0;
+		text-align: center;
+		// line-height: 3;
+	}
+
+	.rating {
+		margin-top: 10px;
+		p {
+			margin-bottom: 0;
+			font-size: 0.8em;
+		}
+	}
+}
+
+#search {
+  input {
+		// width: 90%;
+		margin: 5px auto;
+		box-sizing: border-box;
+		border-color: $wine;
+  }
+
+  #close {
+  	position: absolute;
+  	top: 5px;
+  	right: 40px;
+  	width: 15%;
+  	display: none;
+  	font-size: 20px;
+  	color: $gray;
+  }
+
+	.btn {
+		background-color: $wine;
+		border: none;
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		position: absolute;
+		top: 5px;
+		right: 15px;
+		width: 15%;
+		height: 34px;
+
+		.fa {
+			color: $white;
+			line-height: 0.8;
+		}
+	}
+}
+
+
+.pagination {
+	display: block;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+
+  a {
+	  color: $wine;
+  }
+}
+
+.share {
+  margin: 10px auto 10px;
+
+	ul {
+		padding-left: 0;
+		list-style: none;
+		text-align: center;
+		li {
+			// margin-left: 10px;
+			display: inline-block;
+
+			a {
+				display: inline-block;
+				padding: 5px 10px;
+				border: 1px solid $wine;
+				color: $wine;
+				letter-spacing: 2px;
+			}
+		}
+	}
+}
+
+.modal {
+	.modal-dialog {
+		margin-top: 10px;
+	}
+
+	.modal-content {
+		background-color: transparent;
+		color: $white;
+		border: none;
+		box-shadow: none;
+
+		p {
+			margin-top: 5px;
+		}
+
+		.mp-name {
+	    margin-left: 70px;
+	    margin-top: -3px;
+		}
+
+		.fake-input {
+			border: 1px solid $white;
+			border-radius: 3px;
+			padding: 5px;
+			margin-bottom: 10px;
+			.mp-name {
+	      font-size: 1.5em;
+			}
+		}
+
+		.direct {
+			position: absolute;
+			right: 20px;
+			top: 10px;
+		}
+
+		.text {
+			font-size: 1.2em;
+			letter-spacing: 2px;
+			line-height: 2;
+
+			&:last-child {
+				text-align: right;
+			}
+		}
+
+		.modal-header, .modal-footer {
+			border-bottom: none;
+			border-top:    none;
+		}
+
+		.modal-body {
+			padding: 0 15px;
+		}
+
+		.modal-footer {
+			text-align: center;
+			.btn {
+				padding: 20px 40px;
+			}
+		}
+
+    .submit .btn-default {
+    	padding: 10px 20px;
+    }
+
+		.btn-default {
+			background-color: transparent;
+			border-color: $white;
+      color:  $white;
+		}
+
+		.badge {
+			background-color: $wine;
+		}
+	}
+}
+
+.in.modal {
+  background: rgba($black, 0.8);
+}
+
+#newInfo {
+	background: $white;
+
+	.modal-dialog {
+		margin-top: -10px;
+	}
+
+	.modal-content {
+		color: $black;
+  }
+	.btn-default {
+		background-color: transparent;
+		border-color: $wine;
+    color:  $wine;
+	}
+  p {
+  	color: $wine;
+  }
+}
+
+#back_to_top {
+  display: none;
+  position: fixed;
+  bottom: 150px;
+  right: -5px;
+}
+
+
+#pagination {
+  position: relative;
+
+  .pagination {
+    display: inline-block;
+    margin: 20px auto 10px;
+
+    a {
+      color: $wine;
+      border-color: $wine;
+      z-index: 10;
+    }
+  }
+
+  .prev, .prev-wrapper  {
+    margin: 0;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: .4em .9em;
+  }
+
+  .next, .next-wrapper {
+    margin: 0;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 85%;
+    padding: .4em .9em;
+  }
+
+  .total_pages {
+    display: inline-block;
+    margin-left: 15%;
+    line-height: 40px;
+    font-size: 16px;
+  }
+
+  form {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    display: inline-block;
+  }
+
+  .form-control {
+    width: 50%;
+    height: 33px;
+    padding: 19px 12px;
+    border-color: $gray;
+  }
+  .btn {
+    position: absolute;
+    top: 0;
+    left: 30%;
+    border: 1px solid $gray;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 40px;
+    padding: 0 5px;
+    color: $wine;
+    background-color: $white;
+  }
+}
+
+.popover-content {
+  white-space: pre-wrap;
+}
+
+
+.village_list {
+  .vi-name {
+    margin-left: 50px;
+    font-size: 20px;
+    color: $wine;
+  }
+
+  //make radio button large
+  input[type=radio] {
+      display: none;
+  }
+  input[type=radio] + label::before {
+      content: '';
+      display: inline-block;
+      border: 1px solid $gray;
+      border-radius: 50%;
+      margin: 0 0.5em;
+  }
+  input[type=radio]:checked + label::before {
+      background-color: $wine;
+  }
+
+  input[type=radio] + label::before {
+    width: 1.5em;
+    height: 1.5em;
+  }
+}

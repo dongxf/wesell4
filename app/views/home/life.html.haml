@@ -1,0 +1,198 @@
+.jumbotron
+  .container-fluid
+    .col-md-8.col-xs-12.items
+      .col-xs-6
+        .thumbnail
+          .row
+            .pic.col-md-3
+              = image_tag "housing/1.png", class: "img-responsive"
+            .caption.col-md-9.line1
+              %h3 十八年信誉保证
+              %p 专注家庭服务十八年, 我们更专业
+      .col-xs-6
+        .thumbnail
+          .row
+            .pic.col-md-3
+              = image_tag "housing/2.png", class: "img-responsive"
+            .caption.col-md-9.line1
+              %h3 身份认证
+              %p 全部通过严格筛选及专业培训
+      .col-xs-6
+        .thumbnail
+          .row
+            .pic.col-md-3
+              = image_tag "housing/3.png", class: "img-responsive"
+            .caption.col-md-9
+              %h3 损坏赔付保障
+              %p 平安保险提供每次业务百万赔偿保障
+      .col-xs-6
+        .thumbnail
+          .row
+            .pic.col-md-3
+              = image_tag "housing/4.png", class: "img-responsive"
+            .caption.col-md-9
+              %h3 服务保障
+              %p 绝不拖延, 不满意免费重新服务
+    .col-md-3.col-xs-12
+      .form
+        %form{action: "#", id: "", method: "GET"}
+          .form-group
+            .row
+              %label 服务类型
+              .col-md-9
+                %select#service_project.form-control.form-control-self{name: "service_project"}
+                  %option{value: "hourly_employee"} 钟点工
+
+          .form-group
+            .row
+              %label 所在城市
+              .col-md-9
+                %select#city.form-control.form-control-self{name: "city"}
+                  %option{value: "深圳"}
+                    深圳
+                  %option{value: "广州"}
+                    广州
+          .form-group
+            %label 服务时间
+            .row
+              .col-md-5
+                %input#serverdate.form-control.form-control-self.hasDatepicker{name: "serverdate", placeholder: "如:12月31日", type: "text"}/
+              .col-md-5
+                %input#servertime.form-control.form-control-self.ui-timepicker-input{autocomplete: "off", name: "servertime", style: "margin-left: -25px;", placeholder: "如:11:30", type: "text"}/
+          .form-group
+            .row
+              .col-md-12
+                %p{style: "font-size: 16px; color: #b77fbb;margin:0;"} 参考服务价 ￥35 元/小时
+                %p{style: "font-size: 12px; color: #a0a7ab;margin-bottom:0;"} 由于位置不同，价格可能有所不同
+          .form-group.clearfix
+            .col-md-9
+              %input#submit_appointment.btn.btn-default{style: "letter-spacing: 2px; width: 100%", type: "submit", value: "立即预约"}/
+      .qrcode
+        = image_tag "housing/angel.jpg", size: "200x200"
+        %p PC 端即将上线, 请扫一扫在手机微信端查看我们的服务.
+
+.sep
+  .col-xs-offset-1.col-xs-2
+    %span.star
+      %h3 业务流程
+  .sep-l.col-xs-8
+    %span.star-r
+
+.row.flow
+  .item
+    = image_tag "housing/i-1.png", size: "100x100", class: "img-responsive"
+    %h6  30秒预约
+  %i.fa.fa-angle-right.fa-3x
+  .item
+    = image_tag "housing/i-2.png", size: "100x100", class: "img-responsive"
+    %h6 上门服务
+  %i.fa.fa-angle-right.fa-3x
+  .item
+    = image_tag "housing/i-3.png", size: "100x100", class: "img-responsive"
+    %h6 服务评价
+
+.sep
+  .col-xs-offset-1.col-xs-2
+    %span.star
+      %h3 服务范围
+  .sep-l.col-xs-8
+    %span.star-r
+
+.row.range
+  .item
+    = image_tag "housing/range1.png", size: "100x100", class: "img-responsive"
+    %h6  家庭
+  .item
+    = image_tag "housing/range2.png", size: "100x100", class: "img-responsive"
+    %h6 办公室
+
+.sep
+  .col-xs-offset-1.col-xs-2
+    %span.star
+      %h3 建议服务时长
+  .sep-l.col-xs-8
+    %span.star-r
+
+.row.time
+  .item
+    = image_tag "housing/60-80.png", size: "100x100", class: "img-responsive"
+    %h6  60-80方 / 2-3小时
+  .item
+    = image_tag "housing/80-130.png", size: "100x100", class: "img-responsive"
+    %h6 80-130方 / 3-4小时
+  .item
+    = image_tag "housing/130.png", size: "100x100", class: "img-responsive"
+    %h6 130方以上 / 4小时以上
+
+.sep
+  .col-xs-offset-1.col-xs-2
+    %span.star
+      %h3 服务说明
+  .sep-l.col-xs-8
+    %span.star-r
+
+.row.room
+  .col-md-offset-2.col-md-8
+    .col-xs-4
+      .thumbnail
+        .row
+          .pic.col-md-3
+            = image_tag "housing/chu.png", size: "50x50"
+          .caption.col-md-9
+            %h3 厨房
+            %p 油烟机表面, 灶台表面, 洗碗水池, 冰箱表面, 橱柜表面
+    .col-xs-4
+      .thumbnail
+        .row
+          .pic.col-md-3
+            = image_tag "housing/wei.png", size: "50x50"
+          .caption.col-md-9
+            %h3 卫生间
+            %p 淋浴房, 洗脸水槽, 马桶里外, 镜面 & 洗漱台上物品摆放
+    .col-xs-4
+      .thumbnail
+        .row
+          .pic.col-md-3
+            = image_tag "housing/wo.png", size: "50x50"
+          .caption.col-md-9
+            %h3 卧室
+            %p 卧室地面, 家具下面, 踢脚线, 物品摆放, 床整理, 垃圾清理
+    .col-xs-4
+      .thumbnail
+        .row
+          .pic.col-md-3
+            = image_tag "housing/ting.png", size: "50x50"
+          .caption.col-md-9
+            %h3 客厅与餐厅
+            %p 客厅与餐厅地面, 家具和地毯下面,  踢脚线, 物品摆放, 床整理, 垃圾清理
+    .col-xs-4
+      .thumbnail
+        .row
+          .pic.col-md-3
+            = image_tag "housing/men.png", size: "50x50"
+          .caption.col-md-9
+            %h3 门及门框
+            %p 门表面, 门把手, 门框
+    .col-xs-4
+      .thumbnail
+        .row
+          .pic.col-md-3
+            = image_tag "housing/dian.png", size: "50x50"
+          .caption.col-md-9
+            %h3 家电表面清洁
+            %p 家具(鞋柜,茶几, 柜橱, 电视柜, 书桌等) 及家电表面, 灯开光, 桌头灯
+
+  .col-md-offset-2
+    %p.remark 注: 以上为日常家庭保洁范围, 如有其它需求请提前指出, 如刷碗, 洗衣服, 深度清洁马桶, 玻璃清洁等服务.
+
+
+.sep
+  .col-xs-offset-1.col-xs-2
+    %span.star
+      %h3 服务开通城市
+  .sep-l.col-xs-8
+    %span.star-r
+
+.row
+  .col-md-offset-4
+    = image_tag "housing/map.png", class: "img-responsive"

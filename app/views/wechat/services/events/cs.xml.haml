@@ -1,0 +1,8 @@
+- if @instance.csa
+  %MsgType
+    = raw "<![CDATA[transfer_customer_service]]>"
+- else
+  %MsgType
+    = raw "<![CDATA[text]]>"
+  %Content
+    = raw "<![CDATA[客服君暂不在线, 回来第一时间回复你哦!【紧急电话】#{@instance.phone}]]>"

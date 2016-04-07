@@ -1,0 +1,116 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li
+    =link_to '订单管理', platform_orders_path
+    %span.divider
+  %li.active
+    订单详情
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          订单详情
+          - if can? :edit, @store
+            .pull-right
+              = link_to edit_platform_order_path(@order) do
+                %i.fa.fa-pencil-square-o
+      .panel-body
+        %table.table
+          %thead
+            %tr
+              %th 订单项
+              %th 单价
+              %th 数量
+              %th 备注
+              %th 小计
+              %th
+          %tbody
+            - @order_items.each do |item|
+              %tr.active
+                %td= item.name
+                %td= item.unit_price
+                %td= item.quantity
+                %td= item.comment
+                %td= item.total_price
+              - item.order_item_options.each do |item_option|
+                %tr.warning
+                  %td
+                  %td
+                  %td
+                  %td= item_option.name
+                  %td= item_option.price
+
+            %tr
+              %td 备注:
+              %td{colspan: 4}= @order.description
+            - @order.order_options.each do |order_option|
+              %tr.warning
+                %td 订单选项
+                %td
+                %td
+                %td= order_option.name
+                %td= order_option.price
+            - if @order.shipping_charge > 0
+              %tr
+                %td{colspan: 4} 运费:
+                %td{colspan: 4}= @order.shipping_charge
+            %tr
+              %td{colspan: 3}
+              %td.text-right 总计:
+              %td= @order.amount
+            %tr
+              %td{colspan: 3}
+              %td.text-right 支付方式:
+              %td= @order.human_payment_option
+            %tr
+              %td{colspan: 3}
+              %td.text-right 下单时间:
+              %td= format_time @order.submit_at if @order.submit_at
+            %tr
+              %td{colspan: 3}
+              %td.text-right 公众号:
+              %td= @order.instance.nick
+
+            %tr
+              %td{colspan: 3}
+              %td.text-right 店铺名称:
+              %td= @order.store.name
+
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          订单状态
+          .pull-right
+            当前状态：
+            %span.text-warning #{@order.human_status}
+      .panel-body
+        .row
+          .col-md-2= order_status @order, :reject
+          .col-md-2= order_status @order, :accept
+          .col-md-2= order_status @order, :ship
+          .col-md-2
+            %input.order_switch{type: "checkbox", name: "my-checkbox", checked: @order.is_test?, data: {order_id: @order.id}}
+        %p
+        %table.table
+          %tbody
+            - @order_actions.each do |order_action|
+              %tr
+                %td= format_time order_action.created_at
+                %td= order_action.human_type
+                -# %td
+                -#   = link_to platform_order_action_path(order_action), method: 'delete', data: {confirm: '确定删除此状态？'} do
+                -#     %i.fa.fa-times
+
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 联系人信息
+      .panel-body
+        = render 'control_panel'
+    - unless @order.store.printers.blank?
+      = link_to "打印订单", print_platform_order_path(@order), class: "btn btn-warning"
+

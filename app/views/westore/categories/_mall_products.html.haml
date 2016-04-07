@@ -1,0 +1,16 @@
+%ul.products.list-group
+  - @products.each do |product|
+    - iwi_path = westore_wesell_item_path(product)
+    - iwi_path += "?instance_id=#{current_instance.id}" if current_instance
+    = link_to iwi_path, class: "list-group-item product" do
+      .col-xs-3
+        = image_tag product.image.url(:large), class: "img-responsive"
+      .col-xs-9
+        %h3= product.name
+        %span.price.pull-right
+          %em.wine= product.human_price(@store)
+        -# - if product.original_price > 0
+        -#   %span.old-price
+        -#     %del.dpNum= product.human_original_price(@store)
+        .pull-left
+          %em= "#{product.human_status}"

@@ -1,0 +1,14 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  = 1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[请先发送地理位置信息]]>"
+    %Description
+      = raw "<![CDATA[我们需要您提供地理位置验证来快速列出附近可以马上向您提供服务的店铺（只需要发送一次，您的地点位置变化较大时，请重新发送位置信息更新）\n咨询电话：#{@instance.phone}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url('westore/loc_help.jpg')}]]>"
+    %Url
+      = raw "<![CDATA[#{location_tips_westore_instances_url(customer_cid: @customer.cid, instance_id: @instance.id)}]]>"

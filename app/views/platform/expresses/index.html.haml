@@ -1,0 +1,36 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    配送管理
+
+= paginate @expresses
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 配送名称
+      %th 地址/电话
+      %th 描述
+      %th
+  %tbody
+    - @expresses.each do |express|
+      %tr
+        %td= express.id
+        %td{style: 'max-width: 220px'}
+          = link_to express.name, platform_express_path(express)
+        %td.scrollx{style: 'max-width: 220px'}
+          地址：#{express.addr}
+          %br
+          电话：#{express.phone}
+        %td{style: 'max-width: 220px'}
+          = express.desc
+        %td
+          - if can? :edit, express
+            = link_to '设置', edit_platform_express_path(express), class: 'btn btn-orange'
+            = link_to '删除', platform_express_path(express), :method => :delete, :data => { :confirm => '所有数据将无法恢复，确定删除？' }, class: 'btn btn-danger'
+
+= paginate @expresses
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建配送", new_platform_express_path, class: 'btn btn-orange'

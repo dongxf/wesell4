@@ -1,0 +1,36 @@
+= simple_form_for [:platform, @store, @wesell_item], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal', role: "form" } do |f|
+  = f.error_notification
+
+  = f.input :store_id, as: :hidden
+  = f.input :category_id, collection: @store.categories.pluck(:name, :id), label: '类目'
+  = f.input :name
+  = f.input :sequence
+  = f.input :description, input_html: { rows: 6}
+  = f.input :price
+  = f.input :original_price
+  = f.input :unit_name
+  = f.input :quantity
+  = f.input :status, collection: WesellItem::STATUS, include_blank: false
+  = f.input :rule, collection: WesellItem::RULE, include_blank: false
+  .form-group
+    = f.label "限制组"
+    .col-md-8
+      = f.select :showroom_id, @store.showrooms.collect { |s| ["#{s.id} - #{s.name}", s.id] }, class: "form-control", include_blank: true
+  .form-group
+    = f.label '商品详情显示顾客附加信息'
+    .col-md-8
+      = f.check_box :show_cinfo
+  = f.input :addon_hints, label: '附加信息的要求描述', hint: '若不为空则可能(!!)显示为订单附加栏的占位信息'
+  = f.input :guide, input_html: { rows: 5 }, hint: '签到后的活动提示说明', label: '活动说明'
+  .form-group
+    = f.label '允许访客临时签到'
+    .col-md-8
+      = f.check_box :visitor_allowed
+  = f.input :image do
+    = f.input_field :image
+    = image_tag @wesell_item.image.url(:large)
+
+  = f.input :info, input_html: { class: 'summernote'}
+
+  = link_to '放弃返回', :back, class: 'btn btn-info'
+  = f.button :submit, '提交', class: 'btn btn-orange'

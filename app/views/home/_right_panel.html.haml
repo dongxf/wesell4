@@ -1,0 +1,15 @@
+.col-md-4.right-panel
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title 扫一扫, 关注幸福大院
+    .panel-body
+      = image_tag "static/qrcode_foowcn.jpg", width: 250, class: "img-responsive"
+
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title 热门文章
+    .panel-body
+      %ul.list-group
+        - @top5.each do |t|
+          %li.list-group-item
+            = link_to t.subject, forum_post_path(t.forum.slug, t.id)

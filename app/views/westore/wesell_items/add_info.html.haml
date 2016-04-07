@@ -1,0 +1,41 @@
+- content_for :title do
+  = "#{@wesell_item.store.name} | #{@wesell_item.name}"
+%section.container
+  .col-xs-12
+    %blockquote
+      %p.strong= "#{@wesell_item.name}"
+      %p.small 活动参加信息提交
+.info_update
+  .comments
+    - cst = current_customer
+    .row
+      .col-xs-12
+        = content_tag('pre', @wesell_item.guide )
+    - if cst && @buyers.include?(cst)
+      - info = cst.info
+      = form_for 'info_update', url: "/westore/customers/#{cst.id}/add_info", html: { class: "vi_comment_form", relo: "form" }, remote: false do |f|
+        .form-group
+          .row
+            .col-xs-12
+              = f.check_box :agreed, style: 'zoom:1.68;', required: true
+              %span
+                我同意遵守
+                %a#approved-pop{"data-content" => @wesell_item.store.guide, "data-toggle" => "popover", "data-placement" => "top",  :title => "#{@wesell_item.name}行为准则", :type => "button"}= "《#{@wesell_item.name}行为准则》"
+          .row
+            .col-xs-12
+              %span
+        .form-group
+          .row
+            .col-xs-12
+              <input name="wesell_item_id", type="hidden", value="#{@wesell_item.id}" />
+              = f.text_area :info, class: "form-control comment_content", placeholder: '请留下对活动感兴趣的人都可以看到的信息', required: true, value: info, contenteditable: true, input_html: {rows: 6}
+          .row
+            .col-xs-12
+              %span
+        .row
+          .col-xs-12
+            = f.submit "发布信息", class: "btn btn-danger btn-block"
+    - else
+      .row
+        .col-xs-12
+          =link_to '请先预约活动后再提交定制信息', westore_wesell_item_path(@wesell_item), class: 'btn btn-danger btn-block'

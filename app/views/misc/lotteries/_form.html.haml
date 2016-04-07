@@ -1,0 +1,9 @@
+= simple_form_for [:misc, @lottery], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal', role: "form" } do |f|
+  %h3 领取彩票
+  %i *本彩票使用深圳市易拍百万公司提供的零钱彩票专利技术，每注彩票中奖后的收益为普通彩票的十分之一。
+  %p
+  = f.input :customer_id, as: :hidden
+  = f.input :lottery_type, as: :hidden
+  = f.input :phone, label: '输入兑奖手机号码：', hint: '* 彩票将绑定到该手机号码, 与微信用户账号无关'
+
+  = f.submit '提交', class: 'btn btn-info btn-lg btn-block'

@@ -1,0 +1,66 @@
+= simple_form_for [:platform, @instance], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal', role: "form" } do |f|
+  = f.error_notification
+
+  %ul.nav.nav-tabs
+    %li.active
+      %a{href: "#junior", data: {toggle: "tab"}} 基本设置
+    %li
+      %a{href: "#senior", data: {toggle: "tab"}} 高级设置
+
+  .tab-content
+    %fieldset#junior.tab-pane.active
+      %legend
+      - if params[:action] == 'edit'
+        .form-group.url.optional.readonly.instance_entry_url
+          %label.url.control-label.col-md-2 URL
+          .col-md-10
+            %span.string.optional.entry_info= @instance.entry_url
+        .form-group.url.optional.readonly.instance_entry_url
+          %label.url.control-label.col-md-2 TOKEN
+          .col-md-10
+            %span.string.optional.entry_info= @instance.token
+
+      = f.input :name
+      = f.input :nick
+      = f.input :slogan
+      = f.input :description, input_html: {rows: 5}
+      = f.input :phone
+      = f.input :email
+      = f.input :address
+      = f.input :latitude
+      = f.input :longitude
+      = f.input :fixed_mechat_url, hint: 'eg. http://meiqia.com/chat/6464'
+      = f.input :float_mechat_url, hint: 'eg. //s.meiqia.com/js/mechat.js?unitid=6464'
+
+      = f.input :logo do
+        = f.input_field :logo
+        = image_tag @instance.logo.url(:thumb)
+      = f.input :banner do
+        = f.input_field :banner
+        = image_tag @instance.banner.url(:thumb)
+      = f.input :member_card do
+        = f.input_field :member_card
+        = image_tag @instance.member_card.url(:thumb)
+
+    %fieldset#senior.tab-pane
+      %legend
+      = f.input :app_id, placeholder: "公众帐号AppID"
+      = f.input :app_secret, placeholder: "公众帐号AppSecret"
+      = f.input :partner_id
+      = f.input :partner_key
+      = f.input :pay_sign_key
+      = f.input :check_location, input_html: {class: 'btn-radio'}
+      = f.input :wechat_auth, as: :boolean, input_html: {class: 'btn-radio'}, hint: '启用微信授权接口后即可直接在图文链接中使用店铺或着商品地址且无客户信息安全隐患'
+
+      = f.input :subscribe_reply, as: :select, collection: Instance::SUBSCRIBE_REPLY_TEMPLATES, include_blank: false
+      / = f.input :menu_template
+      = f.input :sub_lottery, as: :boolean, input_html: {class: 'btn-radio'}
+      = f.input :should_email, as: :boolean, input_html: {class: 'btn-radio'}
+      = f.input :handle_missing_keys, as: :boolean, input_html: {class: 'btn-radio'}
+      - if @instance.app_id
+        = f.input :csa, as: :boolean, input_html: {class: 'btn-radio'}, hint: '启动多客服系统时，所有后续对话都将转至多客服系统，后续的所有消息都将不能被本服务接口接受，直至客服人员关闭对话'
+        = f.input :template_id
+
+  .row
+    .col-md-4= link_to '放弃返回', :back, class: 'btn btn-info'
+    .col-md-4= f.submit '确认修改', class: 'btn btn-orange center-block'

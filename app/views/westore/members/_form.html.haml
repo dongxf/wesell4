@@ -1,0 +1,9 @@
+= simple_form_for [:westore, @member], defaults: {input_html: {class: 'form-control'}} do |f|
+  = f.input :name
+  = f.input :phone
+  = f.input :birthday, start_year: 1950, end_year: Date.today.year - 12, default: {year: '1992', month: '06', day: '01'}
+  = f.input :address
+  / = f.input :identifying_code do
+  /   = f.input_field :identifying_code
+  /   %input{type: "button", class: "vcode_button", value: "获取验证码"}
+  = f.submit '提交', class: 'btn btn_2'

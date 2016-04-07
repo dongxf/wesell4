@@ -1,0 +1,15 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    黄页-
+    = "'#{@q}'"
+.row
+  .col-xs-6.col-xs-offset-3
+    %ul.list-group
+      - @village_items.each do |vi|
+        %li.list-group-item
+          - vi_info = "#{vi.name} || Tel:#{vi.tel} || Pin:#{vi.pin} || L#{vi.level} || C(#{vi.call_count}) F(#{vi.favor_count}) V(#{vi.vscore})"
+          - vi_url = vi.instance ? edit_platform_instance_village_item_path(vi.instance, vi) : '#'
+          = link_to vi_info, vi_url

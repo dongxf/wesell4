@@ -1,0 +1,17 @@
+= simple_form_for [:platform, @instance, @wechat_key], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal wechat-key-form', role: "form" } do |f|
+  = f.error_notification
+
+  = f.input :instance_id, as: :hidden
+  = f.input :tips
+  = f.input :key
+  = f.input :content
+  = f.input :msg_type, collection: WechatKey::TYPES.invert, input_html: { class: 'form-control wechat_key_type'}, include_blank: false
+
+  .news
+    = f.input :title
+    = f.input :banner do
+      = f.input_field :banner
+    = f.input :url
+
+  = link_to '放弃返回', :back, class: 'btn btn-info'
+  = f.button :submit, '提交', class: 'btn btn-orange'

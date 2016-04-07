@@ -1,0 +1,24 @@
+.container.news
+  .col-md-8
+    .row
+      - @topics.each do |topic|
+        .col-sm-12.col-md-6
+          .thumbnail
+            .header
+              %h4
+                = link_to topic.subject, forum_post_path(topic.forum.slug, topic.id)
+            - if get_image_url(topic)
+              .cover
+                = link_to (image_tag get_image_url(topic)), forum_post_path(topic.forum.slug, topic.id)
+            .caption
+              .meta
+                %span.author
+                  作者:
+                  = topic.user.name
+                %span
+                  发表日期:
+                  = topic.created_at.strftime('%Y-%m-%d')
+
+              %p.abbr= truncate(remove_html_tag(topic.posts.first.text), length: 150)
+      = paginate @topics
+  = render 'right_panel'

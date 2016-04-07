@@ -1,0 +1,8 @@
+.print_keeper_vi{style: "width: 192px; margin: 0 5px; position: relative;text-align:center;margin-bottom: 15px;border: 1px solid #111; float: left"}
+  = image_tag 'gzz_1.jpg', size: '192x313'
+  = image_tag @url_vi, size: '60x60', style: "position: absolute; left: 82.2px; top: 84.3px;"
+.print_keeper_store{style: "width: 192px; margin: 0; position: relative;text-align:center;border: 1px solid #111; float: left"}
+  = image_tag 'gzz_2.jpg', size: '192x313'
+  = image_tag @url_store, size: '115x115', style: "margin: 70px auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;"
+  %h2{style: "margin: 190px auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0; color: #ccc;font-size: 1.1em"}= "GZ#{@keeper.keeper_id}"
+  %h1{style: "margin: 230px auto;position: absolute;top: 0; left: 0; bottom: 0; right: 0;font-size: 1.4em;word-wrap: break-word;"}= @store.name

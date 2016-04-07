@@ -1,0 +1,82 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+- if @customer.default_village_id.present?
+  - @village = Village.find @customer.default_village_id
+  %ArticleCount
+    - itm_counts = 2
+    - itm_counts += 1 if @party
+    - itm_counts += 1 if @instance.sub_lottery? && @customer.lotteries.size < 1
+    = itm_counts #= @items_count
+  %Articles
+    %item
+      %Title
+        = raw "<![CDATA[选择常驻小区]]>"
+      %Description
+        = raw "<![CDATA[选择常驻小区]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url 'fbooks_banner.jpg'}]]>"
+      %Url
+        = raw "<![CDATA[#{community_instance_villages_url(@instance, customer_cid: @customer.cid)}]]>"
+    %item
+      %Title
+        = raw "<![CDATA[#{@village.name}]]>"
+      %Description
+        = raw "<![CDATA[#{@village.slogan}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url @village.logo.url(:thumb)}]]>"
+      %Url
+        = raw "<![CDATA[#{community_village_url(@village, customer_cid: @customer.cid)}]]>"
+    - if @party
+      %item
+        %Title
+          = raw "<![CDATA[#{@party.name}]]>"
+        %PicUrl
+          = raw "<![CDATA[#{image_url(@party.logo.url(:thumb))}]]>"
+        %Url
+          = raw "<![CDATA[#{westore_instance_store_url(@instance, @party, customer_cid: @customer.cid)}]]>"
+    - if @instance.sub_lottery? && @customer.lotteries.size < 1
+      = render 'wechat/services/activities/lottery'
+- else
+  %ArticleCount
+    - itm_counts = 1
+    - itm_counts += @villages.count
+    - itm_counts += 1 if @villages.count == 7
+    - itm_counts += 1 if @party
+    -# - itm_counts += 1 if @instance.sub_lottery? && @customer.lotteries.size < 1
+    = itm_counts #= @items_count
+  %Articles
+    %item
+      %Title
+        = raw "<![CDATA[#{@instance.slogan}]]>"
+      %Description
+        = raw "<![CDATA[选择常驻小区]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url 'fbooks_banner.jpg'}]]>"
+      %Url
+        = raw "<![CDATA[#{community_instance_villages_url(@instance, customer_cid: @customer.cid)}]]>"
+    - @villages.each do |village|
+      %item
+        %Title
+          = raw "<![CDATA[#{village.name}]]>"
+        %Description
+          = raw "<![CDATA[#{village.slogan}]]>"
+        %PicUrl
+          = raw "<![CDATA[#{asset_url village.logo.url(:thumb)}]]>"
+        %Url
+          = raw "<![CDATA[#{community_village_url(village, customer_cid: @customer.cid)}]]>"
+    - if @party
+      %item
+        %Title
+          = raw "<![CDATA[#{@party.name}]]>"
+        %PicUrl
+          = raw "<![CDATA[#{image_url(@party.logo.url(:thumb))}]]>"
+        %Url
+          = raw "<![CDATA[#{westore_instance_store_url(@instance, @party, customer_cid: @customer.cid)}]]>"
+    - if @villages.count == 7
+      %item
+        %Title
+          = raw "<![CDATA[更多社区请点击这里...]]>"
+        %PicUrl
+          = raw "<![CDATA[#{asset_url @instance.logo.url(:thumb)}]]>"
+        %Url
+          = raw "<![CDATA[#{community_instance_villages_url(@instance, customer_cid: @customer.cid)}]]>"

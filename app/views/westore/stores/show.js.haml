@@ -1,0 +1,12 @@
+- html = capture do
+  = render 'westore/categories/mall_products'
+
+- more_btn = capture do
+  .load-more
+    = link_to_next_page(@products, '点击加载更多',params: { product_search: {q: @q }}, :remote => true, :id=>'load_more_link', class: 'btn btn-wine-o')
+    = image_tag 'loading.gif', size: "34x34", class: "loading"
+var el = $('.products-list');
+el.append("#{j html}");
+$('.load-more').remove();
+- if @products.current_page != @products.num_pages
+  el.append("#{ j more_btn }");

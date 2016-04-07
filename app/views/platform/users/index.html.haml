@@ -1,0 +1,34 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li.active
+    账户管理
+
+= paginate @users
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 姓名
+      %th 邮箱
+      %th 公众号
+      %th 店铺
+      %th 许可
+      %th 注册时间
+      %th
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= link_to user.name, platform_user_path(user)
+        %td= user.email
+        %td= user.instances.count
+        %td= user.stores.count
+        %td= user.license
+        %td= I18n.localize user.created_at.to_date, format: :long
+        %td= link_to '登入', login_platform_user_path(user)
+= paginate @users
+
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建许可", new_platform_license_path, class: 'btn btn-orange'

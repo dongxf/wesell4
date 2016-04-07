@@ -1,0 +1,176 @@
+//single wesell item show
+#wesell_item_show {
+  h1 {
+    margin: 10px auto 0;
+
+    & + .wine {
+      font-size: 16px;
+    }
+  }
+
+  h2 {
+    padding-left: 5px;
+    border-left: 20px solid $silver;
+  }
+
+  .remark_tips {
+    padding: 15px;
+  }
+
+  abbr {
+    display: inline-block;
+    border-bottom: none;
+  }
+
+  .menu {
+    ul {
+      text-align: center;
+      li {
+        float: none;
+        display: inline-block;
+        padding: 0;
+        padding-bottom: 1px;
+
+        a {
+          border: none;
+
+          &:focus {
+            background-color: $white;
+          }
+        }
+
+        &.active {
+          border-top: 3px solid $wine;
+          a {
+            color: $wine
+          }
+        }
+      }
+    }
+  }
+
+  #plus_quantity, #minus_quantity {
+    border: 1px solid $silver;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    line-height: 36px;
+    font-size: 12px;
+    display: inline-block;
+    padding: 4px 5px;
+    text-align: center;
+    float: left;
+
+    & + input {
+      display: inline-block;
+      height: 36px;
+      padding: 6px 2px;
+      float: left;
+    }
+  }
+  #wi_info {
+    .form-group {
+      margin-bottom: 5px;
+    }
+
+    .checkbox {
+      display: inline-block;
+      margin-right: 30px;
+      font-size: 13px;
+    }
+
+    .check_boxes {
+      // width: auto;
+      // height: auto;
+
+      & + .col-xs-8 {
+        padding-left: 20px;
+      }
+
+      .cb {
+        width: 16px;
+        height: 16px;
+        margin-top: -3px;
+      }
+
+      &.col-xs-3 {
+        line-height: 28px;
+      }
+    }
+
+    // form label
+    label.col-xs-3 {
+      line-height: 34px;
+      padding-right: 0;
+      text-align: center;
+      font-size: 15px;
+    }
+
+    // form input
+    .col-xs-8 {
+      padding-left: 0;
+      padding-right: 0
+    }
+
+    .submit {
+      width: 65%;
+    }
+  }
+
+  #wi_rate {
+    .comments {
+      padding: 5px 0;
+      h5 {
+        color: $wine;
+        margin-left: 20px;
+        margin-top: 5px;
+      }
+      .form-group {
+        overflow: auto;
+        margin-bottom:5px;
+
+        .col-xs-12 {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      .btn-wine-o {
+        margin-bottom: 3px;
+      }
+    }
+    .comments-list {
+      .root {
+        border-bottom: none;
+      }
+
+      .child {
+        border-bottom: none;
+        border-top: none;
+      }
+
+      .comment {
+        &:first-child {
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
+        }
+        &:last-child {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-bottom: 1px solid $silver;
+        }
+
+        .col-xs-3 {
+          padding-left: 0;
+        }
+        p {
+          font-size: 0.8em;
+          margin-bottom: 2px;
+        }
+        .date {
+          color: $gray
+        }
+      }
+    }
+  }
+}

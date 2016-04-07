@@ -1,0 +1,18 @@
+!!!
+%html{lang: 'zh-CN'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: "app-version", content: "#{APP_VERSION}"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{name: "description", content: ""}
+    %meta{name: "keywords", content: "" }
+
+    %title= content_for?(:title) ? yield(:title) : "FooHouse"
+
+    = csrf_meta_tags
+    = javascript_include_tag "foohouse"
+
+  %body
+    .container-fluid
+      = yield

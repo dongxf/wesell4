@@ -1,0 +1,45 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li
+    =link_to '公众帐号管理', platform_instance_path(@instance)
+    %span.divider
+  %li
+    =link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    自定义返回消息列表
+
+= paginate @wechat_keys
+%table.table.table-hover
+  %thead
+    %tr
+      %th 提示信息
+      %th 键值
+      %th 消息类型
+      %th 返回内容
+      %th
+  %tbody
+    - @wechat_keys.each do |wechat_key|
+      %tr
+        %td= wechat_key.tips
+        %td= wechat_key.key
+        %td= wechat_key.msg_type
+        - if wechat_key.msg_type == "news"
+          %td
+            = wechat_key.title
+            %br/
+            = image_tag wechat_key.banner.url(:large), class: "img-responsive"
+            %br/
+            %p= wechat_key.content
+            = link_to "点击查看" , wechat_key.url
+        -else
+          %td= wechat_key.content
+        %td
+          = link_to '编辑', edit_platform_instance_wechat_key_path(@instance, wechat_key), class: 'btn btn-orange'
+          = link_to '删除', platform_instance_wechat_key_path(@instance, wechat_key), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+
+= paginate @wechat_keys
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建自定义返回消息", new_platform_instance_wechat_key_path(@instance), class: 'btn btn-orange'

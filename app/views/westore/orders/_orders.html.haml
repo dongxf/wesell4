@@ -1,0 +1,17 @@
+%table.order_table.three-cols
+  %thead
+    %tr
+      %th.first-col 订单编号
+      %th 摘要
+      %th.last-col 消费额
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td.first-col= link_to order.id, westore_order_path(order)
+        %td
+          %p= link_to order.store.name, westore_instance_store_path(order.instance, order.store)
+          %p= order.human_order_time
+          %p= order.human_status
+        %td.last-col= "#{order.monetary_tag}#{order.amount}"
+
+= paginate @orders

@@ -1,0 +1,71 @@
+%nav.navbar.navbar-default{ role: "navigation" }
+  .navbar-header
+    = link_to "赋为", main_app.root_path, class: 'navbar-brand'
+    %button.navbar-toggle{type: "button", data: {toggle: "collapse", target: "#navbar-main"}}
+      - 3.times do
+        %span.icon-bar
+
+  #navbar-main.navbar-collapse.collapse
+    %ul.nav.navbar-nav
+      - if current_user.role_identifier == :vusr
+        %li= link_to '黄页', main_app.platform_village_items_path, class: active_page(platform_village_items_path)
+        %li= link_to '店铺', main_app.platform_stores_path, class: active_page(platform_stores_path)
+        %li= link_to '订单', main_app.stores_manager_platform_orders_path, class: active_page(stores_manager_platform_orders_path)
+      - else
+        %li= link_to '绩效', main_app.root_path, class: active_page(root_path)
+        %li= link_to '公众号', main_app.platform_instances_path, class: active_page(platform_instances_path)
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            店铺及配送
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to '店铺', main_app.platform_stores_path, class: active_page(platform_stores_path)
+            %li= link_to '配送', main_app.platform_expresses_path, class: active_page(platform_expresses_path)
+        %li= link_to '运营', main_app.platform_operations_path, class: active_page(platform_operations_path)
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            订单
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to '公众号订单', main_app.platform_orders_path, class: active_page(platform_orders_path)
+            %li= link_to '店铺订单', main_app.stores_manager_platform_orders_path, class: active_page(stores_manager_platform_orders_path)
+        %li= link_to '会员', main_app.platform_customers_path, class: active_page(platform_customers_path)
+      - if current_user.admin?
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            管理
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to '商户', main_app.platform_users_path, class: active_page(platform_users_path)
+            %li= link_to '许可', main_app.platform_licenses_path, class: active_page(platform_licenses_path)
+
+    - if current_user
+      %ul.nav.navbar-nav.pull-right
+        %li
+          = simple_form_for 'search', url: platform_search_path, method: :get do |f|
+            .input-group{style: "margin-top: 20px;"}
+              = f.input_field :model, as: :select,
+                              collection: search_options,
+                              include_blank: false,
+                              class: 'input-group-addon form-control',
+                              name: 'model',
+                              selected: params[:model],
+                              style: 'width: 80px; margin-right: 5px; background-color: #fff'
+              = f.input_field :q,
+                              placeholder: "搜索...",
+                              name: 'q',
+                              class: 'form-control',
+                              value: params[:q],
+                              style: "width: 120px; border-top-left-radius: 4px; border-bottom-left-radius: 4px;border: none;"
+              = f.submit 'Go!', class: 'btn btn-orange-o form-control input-group-addon', style: "width: 50px;border: 1px solid #fff;"
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+            = current_user.name
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to '帐户', main_app.platform_user_path(current_user)
+            %li= link_to '论坛', forem.root_path
+            %li
+              = link_to main_app.destroy_user_session_path, :method=>'delete' do
+                /%i.fa.fa-sign-out.fa-2x
+                退出

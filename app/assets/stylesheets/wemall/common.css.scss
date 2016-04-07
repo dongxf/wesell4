@@ -1,0 +1,59 @@
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.6em;
+}
+h3 {
+  font-size: 1.4em;
+}
+h4 {
+  font-size: 1.2em;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+.direction {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  .back {
+    text-align: center;
+    padding: 5px;
+    margin:  5px;
+    border: 1px solid $wine;
+    color: $wine;
+  }
+}
+
+.list-group {
+  margin-bottom: 0;
+}
+
+.navbar-default {
+  background-color: #fff;
+}
+
+.nav.nav-pills {
+  width: 310px;
+  margin: 0 auto;
+
+  & > li {
+    padding: 5px 0;
+  }
+}
+
+.alert-warning {
+  display: none;
+}
+
+#back_to_top {
+  display: none;
+  position: fixed;
+  bottom: 70px;
+  right: -5px;
+}

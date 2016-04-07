@@ -1,0 +1,2 @@
+module Platform::WechatKeysHelper
+end

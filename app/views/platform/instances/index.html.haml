@@ -1,0 +1,43 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    公众号管理
+
+= paginate @instances
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 公众号名称
+      %th 微信公众帐号开发者模式接口配置
+      %th 商铺功能
+      %th 商圈功能
+      %th
+  %tbody
+    - @instances.each do |instance|
+      %tr
+        %td= instance.id
+        %td= link_to instance.nick, platform_instance_path(instance)
+        %td
+          %p= "URL：#{instance.entry_url}"
+          %p= "Token：#{instance.token}"
+        %td
+          %ul.list-unstyled
+            %li= link_to "店铺(#{instance.stores.count})", platform_instance_operations_path(instance)
+            %li= link_to "店铺分类(#{instance.kategories.count})", platform_instance_kategories_path(instance)
+            %li= link_to "新建店铺", new_platform_instance_store_path(instance)
+        %td
+          %ul.list-unstyled
+            %li= link_to "小区服务点(#{instance.villages.count})", platform_instance_villages_path(instance)
+            %li= link_to "黄页条目(#{instance.village_items.count})", platform_instance_village_items_path(instance)
+            %li= link_to "体验管理", platform_instance_showrooms_path(instance)
+        %td
+          - if can? :edit, instance
+            = link_to '设置', edit_platform_instance_path(instance), class: 'btn btn-orange'
+            = link_to '删除', platform_instance_path(instance), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+
+= paginate @instances
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建公众号", new_platform_instance_path, class: 'btn btn-orange'

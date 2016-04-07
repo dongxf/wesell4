@@ -1,0 +1,22 @@
+附近的公众号
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 公众号名称
+      %th 微信公众帐号开发者模式接口配置
+      %th
+  %tbody
+    - @instances.each do |instance|
+      %tr
+        %td= instance.id
+        %td= link_to instance.nick, platform_instance_path(instance)
+        %td
+          %p= "URL：#{instance.entry_url}"
+          %p= "Token：#{instance.token}"
+        %td
+          = link_to '申请加盟', invite_platform_instance_path(instance, store_id: @store), class: 'btn btn-orange'
+
+
+= link_to "返回", :back, class: 'btn btn-default'

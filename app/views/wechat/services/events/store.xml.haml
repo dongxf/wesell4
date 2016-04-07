@@ -1,0 +1,29 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  1
+-if @store.present?
+  %Articles
+    %item
+      %Title
+        = raw "<![CDATA[#{@store.name}]]>"
+      %Description
+        = raw "<![CDATA[#{@store.description}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url @store.banner.url(:medium)}]]>"
+      %Url
+        - if @store.link.present?
+          = raw "<![CDATA[#{@store.link}]]>"
+        - else
+          = raw "<![CDATA[#{westore_instance_store_url(@instance, @store, customer_cid: @customer.cid, sceneid: @sceneid)}]]>"
+-else
+  %Articles
+    %item
+      %Title
+        = raw "<![CDATA[#{@instance.nick}]]>"
+      %Description
+        = raw "<![CDATA[#{@instance.description}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url @instance.banner.url(:large)}]]>"
+      %Url
+        = raw "<![CDATA[]]>"

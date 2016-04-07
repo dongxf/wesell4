@@ -1,0 +1,43 @@
+.row.alert.alert-info
+  = simple_form_for 'filter', url: url, method: :get, html: {class: 'filter_orders'} do |f|
+    .col-md-3
+      = f.input :payment_option,  as: :select,
+                                  wrapper: :search,
+                                  collection: {'全部' => ''}.merge(StoreConfig::HUMAN_PAYMENT_OPTIONS.invert),
+                                  selected: params['payment_option'],
+                                  input_html: { name: 'payment_option'},
+                                  required: false
+    .col-md-3
+      = f.input :payment_status,  as: :select,
+                                  wrapper: :search,
+                                  collection: {'全部' => ''}.merge(Order::PAYMENT_STATUSES.invert),
+                                  selected: params['payment_status'],
+                                  input_html: { name: 'payment_status'},
+                                  required: false
+    .col-md-3
+      = f.input :store_id,    as: :select,
+                              wrapper: :search,
+                              collection: {'全部' => ''}.merge(Hash[current_user.stores.collect {|s| [ s.name, s.id ] }]),
+                              selected: params['store_id'],
+                              input_html: { name: 'store_id'},
+                              label: "店铺",
+                              required: false
+
+    .col-md-6
+      = f.input :submit_at_1, as: :string,
+                              wrapper: :search,
+                              input_html: { class: 'datepicker2', name: 'submit_at_1', value: params[:submit_at_1] },
+                              label: '下单时间',
+                              required: false
+
+      = f.input :submit_at_2, as: :string,
+                              wrapper: :search,
+                              input_html: { class: 'datepicker2', name: 'submit_at_2', value: params[:submit_at_2] },
+                              label: '~',
+                              required: false
+
+    .col-md-3
+      = f.submit '筛选', { name: 'commit', class: 'btn btn-default' }
+      = f.submit '导出当前订单', { name: 'export', class: 'btn btn-default'}
+
+

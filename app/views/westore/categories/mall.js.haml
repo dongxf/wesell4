@@ -1,0 +1,18 @@
+- html = capture do
+  = render 'mall_products'
+
+- more_btn = capture do
+  .load-more
+    = link_to_next_page(@products, '点击加载更多', :remote => true, :id=>'load_more_link', class: 'btn btn-wine-o')
+    = image_tag 'loading.gif', size: "34x34", class: "loading"
+$("a[data-toggle='dropdown']").text("#{@category.name}");
+$('.products-list').html('#{j html}');
+- if @products.current_page != @products.num_pages
+  $('.products-list').append("#{j more_btn}");
+  :javascript
+  $(document).ajaxStart(function () {
+    $('.loading').show();
+  });
+  $(document).ajaxComplete(function () {
+    $('.loading').hide();
+  });

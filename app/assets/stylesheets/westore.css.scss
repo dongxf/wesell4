@@ -1,0 +1,161 @@
+@import "shared/variables";
+@import "font-awesome";
+@import "westore/wei_canyin_v1.8.4";
+@import "westore/wei_dialog_v1.2.1";
+@import "lib/datepicker/classic";
+@import "lib/datepicker/classic.date";
+@import "lib/datepicker/classic.time";
+@import "westore/footer";
+@import "westore/custom";
+@import "westore/common";
+@import "westore/home";
+@import "westore/main";
+@import "westore/about";
+
+// 解决右边背景总是为灰色的bug
+#page_allMenu section article, #pInfo {
+  min-height: 100%;
+}
+
+#pInfo, #navBar {
+  a { color: #5e6060; }
+}
+
+#pInfo a:last-child dl {
+  padding-bottom: 5px;
+}
+
+.form-control {
+  display: block;
+  width: 90%;
+  padding: 8px 12px;
+  margin: 4px 0 10px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  &.select {
+    height: 35px;
+  }
+}
+
+label {
+  display: inline-block;
+  abbr {
+    display: inline;
+  }
+}
+
+label.checkbox, label.radio{
+  display: block;
+  line-height: 2em;
+  font-size: 1.4em;
+  input {
+    display: inline;
+    width: auto;
+    margin: 0 5px;
+    font-size: 40px;
+  }
+}
+
+table.order_table {
+  width: 100%;
+  margin: 20px 0;
+  th, td {
+    text-align: left;
+    padding: 7px 10px;
+    width: 50%;
+  }
+  .last-col {
+    text-align: right;
+  }
+
+  td {
+    a {
+      color: #2a6496;
+    }
+  }
+
+  &.three-cols {
+    th, td { width: 33%; }
+  }
+}
+
+dd.btn button.btn_order {
+  float: right;
+  margin-left: 30px;
+  margin-top: -3px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: #2ec366 !important;
+  color: #fff;
+}
+
+
+.has-warning .help-block,
+.has-warning .control-label,
+.has-warning .radio,
+.has-warning .checkbox,
+.has-warning .radio-inline,
+.has-warning .checkbox-inline {
+  color: #8a6d3b; }
+.has-warning .form-control {
+  border-color: #8a6d3b;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .has-warning .form-control:focus {
+    border-color: #66512c;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b; }
+.has-warning .input-group-addon {
+  color: #8a6d3b;
+  border-color: #8a6d3b;
+  background-color: #fcf8e3; }
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline {
+  color: #a94442; }
+.has-error .form-control {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .has-error .form-control:focus {
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483; }
+.has-error .input-group-addon {
+  color: #a94442;
+  border-color: #a94442;
+  background-color: #f2dede; }
+
+.has-success .help-block,
+.has-success .control-label,
+.has-success .radio,
+.has-success .checkbox,
+.has-success .radio-inline,
+.has-success .checkbox-inline {
+  color: #3c763d; }
+.has-success .form-control {
+  border-color: #3c763d;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
+  .has-success .form-control:focus {
+    border-color: #2b542c;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168; }
+.has-success .input-group-addon {
+  color: #3c763d;
+  border-color: #3c763d;
+  background-color: #dff0d8; }

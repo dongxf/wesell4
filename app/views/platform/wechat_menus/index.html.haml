@@ -1,0 +1,70 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '公众号管理', platform_instances_path
+    %span.divider
+  %li
+    = link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    自定义菜单
+
+.row
+  .col-lg-12
+    %p{style: "color: red"}
+      目前自定义菜单最多包括3个一级菜单，每个一级菜单最多包含5个二级菜单。一级菜单最多4个汉字，二级菜单最多7个汉字，多出来的部分将会以“...”代替。
+
+.row
+  .col-lg-12
+    .page-actions
+      = link_to new_platform_instance_wechat_menu_path(@instance), class: 'btn btn-info btn-large' do
+        %i.icon-plus
+        新建菜单
+
+      = link_to load_default_platform_instance_wechat_menus_path(@instance), class: 'btn btn-orange btn-large' do
+        %i.fa.fa-refresh
+        加载默认菜单
+
+      = link_to load_remote_platform_instance_wechat_menus_path(@instance), class: 'btn btn-info btn-large' do
+        %i.fa.fa-cloud-download
+        从公众平台获取当前菜单
+
+
+      = link_to sync_platform_instance_wechat_menus_path(@instance), class: 'btn btn-success btn-large pull-right' do
+        %i.fa.fa-cloud-upload
+        同步到微信
+
+%p
+%section.widget
+  %table.table.table-striped.table-jquery
+    %thead
+      %tr
+        %th 序号
+        %th 名称
+        %th 类型
+        %th Key
+        %th Url
+        %th 子菜单
+        %th
+    %tbody
+      - collection.each do |resource|
+        %tr
+          %td= resource.sequence
+          %td= resource.name
+          %td= resource.human_type
+          %td= resource.human_key
+          %td{style: 'max-width: 220px;word-break: break-word;'}
+            = resource.url
+          %td
+            - resource.wechat_sub_menus.each do |sub_button|
+              = sub_button.name
+              (
+              = sub_button.human_type
+              )
+              %br
+
+          %td
+            = link_to '编辑', edit_platform_instance_wechat_menu_path(@instance, resource), class: 'btn btn-info'
+            = link_to '删除', platform_instance_wechat_menu_path(@instance, resource), method: :delete, data: {confirm: '确定要删除？'}, class: 'btn btn-danger'

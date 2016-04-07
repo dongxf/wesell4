@@ -1,0 +1,11 @@
+= simple_form_for [:platform, @express], defaults: {input_html: {class: 'form-control'}}, html: {class: 'form-horizontal', role: "form"} do |f|
+  = f.error_notification
+
+  = f.input :name
+  = f.input :addr
+  = f.input :desc, label: '介绍', as: :text, input_html: {rows: 5}
+  = f.input :phone
+
+  .row
+    .col-md-4= link_to '放弃返回', :back, class: 'btn btn-info'
+    .col-md-4= f.button :submit, '提交', class: 'btn btn-orange  center-block'

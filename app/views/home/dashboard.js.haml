@@ -1,0 +1,8 @@
+- if params[:table]
+  - table = params[:table]
+  $("##{table}").html("#{j(render table)}");
+
+- if params[:time_pick]
+  $('.tab-pane.active .date_nav').removeClass('active');
+- else
+  $('.datepicker').val('');

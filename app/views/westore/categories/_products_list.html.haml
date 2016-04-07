@@ -1,0 +1,39 @@
+- @products.each do |product|
+  - count = @order.product_count(product)
+  %dl{product.data_hash}
+    %dd
+      - iwi_path = westore_wesell_item_path(product)
+      - iwi_path += "?instance_id=#{current_instance.id}" if current_instance
+      = link_to iwi_path, class: 'dataIn' do
+        = image_tag product.image.url(:large)
+    %dt
+      %h3= product.name
+      - unless product.description.nil?
+        %h5.description= product.description.truncate(20)
+
+    %dd
+      %em= product.human_price(@store)
+    %dd
+      - if product.original_price > 0
+        %del.dpNum= product.human_original_price(@store)
+
+    - if product.sold_out?
+      %dd
+        %em= "已售完"
+    - elsif product.options_groups_count > 0
+      %dd.shopping
+        .fr
+          - iwi_path = westore_wesell_item_path(product)
+          - iwi_path += "?instance_id=#{current_instance.id}" if current_instance
+          = link_to iwi_path do
+            %button.shopping 选购
+    - else
+      - if @store.show_total_sold? && product.total_sold > 0
+        %dd.dpNum= "已售出#{product.total_sold}#{product.unit_name}"
+      %dd.btn
+        %button.minus{style: 'display: none'}
+          %strong
+        %i{style: 'display: none'}= count
+        %button.add
+          %strong
+        %em.fixBig.fake

@@ -1,0 +1,10 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    新建体验规则
+= render 'form'

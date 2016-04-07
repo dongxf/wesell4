@@ -1,0 +1,28 @@
+- content_for :title do
+  = "#{@instance.try(:nick)} | #{@store.try(:name)} "
+#wemall_store.container
+  .row#search
+    = simple_form_for 'product_search', url: search_westore_instance_store_path(current_instance, @store), method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+      = f.input_field :q, input_html: {name: 'q', class: 'form-control'}, label: false, placeholder: "在#{@store.name}中搜索"
+      %span#close x
+      %button.btn{type: "submit"}
+        %i.fa.fa-search.fa-2x
+  .row#categories
+    #carousel-categories.carousel.slide{ data: { ride: "carousel" }  }
+      .carousel-inner
+        - @categories.each_slice(6).with_index do |batches, index|
+          .item{ class: index == 0 && 'active' }
+            %ul.row
+              - batches.each do |category|
+                %li.col-xs-4.col-sm-2
+                  = link_to category.name, westore_store_category_path(@store, category)
+      - if @categories.count > 6
+        = link_to fa_icon('angle-left 2x'), "#carousel-categories", class: "left carousel-control", data: { slide: 'prev' }
+        = link_to fa_icon('angle-right 2x'), "#carousel-categories", class: "right carousel-control", data: { slide: 'next' }
+  .products-list
+    = render 'westore/categories/mall_products'
+
+    - unless @products.last_page?
+      .load-more
+        = link_to_next_page @products, '点击加载更多', :remote => true, :id => "load_more_link", class: "btn btn-wine-o"
+        = image_tag 'loading.gif', size: "34x34", class: "loading"

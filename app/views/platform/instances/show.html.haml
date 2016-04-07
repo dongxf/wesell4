@@ -1,0 +1,88 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '公众号管理', platform_instances_path
+    %span.divider
+  %li.active
+    = "公众号详情(#{@instance.nick})"
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          公众号信息
+          - if can? :edit, @instance
+            .pull-right
+              = link_to edit_platform_instance_path(@instance) do
+                %i.fa.fa-pencil-square-o
+      .panel-body
+        %dl.dl-horizontal
+          %dt URL
+          %dd= @instance.entry_url
+
+          %dt TOKEN
+          %dd= @instance.token
+
+          %dt 微信号
+          %dd= @instance.name
+
+          %dt 公众号名称
+          %dd= @instance.nick
+
+          %dt 品牌口号
+          %dd= @instance.slogan
+
+          %dt 公众号介绍
+          %dd= @instance.description
+
+          %dt 邀请码
+          %dd#invite_code= @instance.invite_code
+          %dd
+            = link_to '更新邀请码', invite_code_platform_instance_path(@instance), data: {remote: true}
+            %p.help-block
+              关注公众号 '赋为网络科技(fwdesk)' 可以使用微信接收订单
+
+          %dt 办公地址
+          %dd= @instance.address
+          %dt 经度
+          %dd= @instance.longitude
+          %dt 纬度
+          %dd= @instance.latitude
+
+          %dt 电话
+          %dd= @instance.phone
+
+          %dt 电子邮箱
+          %dd= @instance.email
+
+          %dt 标牌
+          %dd= image_tag @instance.logo.url(:large)
+
+          %dt 横幅
+          %dd= image_tag @instance.banner.url(:thumb)
+
+          %dt 会员卡
+          %dd= image_tag @instance.member_card.url(:thumb)
+
+          %dt 验证地理位置
+          %dd= @instance.check_location ? '开启' : '关闭'
+
+          %dt 关注送彩票
+          %dd= @instance.sub_lottery? ? '开启' : '关闭'
+
+          %dt 订单邮件通知
+          %dd= @instance.should_email? ? '开启' : '关闭'
+
+          %dt 任意内容返回帮助信息
+          %dd= @instance.handle_missing_keys? ? '开启' : '关闭'
+
+  - if can? :edit, @instance
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title 控制面板
+        .panel-body
+          = render 'control_panel'

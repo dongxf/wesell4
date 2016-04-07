@@ -1,0 +1,2 @@
+module Platform::RepliesHelper
+end

@@ -1,0 +1,13 @@
+one:
+  instance: one
+  menu_type: click
+  name: one
+  key: one
+  url:
+
+two:
+  instance: one
+  menu_type: view
+  name: one
+  key: two
+  url: http://fooways.com

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  name: config_1
+  style: 1
+
+two:
+  store: one
+  name: config_2
+  style: 1

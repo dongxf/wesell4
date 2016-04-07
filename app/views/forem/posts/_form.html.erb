@@ -1,0 +1,10 @@
+<%= image_tag "loading.gif", size: "50x50", class: 'loader pull-left' %>
+<div class="col-md-offset-1">
+  <%= f.input :text, :input_html => { :class => "field col-md-12 summernote" } %>
+  <%= f.file_field :attachment %>
+  <p>最大支持 1MB 的附件</p>
+</div>
+
+<% if params[:reply_to_id] %>
+  <%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>
+<% end %>

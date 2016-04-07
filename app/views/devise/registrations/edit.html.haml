@@ -1,0 +1,40 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider='/'
+  %li
+    =link_to '帐户设置', current_user
+    %span.divider='/'
+  %li.active
+    更改设置
+/%h4= "Edit #{resource_name.to_s.humanize}"
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-inline', :multipart=>true }) do |f|
+  = f.error_notification
+  = display_base_errors resource
+  /= f.label '头像'
+  = image_tag resource.avatar(:small)
+  = f.file_field :avatar
+  = f.input :name, :autofocus => true, wrapper: :prepend, label: false do
+    %span.add-on 姓　　名
+    =f.input_field :name
+  = f.input :email, :required => true, wrapper: :prepend, label: false do
+    %span.add-on 邮　　箱
+    =f.input_field :email
+  = f.input :current_password, :required => true, wrapper: :prepend, label: false do
+    %span.add-on 当前密码
+    =f.input_field :current_password
+  /= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+  /= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false
+  /= f.input :password_confirmation, :required => false
+  = f.input :password, :autocomplete => 'off', :required => false, wrapper: :prepend, label: false do
+    %span.add-on 更改密码
+    =f.input_field :password
+  = f.input :password_confirmation, :autocomplete => 'off', :required => false, wrapper: :prepend, label: false do
+    %span.add-on 重复密码
+    =f.input_field :password_confirmation
+  = link_to '返回上页', :back, :class => 'btn btn-orange'
+  = f.button :submit, '保存更改', :class => 'btn btn-danger'
+/%h3 Cancel my account
+/%p
+/  Unhappy? #{link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete}.
+/= link_to "Back", :back

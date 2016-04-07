@@ -1,0 +1,78 @@
+.navbar-default {
+  background-color: $orange;
+  background-color: $orange;
+  // -webkit-box-shadow: 0 3px 5px rgba($orange, .6);
+  // -moz-box-shadow: 0 3px 5px rgba($orange, .6);
+  // box-shadow: 0 3px 5px rgba($orange, .6);
+}
+
+.navbar {
+  margin-bottom: 0;
+  min-height: 30px;
+  border-radius: 0;
+  border: none;
+  .navbar-brand {
+    text-indent: -9999px;
+    padding: 30px 40px;
+    margin: 0 50px;
+    background: image-url('fooways_logo3.png') no-repeat center;
+    background-size: 50px 50px
+  }
+  .navbar-toggle {
+    border: none;
+  }
+
+  .navbar-collapse {
+    .navbar-nav {
+      li {
+        box-sizing: content-box !important;
+        .active {
+          background-color: $white;
+          color: $orange;
+        }
+        a {
+          border-left: 1px solid $white;
+          color: $white;
+          margin: 10px auto;
+        }
+        &:first-child a {
+          border-left: none;
+        }
+
+        ul.dropdown-menu {
+          a {
+            color: black;
+            margin: 0 auto;
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            &:hover {
+              background-color: $orange;
+              color: $white;
+              transition: all 0.2s ease-in-out 0s;
+            }
+          }
+        }
+      }
+      a {
+        font-size: 20px;
+        font-weight: 500;
+        &:hover {
+          background-color: $white;
+          color: $orange;
+          transition: all 0.2s ease-in-out 0s;
+        }
+      }
+    }
+    .navbar-left {
+      margin: 0 0 0 60px;
+    }
+    .navbar-right {
+      margin: 0 150px 0 0;
+    }
+  }
+}
+
+label.checkbox, label.radio {
+  margin-left: 25px;
+}

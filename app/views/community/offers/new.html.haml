@@ -1,0 +1,9 @@
+.we-village
+  %ul.breadcrumb
+    %li
+      =link_to "#{@village_item.name}", manager_community_village_item_path(@village_item)
+      %span.divider
+    %li.active
+      新建优惠信息
+  .container
+    = render 'form'

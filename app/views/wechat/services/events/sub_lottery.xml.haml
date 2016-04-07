@@ -1,0 +1,19 @@
+- content = capture do
+  #{@instance.description}
+  猛击中百万大奖！
+
+
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  = 1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[#{@instance.nick} + '--关注送彩票进行中！']]>"
+    %Description
+      = raw "<![CDATA[#{content}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @instance.banner.url(:large)}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_lotteries_url(wechat_user_openid: @customer.openid, instance_id: @instance.id)}]]>"

@@ -1,0 +1,28 @@
+附件的店铺
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 店铺名称
+      %th 地址/电话/邮件
+      %th 描述
+      %th
+  %tbody
+    - @stores.each do |store|
+      %tr
+        %td= store.id
+        %td
+          = link_to store.name, platform_store_path(store)
+        %td{style: 'max-width: 220px'}
+          地址：#{store.street} (#{store.latitude},#{store.longitude})
+          %br
+          电话：#{store.phone}
+          %br
+          邮件：#{store.email}
+        %td{style: 'max-width: 220px'}
+          = store.description
+        %td
+          = link_to '设置', invite_platform_store_path(store, instance_id: @instance), class: 'btn btn-orange'
+
+= link_to "返回", :back, class: 'btn btn-default'

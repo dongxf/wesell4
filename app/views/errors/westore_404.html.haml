@@ -1,0 +1,34 @@
+.dialog
+  %h2{style: "text-align: center; color: #ddd"} 非常抱歉，无法完成相关操作
+  %h3{style: "text-align: center; color: #ddd"} 请联系客服君为您办理相关业务。
+  - store = Store.find_by id: session[:store_id_4]
+  - instance = Instance.find_by id: session[:instance_id_4]
+  - if store.present?
+    = link_to "销售订购 #{store.phone}", "tel:#{store.phone}", { style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 20px 50px; display: block; width: 50%; margin: 20px auto; text-align: center; letter-spacing: 1.5px;" }
+  - if instance.present?
+    = link_to "售后投诉 #{instance.phone}", "tel:#{instance.phone}", { style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 20px 50px; display: block; width: 50%; margin: 20px auto; text-align: center; letter-spacing: 1.5px;" }
+  = link_to "技术支持 4000432013", "tel:4000432013", { style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 20px 50px; display: block; width: 50%; margin: 20px auto; text-align: center; letter-spacing: 1.5px;" }
+  /%ul{style: "width: 100%; margin: 20px auto;list-style:none;text-align: center;padding-left: 0;"}
+  /  - if store.present?
+  /    %li{style: "display: inline-block"}
+  /      = link_to "销售#{store.phone}", "tel:#{store.phone}", style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 5px; text-align: center; letter-spacing: 1.5px;margin-top: 5px;display: block"
+  /  - if instance.present?
+  /    %li{style: "display: inline-block"}
+  /      = link_to "投诉#{instance.phone}", "tel:#{instance.phone}", style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 5px; text-align: center; letter-spacing: 1.5px;display: block"
+  /  %li{style: "display: inline-block"}
+  /    = link_to "技术4000432013", "tel:4000432013", style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 5px; text-align: center; letter-spacing: 1.5px;margin-top: 5px;display: block"
+  - r = Random.new.rand(1..5)
+  - case r
+  - when 1
+    = image_tag "team/f_meng.png", { style: "display: block; width: 80%; margin: 20px auto;" }
+  - when 2
+    = image_tag "team/dien_meng.png", { style: "display: block; width: 80%; margin: 20px auto;" }
+  - when 3
+    = image_tag "team/shan_meng.png", { style: "display: block; width: 80%; margin: 20px auto;" }
+  - when 4
+    = image_tag "team/guo_meng.png", { style: "display: block; width: 80%; margin: 20px auto;" }
+  - when 5
+    = image_tag "team/jenny_meng.png", { style: "display: block; width: 80%; margin: 20px auto;" }
+  - when 6
+    = image_tag "team/xguox_meng.png", { style: "display: block; width: 80%; margin: 20px auto;" }
+  = link_to "返回前页", :back, { style: "border: 1px solid #9A1A2E;color:#9A1A2E;padding: 20px 50px; display: block; width: 50%; margin: 20px auto; text-align: center; letter-spacing: 1.5px;" }

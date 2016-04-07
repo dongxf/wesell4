@@ -1,0 +1,9 @@
+.we-village
+  .row#search
+    #search_item
+      = simple_form_for 'search', url: search_community_village_path(@village), method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+        = f.input_field :q, input_html: {name: 'q', class: 'form-control'}, label: false, placeholder: "搜索#{@village.name}"
+        %span#close x
+        %button.btn{type: "submit"}
+          %i.fa.fa-search.fa-2x
+  = render 'community/villages/vi_list'

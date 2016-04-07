@@ -1,0 +1,7 @@
+%MsgType
+  = raw "<![CDATA[text]]>"
+%Content
+  - if @over_max
+    = raw "<![CDATA[很抱歉, 您已绑定超过9个条目!]]>"
+  - else
+    = raw "<![CDATA[成功绑定黄页条目：#{@bindable.name}]]>"

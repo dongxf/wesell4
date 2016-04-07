@@ -1,0 +1,14 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to '公众号管理', platform_instances_path
+    %span.divider
+  %li
+    =link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    新建店铺分类
+
+= render 'form'

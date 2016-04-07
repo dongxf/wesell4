@@ -1,0 +1,8 @@
+- if flash[:alert]
+  .flash_message
+    .alert.alert-danger
+      %p= flash[:alert]
+- if flash[:notice]
+  .flash_message
+    .alert.bg-wine
+      %p.white= flash[:notice]

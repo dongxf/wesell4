@@ -1,0 +1,7 @@
+.row
+  .list-group.village_items
+    - @instances.each do |instance|
+      .row.list-group-item
+        .col-xs-12.info
+          %label{:for => "instance#{instance.id}"}
+            %h2.wine= link_to "#{current_instance.try(:id) == instance.id ? '[x]' : '[ ]' }#{instance.nick}", westore_instance_path(instance), class: "vi-name set_default", data: { instance_id: instance.id }

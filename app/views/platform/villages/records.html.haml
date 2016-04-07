@@ -1,0 +1,89 @@
+%ul.breadcrumb
+  %li
+    =link_to @instance.name, [:platform, @instance]
+    %span.divider
+  %li
+    =link_to @village.name, [:platform, @instance, @village]
+    %span.divider
+  %li.active
+    搜索汇总
+
+.row
+  = paginate @records
+  %table.table.table-striped
+    %thead
+      %tr
+        %th 搜索时间
+        %th 搜索内容
+        %th 搜索者名字
+        %th 结果数
+        %th
+    %tbody
+      - @records.each do |record|
+        %tr
+          %td= format_time record.created_at
+          %td= record.content
+          %td= record.customer.try(:nickname)
+          %td= record.result_count
+          %td
+            %button.btn.btn-orange{ data: { toggle: "modal", target: "#reply#{record.id}" } }
+              回复
+            .modal.fade{ :id => "reply#{record.id}", :tabindex => "-1", :role => "dialog", :"aria-hidden" => true }
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    %button.close{"data-dismiss" => "modal", :type => "button"}
+                      %span{"aria-hidden" => "true"} ×
+                      %span.sr-only Close
+                    %h4#myModalLabel.modal-title 回复该搜索结果
+                  .modal-body
+                    = form_for 'reply', url: reply_platform_record_path(record), remote: true, html: {method: :get, class: 'reply form-horizontal', role: 'form'} do |f|
+                      .form-group
+                        .col-sm-2.control-label
+                          = f.label "题头"
+                        .col-sm-8
+                          = f.text_field :first, class: 'form-control'
+                      .form-group
+                        .col-sm-2.control-label
+                          = f.label "表单名称"
+                        .col-sm-8
+                          = f.text_field :fb_form, class: 'form-control'
+                      .form-group
+                        .col-sm-2.control-label
+                          = f.label "内容摘要"
+                        .col-sm-8
+                          = f.text_area :fb_note, class: 'form-control'
+                      .form-group
+                        .col-sm-2.control-label
+                          = f.label "提交地点"
+                        .col-sm-8
+                          = f.text_field :area, class: 'form-control'
+                      .form-group
+                        .col-sm-2.control-label
+                          = f.label "注释"
+                        .col-sm-8
+                          = f.text_field :remark, class: 'form-control'
+                      .form-group
+                        .col-sm-2.control-label
+                          = f.label "指向url"
+                        .col-sm-8
+                          = f.text_field :url, class: 'form-control'
+                      = f.submit "提交", class: 'btn btn-orange-o pull-right submit_reply'
+
+                    %p
+                      如:
+                      %br/
+                      题头: 妹纸，你好！
+                      你发布的表单收到一份新反馈，请点击查看完整内容
+                      %br/
+                      %br/
+                      表单名称：市场调研
+                      %br/
+                      内容摘要：李磊 lilei@mikecrm.com
+                      %br/
+                      提交时间：2013年9月30日 17:58
+                      %br/
+                      提交地点：四川 成都
+                  .modal-footer
+                    %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+  = paginate @records

@@ -1,0 +1,19 @@
+%h4 中国福利彩票
+
+- @lotteries.each do |lottery|
+  - numbers = lottery.vote_nums.split('|')[0]
+  - numbers = numbers.split('/')
+  - reds = numbers[0..5]
+  - blue = numbers[-1]
+  %p= "双色球 第#{lottery.issue}期"
+  %p{style: 'height: 40px'}
+    - reds.each do |red|
+      %span.lottery.lottery-red= red
+    %span.lottery.lottery-blue= blue
+  %div{style: 'margin-bottom: 40px'}= link_to '查看中奖结果', award_info_misc_lottery_path(lottery)
+  .clearfix
+
+= paginate @lotteries
+
+%div
+  %p= link_to '前往订购中心', westore_instance_path(current_customer.instance)

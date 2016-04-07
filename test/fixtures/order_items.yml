@@ -1,0 +1,65 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order: one
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+two:
+  order: one
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+three:
+  order: two
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+four:
+  order: two
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+five:
+  order: three
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+six:
+  order: four
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+seven:
+  order: five
+  wesell_item: one
+  unit_price: 1.00
+  unit_name: 个
+  name: item_1
+  quantity: 1
+
+eight:
+  order: six
+  wesell_item: five
+  unit_price: 1.00
+  unit_name: 个
+  name: item_5
+  quantity: 1

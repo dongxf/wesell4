@@ -1,0 +1,22 @@
+.simple_form {
+  .control-label {
+    float: left;
+    width: 120px;
+
+  }
+  .controls {
+    float: left;
+    margin-left: 10px;
+  }
+}
+
+.simple_form.filter_orders {
+  .control-label {
+    width: auto;
+    display: inline;
+  }
+  .filter_submit_at_1, .filter_submit_at_2 {
+    float: left;
+    margin-right: 5px;
+  }
+}

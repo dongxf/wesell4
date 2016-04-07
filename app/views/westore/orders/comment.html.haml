@@ -1,0 +1,11 @@
+#page_intelOrder
+  %section
+    %article
+      = link_to '返回', westore_order_path(@order), style: "float: right"
+      = simple_form_for [:westore, @order], url: comment_westore_order_path(@order), method: 'patch', defaults: {input_html: {class: 'form-control'}} do |f|
+        = f.input :comment, as: :text, input_html: {rows: 4}
+
+        %footer
+          %input{type: "submit", value: "提交", class: "btn_2", id: "submit_form"}
+
+

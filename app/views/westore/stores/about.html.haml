@@ -1,0 +1,45 @@
+- content_for :title do
+  = @store.name
+
+- if @store.template == "wemall"
+  -# = render 'categories_menu'
+- else
+  = link_to "进入购物", westore_instance_store_path(current_instance, @store), class: "top_link"
+
+.row
+  .col-xs-12
+    .banner{style: "padding-left: 0; padding-right: 0"}
+      = link_to westore_instance_store_path(@instance, @store) do
+        = image_tag @store.banner.url
+
+.row
+  .col-xs-4
+    = link_to westore_instance_store_path(@instance, @store) do
+      = image_tag @store.logo.url, class: 'logo img-responsive'
+  .col-xs-8{style: "padding-left: 0"}
+    .page-header
+      %h4= @store.name
+      %h5
+        %i.fa.fa-map-marker
+        = " #{@store.street}"
+      %h5
+        %i.fa.fa-phone
+        %a{href: "tel:#{@store.phone}"}
+          = "#{@store.phone}"
+
+.row
+  .col-xs-12
+    %p.text= @store.description
+.row.r3
+  .col-xs-4.buttom_info
+    %h6
+      %i.fa.fa-play-circle-o &nbsp; 创店时间:
+    %span.tips= "#{@store.created_at.strftime('%Y-%m-%d')}"
+  .col-xs-4.buttom_info
+    %h6
+      %i.fa.fa-clock-o &nbsp; 营业时间:
+    %span.tips= "#{@store.human_opening_hours}"
+  .col-xs-4.buttom_info
+    %h6
+      %i.fa.fa-truck &nbsp; 运费相关:
+    %span.tips= @store.shipping_charge_tips

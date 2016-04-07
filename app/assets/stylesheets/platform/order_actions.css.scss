@@ -1,0 +1,23 @@
+// Place all the styles related to the platform/order_actions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.order_status {
+	max-width: 170px;
+
+  li {
+  	margin: 5px;
+  	float: left;
+
+  	.btn-salmon {
+  		color: white;
+  		background-color: #f07057;
+  		border-color: #F17860;
+  	}
+  }
+}
+
+.index_tips {
+  letter-spacing: 1px;
+}

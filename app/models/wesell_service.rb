@@ -1,0 +1,2 @@
+class WesellService < WesellItem
+end

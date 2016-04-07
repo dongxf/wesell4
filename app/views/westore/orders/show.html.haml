@@ -1,0 +1,33 @@
+- content_for :title do
+  = @store.name
+#page_intelOrder.body
+  %h3
+    = link_to "浏览其他商品", westore_instance_store_path(@order.instance, @order.store)
+
+  %header
+    %span.pCount
+      %a.icon-phone{href: "tel:#{@store.phone}"}
+        %i.fa.fa-phone.wine
+        %span.wine= @store.phone
+    %label
+      %i 共计：
+      %b.duiqi#total= @order.amount
+      %b.duiqi= @order.monetary_unit
+
+  %section
+    = render_cell :westore, :order_details, order: @order
+
+
+    %article
+      %h2 订单动态
+      %table.order_table
+        %tbody
+          - @order_actions.each do |order_action|
+            %tr
+              %td= format_time order_action.created_at
+              %td= order_action.human_type
+      - if @order.confirmable?
+        %footer.order_actions
+          - if @order.hurriable?
+            .fl= link_to '催单', hurry_up_westore_order_path(@order), class: 'btn_1'
+          .fr= link_to '确认收货', comment_westore_order_path(@order), class: 'btn_2'

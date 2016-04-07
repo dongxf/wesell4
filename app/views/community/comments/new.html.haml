@@ -1,0 +1,16 @@
+.row.new_comment
+  .container.reply
+    %h2 回复
+    %p.parent-comment
+      = @parent.content
+    = form_for [:community, @village_item, @comment], html: {class: 'form'}, remote: true do |f|
+      = f.hidden_field :parent_id
+      = f.hidden_field :customer_id
+      .form-group
+        .col-xs-12.comment_content
+          = f.text_area :content, class: 'form-control'
+      .form-group
+        .col-xs-12
+          = f.submit "提交", class: "btn btn-wine-o submit_comment"
+          = link_to "关闭", "javascript:void(0)", class: "close_back btn btn-default"
+        .notice

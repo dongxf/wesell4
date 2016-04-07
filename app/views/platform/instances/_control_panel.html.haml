@@ -1,0 +1,44 @@
+%ul.list-unstyled
+  %li= link_to '新建店铺', new_platform_store_path(instance_id: @instance)
+  %li= link_to "店铺列表(#{@instance.stores.count})", platform_instance_operations_path(@instance)
+  %br/
+  %li= link_to '新建店铺分类', new_platform_instance_kategory_path(@instance)
+  %li= link_to "店铺分类列表(#{@instance.kategories.count})", platform_instance_kategories_path(@instance)
+  %p
+    - if @instance.app_id.present? && @instance.app_secret.present?
+      %li= link_to '自定义菜单', platform_instance_wechat_menus_path(@instance)
+  %li= link_to '自定义回复消息', platform_instance_wechat_keys_path(@instance)
+  %br/
+  / %li= link_to '附近的店铺', nearby_platform_stores_path(instance_id: @instance)
+  %li
+    = link_to '邀请店铺加盟', '#invite_store', role: 'button', data: { toggle: 'modal'}
+    .modal{id: 'invite_store', style: "display: none;"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %a.close{"data-dismiss" => "modal"} ×
+            %h4 邀请店铺加盟
+          .modal-body
+            = simple_form_for 'store', url: invite_platform_instance_path(@instance), remote: true, html: {method: 'get', class: 'form-horizontal'} do |f|
+              = f.input :name, placeholder: '请输入店铺名称', input_html: { class: 'form-control' }
+              = f.input :invite_code, placeholder: '请输入店铺的邀请码', hint: false, input_html: { class: 'form-control' }
+              = f.button :submit, '添加', class: 'center-block btn btn-orange'
+          .modal-footer
+  %br/
+  %li
+    = link_to "社区列表(#{@instance.villages.count})", platform_instance_villages_path(@instance)
+  - if @instance.name == "foowcn" || @instance.name == "xguox"
+    %br/
+    %li
+      = form_tag import_platform_instance_village_items_url(@instance),multipart: true do
+        = file_field_tag :file
+        %p
+        = submit_tag '批量导入黄页条目(CSV文件)', class: 'btn btn-orange-o'
+  %br/
+  - if current_user.admin?
+    %li
+      = link_to '公众号 users', roles_platform_instance_path(@instance)
+  -# %p
+  -# %li= link_to '社区', community_platform_instance_path(@instance)
+-# .village
+-#   = render "platform/villages/new_village"

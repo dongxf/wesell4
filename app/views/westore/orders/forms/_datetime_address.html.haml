@@ -1,0 +1,29 @@
+= simple_form_for [:westore, @order], defaults: {input_html: {class: 'form-control'}}, data: {order_id: @order.id} do |f|
+  = f.input :start_date, as: :string, input_html: {class: 'datepicker form-control'}, required: true
+  = f.input :start_time, required: true do
+    %span{style: 'width: 40%; display: inline-block;'}
+      = f.input_field :start_time_hour, as: :select, name: 'order[start_time_hour]', collection: (0..23)
+    %span{style: 'width: 10%; display: inline-block;'} :
+    %span{style: 'width: 40%; display: inline-block;'}
+      = f.input_field :start_time_minute, as: :select, name: 'order[start_time_minute]',
+                      collection: ['00', '15', '30', '45']
+  = f.input :contact, input_html: {class: 'form-control'}
+  = f.input :phone
+  = f.input :address, required: true
+
+  - @store.order_configs.each do |order_config|
+    - if order_config.style == 0 #任选一种
+      = f.association :order_config_options, as: :select,
+                      collection: order_config.order_config_options.map{|op| [op.label(@store), op.id] },
+                      label: order_config.name,
+                      include_blank: false,
+                      input_html: {multiple: false, name: "order[order_config_option_ids][]"}
+    - else
+      = f.association :order_config_options, as: :check_boxes,
+                      collection: order_config.order_config_options.map{|op| [op.label(@store), op.id] },
+                      label: order_config.name
+
+  = f.input :payment_option, collection: @payment_options, include_blank: false
+  = f.input :description
+  %footer
+    %input{type: "submit", value: "立即预定", class: "btn_2", id: "submit_form"}

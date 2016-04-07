@@ -1,0 +1,81 @@
+"设置编码
+execute pathogen#infect()
+set nobackup
+set nowritebackup
+set backupdir=~/tmp
+set enc=utf-8
+set langmenu=zh_CN.UTF-8
+language message zh_CN.UTF-8
+set fenc=utf-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+"Monaco英文字体,中文字体
+set guifont=Monaco
+"set guifont=Monaco:h10:cANSI
+set guifontwide=Monaco
+"set guifontwide=<b7><bd><d5><fd><bc><f2><cc><e5>:h13:cGB2312 "方正准圆简 Okey
+"set guifontwide=<bb><aa><bf><b5><cd><de><cd><de><cc><e5>W5:h11:cGB2312 "华康娃娃体
+"set guifontwide=<ba><da><cc><e5>:h13:cGB2312 "黑体 Invalid
+"TagList Windows to Right and Auto fold
+let Tlist_Use_Right_Window=1"
+let Tlist_File_Fold_Auto_Close=1
+"Set Snippets
+let snippets_dir = $VIMRUNTIME.'\snippets\'
+filetype indent on  "针对不同文件类型用不同的缩进格式
+filetype plugin on  "针对不同文件类型加载对应插件，允许snipMate工作
+filetype plugin indent on "启用自动补全
+"TagList Windows to Right and Auto fold
+let Tlist_Use_Right_Window=1"
+let Tlist_File_Fold_Auto_Close=1
+set number
+set hlsearch
+set bsdir=buffer 
+set nocompatible
+set tabstop=2
+set shiftwidth=2
+set expandtab
+syntax enable
+syntax on     "打开语法高亮
+syntax on     "开启文件类型侦测
+"通过F5呼叫NERDTree功能
+map <F5> :NERDTree<CR>
+color molokai
+"winpos 0 0
+"set lines=35 columns=157
+"for ctags, ctags.exe has been copied to vim73
+set tags=tags;
+set autochdir
+"把gvim的菜单和工具栏隐藏掉,按F2可调出,再按隐藏 
+set guioptions-=m 
+set guioptions-=T 
+map <silent> <F2> :if &guioptions =~# 'T' <Bar> 
+         \set guioptions-=T <Bar> 
+         \set guioptions-=m <bar> 
+     \else <Bar> 
+         \set guioptions =T <Bar> 
+         \set guioptions =m <Bar> 
+     \endif<CR>
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+au GUIEnter * simalt ~x

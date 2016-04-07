@@ -1,0 +1,9 @@
+.we-village
+  %h2.wine 选择社区服务商
+  .row
+    .list-group.village_items
+      - @instances.each do |instance|
+        .row.list-group-item
+          .col-xs-12.info
+            %label{:for => "instance_#{instance.id}"}
+              = link_to "#{instance.nick}", community_instance_path(instance), class: "vi-name set_default", data: { instance_id: instance.id }

@@ -1,0 +1,33 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    小区管理
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 小区名称
+      %th 社区标志
+      %th 社区横幅
+      %th 大管家(css)
+      %th 小管家们(cca)
+      %th
+  %tbody
+    - @villages.each do |village|
+      %tr
+        %td= village.id
+        %td= link_to village.name, platform_instance_village_path(@instance, village)
+        %td= image_tag village.logo.url(:large)
+        %td= image_tag village.banner.url(:large)
+        %td= village.css.try(:name)
+        %td= village.ccas.pluck(:name)
+        %td
+          - if can? :edit, village
+            = link_to '设置', edit_platform_instance_village_path(@instance, village), class: 'btn btn-orange'
+            = link_to '删除', platform_instance_village_path(@instance, village), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建小区", new_platform_instance_village_path(current_instance), class: 'btn btn-orange'

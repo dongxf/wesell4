@@ -1,0 +1,9 @@
+- html = capture do
+  %ul.list-status{id: "actions_#{@order.id}"}
+    = image_tag 'loading.gif', size: "34x34", class: "loading"
+    %li= switch_status @order, :reject, remote: true
+    %li= switch_status @order, :accept, remote: true
+    %li= switch_status @order, :ship, remote: true
+    %li= switch_status @order, :finish, remote: true
+
+$("#actions_#{@order.id}").replaceWith('#{j html}')

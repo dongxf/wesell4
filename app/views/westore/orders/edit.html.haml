@@ -1,0 +1,47 @@
+- content_for :title do
+  = @store.name
+
+#page_intelOrder.body
+  %header
+    %span.pCount
+      %a.icon-phone{href: "tel:#{@store.phone}"}
+        %i.fa.fa-phone.wine
+        %span.wine= @store.phone
+    %label
+      %i 共计：
+      %b.duiqi#total= @order.calculate_amount
+      %b.duiqi= @order.monetary_unit
+
+  %section
+    %article
+      %h2
+        我的订单
+        = link_to clean_westore_order_path(@order), data: {confirm: '确定要清空？'} do
+          %button.btn_add.emptyIt#clearBtn 清空
+        = link_to westore_instance_store_path(current_instance, @store) do
+          %button.btn_add +加单
+      %ul.myorder
+        - @order_items.each do |item|
+          %li{id: "item_#{item.id}"}
+            %span.dishName
+              = link_to edit_westore_order_item_path(item) do
+                - item.order_item_options.each do |option|
+                  %span.yuanjia= option.label
+                %span.fa.fa-pencil-square-o.wine
+              = item.name
+            %i= item.human_price
+
+            %section.bbox
+              = link_to westore_order_order_item_update_quantity_path(@order, item, quantity: '-1'), remote: true, class: 'edit_item' do
+                %input.btn-reduce{type: "button", value: "-"}
+              %input.numBox{name: "numBox", type: "text", value: item.quantity, price: item.unit_price, disabled: "disabled"}
+              = link_to westore_order_order_item_update_quantity_path(@order, item, quantity: '1'), remote: true, class: 'edit_item' do
+                %input.btn-plus{type: "button", value: "+"}
+  %section
+    %article
+      = render 'form'
+
+- content_for :js do
+  :coffee
+    $ ->
+      $('ul.clear').css('position', 'inherit')

@@ -1,0 +1,15 @@
+#page_allMenu
+  %nav#navBar
+    %dl
+      - @categories.each_with_index do |cate, index|
+        %dd{id: "category_#{cate.id}", categoryid: cate.id, class: (index == 0 ? 'active' : '')}
+          = cate.name
+          %span
+
+  %section#infoSection
+    %article
+      #pInfo
+        / - if @store.entity?
+        = render 'westore/categories/products_list'
+        / - else
+        / = render 'westore/categories/services_list'

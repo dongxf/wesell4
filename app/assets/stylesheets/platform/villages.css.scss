@@ -1,0 +1,102 @@
+// Place all the styles related to the Platform::Villages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_village {
+	.village_form {
+		display: none;
+		.v_field {
+	    display: block;
+	    margin: 10px 0;
+		}
+	}
+}
+
+.update_village {
+  display: none;
+}
+
+.v_field {
+	padding: 5px;
+	margin-left: -15px;
+}
+
+.village {
+	margin-top: 15px;
+
+  .tags {
+		.sub_tags {
+			height: 200px;
+			padding-top: 30px;
+      border: 1px solid #eee;
+			margin-bottom: 10px;
+
+			.sub_tag {
+			  padding: 10px;
+			  display: inline-block;
+			  margin-bottom: 3px;
+			}
+		}
+
+		.village_items {
+      padding-left: 0;
+      padding-right: 0;
+			border: 1px solid #eee;
+      border-left: none;
+			height: 200px;
+	    overflow-y: scroll;
+
+      .list-group-item {
+        padding: 0;
+        border: none;
+        a {
+          padding: 10px 30px;
+          display: block;
+
+          &:hover {
+            color: $white;
+            background-color: $orange;
+          }
+        }
+      }
+		}
+
+		.vi_info {
+				border: 1px solid #eee;
+				height: 200px;
+		}
+  }
+}
+
+.create_village_item {
+  .search-field input{
+    height: 30px;
+  }
+}
+
+#vi_menu {
+	position: fixed;
+  top: 30%;
+  left: 10px;
+  list-style: none;
+  z-index: 10;
+
+  li {
+  	margin-bottom: 10px;
+  	a {
+  		display: block;
+  		padding: 10px;
+        border: 1px solid $orange;
+        background-color: $orange;
+        color: $white;
+
+  		&:hover {
+          border: 1px solid $orange;
+  			background-color: $white;
+  			color: $orange;
+          text-decoration: none;
+          transition: all 0.3s ease-in-out 0s;
+  		}
+  	}
+  }
+}

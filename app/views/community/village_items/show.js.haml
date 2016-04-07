@@ -1,0 +1,19 @@
+- html = capture do
+  = render 'comments_list'
+
+- more_btn = capture do
+  .load-more
+    = link_to_next_page(@comments, '点击加载更多',params: { product_search: {q: @q }}, :remote => true, :id=>'load_more_link', class: 'btn btn-wine-o')
+    = image_tag 'loading.gif', size: "34x34", class: "loading"
+var el = $('.comments-list');
+el.append("#{j html}");
+$('.load-more').remove();
+- if @comments.current_page != @comments.num_pages
+  el.append("#{ j more_btn }");
+  :plain
+  $(document).ajaxStart(function () {
+    $('.loading').show();
+  });
+  $(document).ajaxComplete(function () {
+    $('.loading').hide();
+  });

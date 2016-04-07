@@ -1,0 +1,208 @@
+nav {
+	margin-top: 0;
+}
+
+body {
+	background: image-url("bg-9-full.jpg") no-repeat top center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	padding-top: 100px;
+}
+
+#footer {
+	background-color: #fff;
+}
+
+.navbar-default {
+  background-color: #fff;
+  background-color: rgba(#fff, .9);
+  -webkit-box-shadow: 0 3px 5px rgba(#333, .6);
+  -moz-box-shadow: 0 3px 5px rgba(#333, .6);
+  box-shadow: 0 3px 5px rgba(#333, .6);
+}
+
+.navbar {
+  margin-bottom: 0;
+  min-height: 100px;
+  border-radius: 0;
+  border: none;
+  .navbar-brand {
+    text-indent: -9999px;
+    padding: 50px 80px;
+    margin: 5px 0 0 160px;
+
+    background: image-url('fooways_logo1.png') no-repeat center;
+    background-size: 135px 78px
+  }
+  .navbar-toggle {
+    border: none;
+  }
+
+  .navbar-collapse {
+    .navbar-nav {
+      li {
+        margin-top: 40px;
+        box-sizing: content-box !important;
+        .active {
+          background-color: #FF851B;
+          color: #111;
+        }
+        a {
+          color: #FF851B;
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+        ul.dropdown-menu {
+          a {
+            color: black;
+            padding-top: 5px;
+            padding-bottom: 0;
+          }
+        }
+      }
+      a {
+        font-size: 20px;
+        font-weight: 500;
+        &:hover {
+          background-color: #FF851B;
+          color: #111;
+          transition: all 0.2s ease-in-out 0s;
+        }
+      }
+    }
+    .navbar-left {
+      margin: 0 0 0 60px;
+    }
+    .navbar-right {
+      margin: 0 150px 0 0;
+    }
+  }
+}
+
+.forums {
+	margin: 30px auto;
+	background: #fff;  //ie8
+	background: rgba(#fff, .8);
+	// min-height: 600px;
+
+  a:not(.btn) {
+    color: #FF851B;
+  }
+
+	.wysihtml5-editor {
+		height: 500px;
+	}
+
+	#posts {
+		margin: 20px auto;
+
+		.post {
+			padding: 20px;
+			border-top: 1px solid #ddd;
+
+			.contents {
+				.btn-group {
+					margin: 20px;
+				}
+			}
+		}
+	}
+
+	.reply_form {
+		clear: both;
+		padding-top: 30px;
+	}
+}
+
+@media (max-width: 970px) {
+  body {
+    padding-top: 50px;
+  }
+
+  .navbar {
+    min-height: 60px;
+    background: transparent;
+    box-shadow: none;
+
+    .navbar-header {
+      background: #fff;
+      .navbar-brand {
+        margin: 0 0 0 10px;
+        background-size: 100px;
+        padding: 30px 80px;
+      }
+    }
+
+    .navbar-toggle {
+      border: none;
+      margin-top: 20px;
+    }
+
+    .navbar-collapse {
+      background-color: #fff;
+      width: 150px;
+      float: right;
+      padding-left: 0;
+      padding-right: 0;
+      .navbar-nav {
+        margin: 0;
+        width: 150px;
+        float: right;
+        border: 1px solid #eee;
+
+        li {
+          margin-top: 0px;
+          text-align: center;
+
+          .active {
+            background-color: #FF851B;
+            color: #111;
+          }
+          a {
+            color: #FF851B;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            line-height: 20px;
+          }
+          ul.dropdown-menu {
+            a {
+              color: black;
+              padding-top: 5px;
+              padding-bottom: 0;
+            }
+          }
+        }
+        a {
+          font-size: 20px;
+          font-weight: 500;
+          &:hover {
+            background-color: #FF851B;
+            color: #111;
+            transition: all 0.2s ease-in-out 0s;
+          }
+        }
+      }
+    }
+  }
+
+  .forums {
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  .contact {
+    display: none;
+  }
+
+  .btn {
+    padding: 3px 6px;
+  }
+
+  div.icon img {
+    display: none;
+  }
+}

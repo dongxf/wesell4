@@ -1,0 +1,2 @@
+module Westore::MembersHelper
+end

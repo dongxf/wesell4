@@ -1,0 +1,80 @@
+= simple_form_for [:platform, @instance, @village_item], defaults: { input_html: { class: "form-control" } },html: { class: "create_village_item form-horizontal", role: "form" } do |f|
+  %ul.nav.nav-tabs
+    %li.active
+      %a{href: "#junior", data: {toggle: "tab"}} 基本信息
+    %li
+      %a{href: "#senior", data: {toggle: "tab"}} 认证信息
+
+  .tab-content
+    %fieldset#junior.tab-pane.active
+      - if params[:action] == 'edit' 
+        - if @village_item.level == 3 || @village_item.level == 5
+          %h4 加入小区
+          - @instance.villages.each_with_index do |village, index|
+            = check_box_tag "village#{index}", village.id, @village_item.villages.include?(village), class: "check_in_village", data: {village_item_id: @village_item.id, village_id: village.id, instance_id: @instance.id}
+            = label_tag "village#{index}", village.name
+        - else
+          %h4 已加入小区
+          = "#{'[x] ' if @village_item.villages.count > 0} #{@village_item.villages.pluck(:name).join(' [x]')}"
+      %h4 基本信息
+      - unless current_user.is_vusr?
+        = f.input :cca_id, collection: @instance.ccas.pluck(:name, :id)
+        = f.input :referral_id, hint: "推荐者的顾客号，一般都显示在推荐邮件的文件内容上"
+        = f.input :owner_id, hint: "创建成功后将向该客户推送账号及手机接入提示关注等。在对应公众号（例如幸福大院）中点击http://fooways.com/echo后查看"
+      = f.input :name, readonly: current_user.is_vusr?, label: '店铺名称'
+      = f.input :tel, label: '营业电话'
+      = f.input :addr, label: '店铺地址'
+      = f.input :opening_hours, hint: "示例 00:00~02:00,09:15~15:36,18:30~24:00 (使用英文版逗号分隔, 不要空格不要引号,小时和分钟都要用两位数表示), 留空表示全天营业"
+      = f.input :takeout, as: :boolean, input_html: { class: 'btn-radio' }, label: '是否配送'
+      = f.input :info, as: :text, required: true, lable: '店铺介绍'
+      = f.input :meta, as: :text, hint: "为了让我们的搜索引擎能更精确地搜索到该项目, 请填写一些能准确定位的关键词."
+      .form-group
+        = f.label "分类标签"
+        .col-md-8
+          = f.select :sub_tag_list, grouped_options_for_select(Tag.optgroup,  @village_item.sub_tag_list.split(', ')) ,{}, class: "chosen-select form-control", multiple: true
+        %p 可选择多个，请勿超过四个标签
+      = f.input :admin_name, placeholder: '商户管理员'
+      = f.input :admin_phone, placeholder: '管理员手机'
+      = f.input :admin_email, placeholder: '管理员邮件', hint: "将以此邮件创建相关平台用户,初始密码为234578", readonly: current_user.is_vusr?
+      .form-group
+        = f.label :logo
+        .col-md-8
+          = f.file_field :logo
+          = image_tag @village_item.logo.url, size: "200x200", hint: '200x200'
+      .form-group
+        = f.label :banner
+        .col-md-8
+          = f.file_field :banner
+          = image_tag @village_item.banner.url, size: "360x200", hint: '360x200'
+      = f.input :page, input_html: { class: 'summernote'}, hint: '店铺详情的显示内容', label: '店铺详情'
+      = f.input :url, hint: "微店地址http://wd.koudai.com/?userid=xxxx，微博地址，淘宝地址(http://shopxxx.m.taobao.com/), 为空使用系统自带微店"
+      -if current_user.is_vusr? && ([3,4,5].include? @village_item.level)
+        %p= "系统微店地址：#{@village_item.westore_url}"
+
+    %fieldset#senior.tab-pane
+      -if current_user.is_vusr?
+        %p= "系统微店地址：#{@village_item.try(:level)}"
+        %p= "服务合约类型：#{@village_item.try(:level)}"
+        %p= "合约开始时间：#{@village_item.try(:approved_start_at)}"
+        %p= "合约结束时间：#{@village_item.try(:approved_end_at)}"
+        - cca = User.find_by(id: @village_item.cca_id)
+        %p= "社区服务专员：#{cca.try(:name)}, #{cca.try(:email)}, #{cca.try(:phone)}"
+      -else
+        = f.input :level, collection: VillageItem::LEVEL, include_blank: false
+        = f.input :disabled_reason, as: :text
+        = f.input :approved_start_at, as: :string, input_html: {class: 'datepicker2  form-control'}, readonly: current_user.is_vusr?
+        = f.input :approved_end_at, as: :string, input_html: {class: 'datepicker2 form-control'}, readonly: current_user.is_vusr?
+        .form-group
+          = f.label "认证文件"
+          .col-md-8
+            = f.file_field :doc
+            - if @village_item.doc.url
+              附件: <%= link_to File.basename(post.attachment.url), post.attachment.url %>
+  .form-group
+    .col-md-8
+      = f.submit "提交修改", class: "btn btn-primary"
+      - if params[:action] == "edit"
+        = link_to "推广二维码", print_qrcode_platform_instance_village_item_path(@instance, @village_item), html_options={class: 'btn btn-success'}
+        %button#pin.btn.btn-default{"data-content" => "请关注公众账号赋为网络科技(fwdesk)，输入'绑定黄页 #{@village_item.pin}'或者 'bd #{@village_item.pin}'", "data-toggle" => "popover", "data-placement" => "top", :title => "", :type => "button"} 手机管理码
+        - if !current_user.is_vusr?
+          = link_to "删除条目", platform_instance_village_item_path(@instance, @village_item), method: :delete, data: { confirm: "确定要删除 #{@village_item.name} 吗? 信息将不能恢复"}, class: 'btn btn-danger'

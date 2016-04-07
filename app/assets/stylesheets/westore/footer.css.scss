@@ -1,0 +1,120 @@
+.footer_menu {
+  height: 50px;
+
+  ul {
+    border-top: 1px solid $wine;
+    height: 45px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background: $wine;
+
+    li {
+      width: 20%;
+      text-align: center;
+      height: 100%;
+      float: left;
+
+      a {
+        display: block;
+        height: 100%;
+        color: $gray;
+        position: relative;
+
+        span.icons {
+          display: block;
+          width: 41px;
+          height: 30px;
+          margin: 0 auto;
+          background: image-url('westore/footer-icons.png') 0 0;
+          background-size: auto 60px;
+        }
+
+        span.icons_2 {
+          background-position: -181px 0;
+        }
+
+        span.icons_3 {
+          background-position: -61px 0;
+        }
+
+        span.icons_4 {
+          background-position: -123px 0;
+        }
+
+        span.icons_5 {
+          display: block;
+          width: 55px;
+          height: 55px;
+          position: absolute;
+          top: -15px;
+          right: 10px;
+          border-radius: 45px;
+          background: image-url("westore/cart.png") no-repeat center center;
+          -webkit-background-size: 100% 100%;
+          z-index: 105;
+
+          label {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            border: 1px solid #ffffff;
+            background: rgba($champagne, .9);
+            line-height: 20px;
+            text-align: center;
+            vertical-align: middle;
+            color: $wine;
+            position: absolute;
+            right: 0px;
+            top: -5px;
+          }
+        }
+
+        label {
+          display: block;
+          margin: 0 auto;
+          height: 20px;
+          line-height: 10px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          font-size: 0.8em;
+          letter-spacing: 1px;
+        }
+      }
+
+      &.onactive a {
+        span.icons {
+          background-position: 0 -28px;
+        }
+
+        span.icons_2 {
+          background-position: -181px -28px;
+        }
+
+        span.icons_3 {
+          background-position: -61px -28px;
+        }
+
+        span.icons_4 {
+          background-position: -123px -28px;
+        }
+        label {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.clear:after{
+  content: "";
+  display: block;
+  height:0;
+  width:100%;
+  visibility: hidden;
+  clear: both;
+}

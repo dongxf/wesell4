@@ -1,0 +1,10 @@
+- html = capture do
+  - if @express.present?
+    %p.text-success.text-center 移除成功！
+  - else
+    %p.text-danger.text-center 移除失败！
+
+$(".modal-footer").html('#{j html}')
+$("#express#{@express.id}").remove()
+
+setTimeout(function(){$(".modal-footer").html('')}, 5000)

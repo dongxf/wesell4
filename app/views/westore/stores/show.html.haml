@@ -1,0 +1,24 @@
+- if @store.stype == 'event'
+  = image_tag 'fevent.jpg', style: "display: none"
+- content_for :title do
+  = @store.name
+
+-# It's a bit clunky, but you can use #{} inside of javascript filters in HAML, like so:
+- if @store.notice.present?
+  %div.flash_message
+    %div.alert.bg-wine
+      %p.white= @store.notice
+
+-# - if @store.show_phone?
+-#   %section
+-#     = link_to "关于本店", about_westore_store_path(@store), class: "store_tel"
+-#     %a.store_tel.icon-phone{href: "tel:#{@store.phone}"}
+-#       客服电话：
+-#       = @store.phone
+-if @store.link.present?
+  <iframe src="#{@store.link}" style="border:none !important" width="100%" height="100%"><p>手机不给力无法显示</p></iframe>
+-else
+  - if @categories.present?
+    = render 'with_categories'
+  - else
+    = render 'without_categories'

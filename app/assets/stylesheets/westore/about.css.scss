@@ -1,0 +1,48 @@
+.load-more {
+  margin: 20px auto;
+  text-align: center;
+    .loading {
+      display: none;
+    }
+}
+
+.page-header {
+	margin-top: 0;
+}
+
+.logo {
+	margin-top: 10px;
+}
+
+.text {
+	font-size: 1em;
+	letter-spacing: 1px;
+	padding: 10px 0;
+	// border-bottom: 1px solid #eee;
+}
+
+.tips {
+	font-size: 1em;
+}
+
+.top_link {
+	display: block;
+	background-color: #009bad;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+	height: 50px;
+	margin-top: -50px;
+}
+
+.r3 {
+	border: 1px solid #ddd;
+	.buttom_info {
+    &:nth-child(2) {
+    	border-left: 1px solid #ddd;
+    	border-right: 1px solid #ddd;
+    	max-height: 100px;
+    	min-height: 100px;
+    }
+	}
+}

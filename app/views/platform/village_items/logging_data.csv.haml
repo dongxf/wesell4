@@ -1,0 +1,9 @@
+- headers = ['小管家ID', '小管家邮箱', '录入条目数']
+
+= CSV.generate_line headers
+- @user_vis.each do |user_vi|
+  - id = user_vi.first
+  - email = User.find(id).email
+  - count = user_vi.last
+
+  = CSV.generate_line([id, email, count])

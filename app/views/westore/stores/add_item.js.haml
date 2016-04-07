@@ -1,0 +1,27 @@
+- html = capture do
+  - if @item_quantity > 0
+    - if @product.options_groups_count > 0
+      = link_to edit_westore_order_path(@order) do
+        %button.minus
+          %strong
+    - else
+      %button.minus
+        %strong
+    %i= @item_quantity
+  - if @product.options_groups_count > 0
+    = link_to westore_wesell_item_path(@product) do
+      %button.add
+        %strong
+  - else
+    %button.add
+      %strong
+  %em.fixBig.fake
+
+$("#product_#{@product.id}").find('dd.btn').html("#{j html}");
+$("#num").html("#{@items_count}")
+
+- if @category_count
+  - if @category_count > 0
+    $("#navBar").find('dd.active span').html("#{@category_count}").show();
+  - else
+    $("#navBar").find('dd.active span').html("#{@category_count}").hide();

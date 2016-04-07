@@ -1,0 +1,15 @@
+.container{style: "padding-top: 200px"}
+  .content
+    %h2 重置密码?
+
+    = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :defaults => { :input_html => { :class => 'form-control' } }, :html => { class: 'form-horizontal', role: "form", :method => :post }) do |f|
+      = f.error_notification
+
+      = f.input :email, :required => true, :autofocus => true, label: '注册邮箱'
+
+      .row
+        = f.button :submit, "确定", class: 'btn btn-orange col-md-2 col-md-offset-5'
+
+
+    = render "devise/shared/links"
+

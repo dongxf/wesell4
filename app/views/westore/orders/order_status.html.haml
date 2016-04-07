@@ -1,0 +1,41 @@
+%ul.list-status{id: "actions_#{@order.id}"}
+  = image_tag 'loading.gif', size: "34x34", class: "loading"
+  %li= switch_status @order, :reject, remote: true
+  %li= switch_status @order, :accept, remote: true
+  %li= switch_status @order, :ship, remote: true
+  %li= switch_status @order, :finish, remote: true
+  - unless @order.store.expresses.empty?
+    - if @order.status == 'reposted'
+      %li
+        %h2
+          当前状态 - 已选第三方配送:
+          =@order.express.name
+    - else
+      %li
+        %p 选择第三方配送
+        = simple_form_for 'choose_express', url: choose_express_westore_order_path(@order), method: :patch, remote: true, html: {class: 'choose_express'} do |f|
+          = f.input_field :express, as: :select,
+                          collection: @order.store.expresses.collect { |e| [e.name, e.id] },
+                          class: 'input-group-addon form-control',
+                          name: 'express',
+                          selected: params[:express],
+                          style: 'margin: 5px auto;'
+          = f.submit '让他送去!', class: 'btn btn-wine'
+  %hr/
+  %li
+    = link_to "顾客电话: #{@order.phone}", "tel:#{@order.phone}", class: 'btn btn-default'
+  %li
+    = link_to "店铺电话: #{@order.store.phone}", "tel:#{@order.store.phone}", class: 'btn btn-default'
+%p.wine{style: "white-space: pre-wrap;"}= @order.printable_text
+- unless @order_actions.empty?
+  %article
+    %h2 订单动态
+    %table.order_table
+      %tbody
+        - @order_actions.each do |order_action|
+          %tr
+            %td= format_time order_action.created_at
+            %td= order_action.human_type
+            %td{style: 'min-width: 120px'}
+              操作者:
+              = order_action.actioner.try(:name) || order_action.actioner.try(:nickname)

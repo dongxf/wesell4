@@ -1,0 +1,82 @@
+%ul.list-unstyled
+  %li= link_to "添加商品类目", new_platform_store_category_path(@store)
+  - unless @wesell_item.new_record?
+    %li= link_to '添加商品选项', new_platform_wesell_item_options_group_path(@wesell_item)
+    %li
+      = link_to "复制商品",  '#copy_wesell_item', role: 'button', data: { toggle: 'modal'}
+      .modal{id: 'copy_wesell_item', style: "display: none;"}
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %a.close{"data-dismiss" => "modal"} ×
+              %h4 复制店铺
+            .modal-body
+              = simple_form_for 'wesell_item', url: copy_platform_store_wesell_item_path(@store, @wesell_item), html: {class: 'form-horizontal'} do |f|
+                = f.input :name, hint: '请输入新商品名', input_html: { class: 'form-control' }
+                = f.button :submit, '提交', class: 'btn btn-info center-block'
+            .modal-footer
+    //- if @wesell_item.store.name == "主题聚会"
+    %br
+    %li
+      %button.btn.btn-wine{ data: { toggle: "modal", target: "#reply#{@wesell_item.id}" } }
+        表单反馈
+      .modal.fade{ :id => "reply#{@wesell_item.id}", :tabindex => "-1", :role => "dialog", :"aria-hidden" => true }
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %button.close{"data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+                %span.sr-only Close
+              %h4#myModalLabel.modal-title 消费者信息反馈
+            .modal-body
+              = form_for 'reply', url: reply_platform_wesell_item_path(@wesell_item),  remote: true, html: {method: :get, class: 'reply form-horizontal', role: 'form'} do |f|
+                .form-group
+                  .col-sm-2.control-label
+                    = f.label "题头"
+                  .col-sm-8
+                    = f.text_field :first, class: 'form-control'
+                .form-group
+                  .col-sm-2.control-label
+                    = f.label "表单名称"
+                  .col-sm-8
+                    = f.text_field :fb_form, class: 'form-control'
+                .form-group
+                  .col-sm-2.control-label
+                    = f.label "内容摘要"
+                  .col-sm-8
+                    = f.text_area :fb_note, class: 'form-control'
+                .form-group
+                  .col-sm-2.control-label
+                    = f.label "提交地点"
+                  .col-sm-8
+                    = f.text_field :area, class: 'form-control'
+                .form-group
+                  .col-sm-2.control-label
+                    = f.label "注释"
+                  .col-sm-8
+                    = f.text_field :remark2, class: 'form-control'
+                .form-group
+                  .col-sm-2.control-label
+                    = f.label "指向url"
+                  .col-sm-8
+                    = f.text_field :url, class: 'form-control'
+                = f.submit "提交", class: 'btn btn-orange-o pull-right submit_reply'
+
+              %p
+                如:
+                %br/
+                题头: 帅锅，您好！
+                您已成功下单xx商品, 现邀请您对该商品评论blahblahblah并获取相关资料
+                %br/
+                %br/
+                表单名称：售后信息
+                %br/
+                内容摘要：请点击本表单进入评论
+                %br/
+                提交地点：四川 成都
+                %br/
+                注释：活动相关照片存储于百度网盘, 地址为http://2134x.sw,  提取密码为123hljq.  请在浏览器地址栏中输入打开, 下载. 欢迎下次光临!
+                %br/
+              %p.wine 指向url: http://fooways.com/westore/wesell_items/3060 (3060请改为对应的ID号, 具体请看当前页面浏览器地址栏最后的数字)
+            .modal-footer
+              %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

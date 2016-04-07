@@ -1,0 +1,69 @@
+- content_for :title do
+  = "#{@wesell_item.store.name} | #{@wesell_item.name}"
+%section.container
+  .col-xs-12
+    %blockquote
+      %p.strong= "#{@wesell_item.name}"
+      %p.small 活动签到
+.intro_update
+  .comments
+    - cst = current_customer
+    - if cst && !@checked_customers.include?(cst)
+      - intro = cst.intro
+      - intro ||= "Hello，我是#{cst.nickname}"
+      = form_for 'intro_update', url: intro_westore_customer_path(cst), html: { class: "vi_comment_form", relo: "form" }, remote: true do |f|
+        .form-group
+          .row
+            .col-xs-12
+              = content_tag('pre', @wesell_item.store.guide )
+          .row
+            .col-xs-12
+              = f.check_box :agreed, style: 'zoom:1.68;', required: true
+              %span
+                我同意遵守
+                %a#approved-pop{"data-content" => @wesell_item.store.guide, "data-toggle" => "popover", "data-placement" => "top",  :title => "#{@wesell_item.store.name}行为准则", :type => "button"}= "《#{@wesell_item.store.name}行为准则》"
+        - if @buyers.include?(cst) || @wesell_item.visitor_allowed
+          .form-group
+            .row
+              .col-xs-12
+                <input name="wesell_item_id", type="hidden", value="#{@wesell_item.id}" />
+                = f.text_area :intro, class: "form-control comment_content", placeholder: "简单向今天来的邻居们介绍一下自己", required: true, value: intro
+          .row
+            .col-xs-12
+              = f.submit "#{@buyers.include?(cst) ? '加入聚会!' : '现场签到'}", class: "btn btn-danger btn-block"
+        - else
+          .row
+            .col-xs-12
+              =link_to '请完成报名后再签到', westore_wesell_item_path(@wesell_item), class: 'btn btn-danger btn-block'
+.buddies{style: @checked_customers.include?(cst) ? '' : 'display: none;'}
+  %section.container
+    %div.panel.panel-primary
+      %div.panel-heading 活动安排及提示
+      /%div.panel-body
+      = content_tag('pre', @wesell_item.guide)
+      /%div.panel-footer
+      /  愿您在幸福大院尽享精彩时光！
+  %section.container
+    %div.panel.panel-default
+      %div.panel-heading 已有#{@checked_customer_ids.count}位小伙伴签到，快来认识一下吧
+      %div.panel-body
+        %ul.list-group.comments-list.clearfix
+          - @checked_customers.each do |buyer|
+            - if buyer.present?
+              %li.list-group-item.clearfix.comment{class: "root"}
+                .col-xs-3
+                  %div= buyer.avatar.present? ? image_tag(buyer.avatar, size: "30x30") : image_tag('c-avatar.png',size: "30x30")
+                  %div.strong= "#{buyer.nickname}"
+                .col-xs-6
+                  %div= buyer.intro
+                .col-xs-3
+                  - if buyer.id == current_customer.id
+                    %div= '已签到'
+                  - elsif @checked_customer_ids.include?(buyer.id)
+                    %div= '已签到'
+                  - else
+                    %div= '在路上'
+  %section.container
+    %div.panel.panel-default
+      %div.panel-heading 长按或保存下面图像关注本次活动专用群，欢迎分享活动精彩照片，请勿绝发布商业信息。
+      %div.panel-body=image_tag "static/foohouse/open_foomeet_qrcode.jpg", class: 'img-responsive'

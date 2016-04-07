@@ -1,0 +1,43 @@
+.we-village.manager
+  %ul.breadcrumb
+    %li
+      =link_to "#{@village_item.name}", manager_community_village_item_path(@village_item)
+      %span.divider
+    %li.active
+      编辑信息
+  = form_for [:community, @village_item], html: { role: 'form' } do |f|
+    .form-group
+      = f.label "名称"
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label "地址"
+      = f.text_field :addr, class: 'form-control'
+    .form-group
+      = f.label "营业时间"
+      = f.text_field :opening_hours, class: 'form-control'
+      %p.help-inline
+        示例 00:00~02:00,09:15~15:36,18:30~24:00 (使用英文版逗号分隔, 不要空格不要引号,小时和分钟都要用两位数表示), 留空表示全天营业
+    .form-group
+      = f.label "是否外送"
+      = f.check_box :takeout
+    .form-group
+      = f.label "描述信息"
+      = f.text_area :info, class: 'form-control'
+      %p.help-inline 文字长度为100个字符内,用空格分开
+    .form-group
+      = f.label "关键字"
+      = f.text_area :meta, class: 'form-control'
+      %p.help-inline 为了让我们的搜索引擎能更精确地搜索到该项目, 请填写一些能准确定位的关键词.
+    .form-group
+      = image_tag "loading.gif", size: "50x50", class: 'loader pull-left'
+      = f.text_area :page, class: 'form-control page-area'
+    .form-group
+      = f.label "黄页指向"
+      = f.text_field :url, class: 'form-control'
+
+    = f.submit '提交', class: 'btn btn-wine-o'
+  - if @village_item.level == 3 || @village_item.level == 5
+    %h2 加入小区
+    - @instance.villages.each_with_index do |village, index|
+      = check_box_tag "village#{index}", village.id, @village_item.villages.include?(village), class: "check_in_village", data: {village_item_id: @village_item.id, village_id: village.id, instance_id: @instance.id}
+      = label_tag "village#{index}", village.name

@@ -1,0 +1,39 @@
+.village
+  .row
+    .col-xs-1
+      %ul#vi_menu
+        %li
+          = link_to fa_icon("bullhorn", text: "新建信息"), new_platform_instance_village_item_path(@instance)
+        %li
+          = link_to fa_icon("search", text: "搜索汇总"), records_platform_village_path(@village)
+        %li
+          = link_to fa_icon("comments-o", text: "评论汇总"), comments_platform_village_path(@village)
+        %li
+          = link_to fa_icon("reply", text: "回复汇总"), platform_village_replies_path(@village)
+        %li
+          = link_to fa_icon("check", text: "认证汇总"), approved_platform_instance_village_items_path(@instance)
+
+    .tags.col-xs-11
+      - @tags.includes(:sub_tags).each do |tag|
+        - village_items = @village.village_items.find_with_tag(tag.name, @village)
+        .col-md-6
+          .panel.panel-info
+            .panel-heading
+              = tag.name
+            .col-md-6.sub_tags
+              - tag.sub_tags.each do |sub_tag|
+                %span.label.label-info.sub_tag= sub_tag.name
+            .col-md-6.village_items
+              %ul.list-group
+                - village_items.each do |vi|
+                  %li.list-group-item
+                    = link_to vi.name, edit_platform_instance_village_item_path(@instance, vi)
+      .col-md-6
+        .panel.panel-info
+          .panel-heading
+            无目录条目
+          .col-md-12.village_items
+            %ul.list-group
+              - @no_home_village_items.each do |vi|
+                %li.list-group-item
+                  = link_to vi.name, edit_platform_instance_village_item_path(@instance, vi)

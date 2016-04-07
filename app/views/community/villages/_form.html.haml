@@ -1,0 +1,49 @@
+- approved_desc = "A.可发布优惠信息\nB.可直连微信,微博,淘宝,微店\nC.独立的二维码关注入口\nD.与线上客户实时互动\nE.在线订单及交易系统\nF.推广服务准入\nG.增值套餐365元／年起\n*勾选此选项后将有社区代表主动联系您解释详情，再次点下方链接本文可消失"
+.recommend
+  = form_for 'vi', url: community_recommend_path, method: :get, remote: true, html: { class: "create_village_item form-horizontal", role: "form" } do |f|
+    .form-group
+      = f.label "名称*", class: 'col-xs-3 control-label'
+      .col-xs-9
+        = f.text_field :name, class: "form-control" , placeholder: '黄页出现的商户名称', required: true
+    .form-group
+      = f.label "电话*", class: 'col-xs-3 control-label'
+      .col-xs-9
+        = f.text_field :tel, class: "form-control", placeholder: '黄页中拨打的营业电话', pattern: '\d{13}|\d{12}|\d{11}|\d{10}|\d{9}|\d{8}|\d{7}|\d{7}|\d{6}', required: true
+    .form-group
+      = f.label "地址*", class: 'col-xs-3 control-label'
+      .col-xs-9
+        = f.text_field :addr, class: "form-control", placeholder: '黄页中公开的营业地址', required: true
+    .form-group
+      = f.label "详情*", class: 'col-xs-3 control-label'
+      .col-xs-9
+        = f.text_area :info, placeholder: "商家简介，网址（微店，公众账号图文，微博等）" , class: "form-control", required: true
+        = f.hidden_field :instance_id, value: current_instance.id
+        = f.hidden_field :customer_id, value: current_customer.id
+    .form-group
+      .col-xs-3
+      .col-xs-9
+        = f.check_box :takeout, value: true, style: 'zoom:1.68'
+        可提供上门服务
+    .form-group
+      = f.label "联系人", class: 'col-xs-3 control-label'
+      .col-xs-9
+        = f.text_field :admin_name, class: "form-control", placeholder: '商家联系人'
+    .form-group
+      = f.label "手机", class: 'col-xs-3 control-label'
+      .col-xs-9
+        = f.text_field :admin_phone, class: "form-control", placeholder: '联系人手机'
+    .form-group
+      = f.label "邮件", class: 'col-xs-3 control-label', required: true
+      .col-xs-9
+        = f.text_field :admin_email, class: "form-control", placeholder: "邮件或QQ"
+    .form-group
+      .col-xs-3
+      .col-xs-9
+        = f.check_box :bp_reg, value: true, style: 'zoom:1.68'
+        希望了解
+        %a#approved-pop{"data-content" => approved_desc, "data-toggle" => "popover", "data-placement" => "top",  :title => "基础服务套餐说明", :type => "button"} 增值服务套餐
+    .form-group
+      .col-xs-12.submit
+        = f.submit "提交", class: "btn btn-primary btn-block"
+.feedback
+%button.btn.btn-info.btn-block{"data-dismiss" => "modal", type: "button"} 关闭

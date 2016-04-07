@@ -1,0 +1,23 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th 店铺名称
+      %th 总订单数
+      %th 未下单
+      %th 已提交
+      %th 已撤销
+      %th 卖家已拒绝
+      %th 已完成
+  %tbody
+    - @operated_stores.each do |store|
+      - orders = store.orders.where(submit_at: @time_range, is_test: false)
+      %tr
+        %td= store.name
+        %td= link_to orders.count, orders_list_path(store, "all", time_mark: @time_mark, time_pick: @time_range), target: "_blank"
+        %td= link_to orders.where(status: "open").count, orders_list_path(store, "open", time_mark: @time_mark, time_pick: @time_range), target: "_blank"
+        %td= link_to orders.where(status: "sent").count, orders_list_path(store, "sent", time_mark: @time_mark, time_pick: @time_range), target: "_blank"
+        %td= link_to orders.where(status: "canceled").count, orders_list_path(store, "canceled", time_mark: @time_mark, time_pick: @time_range), target: "_blank"
+        %td= link_to orders.where(status: "rejected").count, orders_list_path(store, "rejected", time_mark: @time_mark, time_pick: @time_range), target: "_blank"
+        %td= link_to orders.where(status: "confirmed").count, orders_list_path(store, "confirmed", time_mark: @time_mark, time_pick: @time_range), target: "_blank"
+
+= paginate @operated_stores, params: {table: 't3'} , remote: true

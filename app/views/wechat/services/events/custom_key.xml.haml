@@ -1,0 +1,26 @@
+- if @wechat_key.msg_type == "text"
+  %MsgType
+    = raw "<![CDATA[text]]>"
+  %Content
+    = raw "<![CDATA[#{@wechat_key.content}]]>"
+- elsif @wechat_key.msg_type == "news" 
+  %MsgType
+    = raw "<![CDATA[news]]>"
+  %ArticleCount
+    = 1
+  %Articles
+    %item
+      %Title
+        = raw "<![CDATA[#{@wechat_key.title}]]>"
+      %Description
+        = raw "<![CDATA[#{@wechat_key.content}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url @wechat_key.banner.url(:large)}]]>"
+      %Url
+        - if @wechat_key.url.include?('westore') || @wechat_key.url.include?('community')
+          - if @wechat_key.url.include? '?'
+            = raw "<![CDATA[#{@wechat_key.url}&customer_cid=#{@customer.cid}]]>"
+          - else
+            = raw "<![CDATA[#{@wechat_key.url}?customer_cid=#{@customer.cid}]]>"
+        - else
+          = raw "<![CDATA[#{@wechat_key.url}]]>"

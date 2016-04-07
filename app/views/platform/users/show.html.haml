@@ -1,0 +1,51 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li.active
+    账户管理
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          帐户信息
+          -# .pull-right
+          -#   = link_to edit_platform_user_path(@user) do
+          -#     %i.fa.fa-pencil-square-o
+      .panel-body
+        %table.table
+          %tbody
+            %tr
+              %th 许可状态
+              %td
+                - if current_user.admin?
+                  = link_to @user.license_name, '#', data: {type: "select", pk: @user.id, url: license_platform_user_path(@user), name: 'license_id', source: License.to_options}, id: 'license_inplace'
+                - else
+                  = @user.license_name
+
+            %tr
+              %th 帐户名称
+              %td= @user.name
+            %tr
+              %th 注册邮箱
+              %td= @user.email
+            %tr
+              %th 公众号列表
+              %td
+                %ul.list-unstyled
+                  - @instances.each do |instance|
+                    %li
+                      .row
+                        .col-md-6= link_to instance.nick, platform_instance_path(instance)
+                        .col-md-3 剩余点数：
+                        .col-md-3 #{instance.credit}
+
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 控制面板
+      .panel-body
+        = render 'control_panel'

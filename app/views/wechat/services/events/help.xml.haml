@@ -1,0 +1,16 @@
+- content = capture do
+  使用帮助
+  －－－－－－－－－－
+  发送i，获取公众号信息
+  发送k，获取服务目录
+  发送m，获取店铺目录
+  发送o，获取订单信息
+  - @instance.wechat_keys.each do |wkey|
+    = wkey.tips
+  【电话】#{@instance.phone}
+  －－－－－－－－－－
+
+%MsgType
+  = raw "<![CDATA[text]]>"
+%Content
+  = raw "<![CDATA[#{content}]]>"

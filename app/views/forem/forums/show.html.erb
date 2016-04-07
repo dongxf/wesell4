@@ -1,0 +1,23 @@
+<div class='forum'>
+  <%= render :partial => 'forem/forums/head', :locals => { :forum => @forum } %>
+
+  <%= forem_pages_widget(@topics) %>
+  <table class='topics table-striped table' cellspacing='0'>
+    <thead>
+      <tr>
+        <th class="icon"></th>
+        <th class="byline"><i class='fa fa-file'></i></th>
+        <th class="latest-post text-center"><i class="fa fa-clock-o"></i></th>
+        <th class="posts-count text-center"><i class="fa fa-comments-o"></i></th>
+        <th class="views-count text-center"><i class="fa fa-eye"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @topics.empty? %>
+        <tr><td colspan='5' align='center'><%= t('forem.topic.none') %></td></tr>
+      <% end %>
+      <%= render @topics %>
+    </tbody>
+  </table>
+  <%= forem_pages_widget(@topics) %>
+</div>

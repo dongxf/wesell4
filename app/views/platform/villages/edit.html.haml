@@ -1,0 +1,11 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to '社区管理', platform_instance_villages_path(@instance)
+    %span.divider
+  %li.active
+    编辑社区
+
+= render 'form'

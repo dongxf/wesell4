@@ -1,0 +1,4 @@
+- if @kategories.present?
+  = render_cell :westore, :kategories_list, kategories: @kategories, instance: @instance
+- else
+  = render_cell :westore, :stores_list, stores: @stores, instance: @instance

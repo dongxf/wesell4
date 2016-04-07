@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: one
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+two:
+  name: two
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+three:
+  name: three
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+four:
+  name: four
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+five:
+  name: five
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+six:
+  name: six
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+seven:
+  name: seven
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+eight:
+  name: eight
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+nine:
+  name: nine
+  app_id: MyString
+  app_secret: MyString
+  token: MyString
+
+ten:
+  name: ten
+  app_id: MyString
+  app_secret: MyString
+  token: MyString

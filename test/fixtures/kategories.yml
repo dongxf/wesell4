@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instance: one
+  stores_count: 1
+  name: one
+
+two:
+  instance: one
+  stores_count: 1
+  name: two
+
+three:
+  instance: three
+  stores_count: 1
+  name: three
+
+four:
+  instance: four
+  stores_count: 1
+  name: four
+
+five:
+  instance: five
+  stores_count: 1
+  name: five
+
+six:
+  instance: six
+  stores_count: 1
+  name: six
+
+seven:
+  instance: seven
+  stores_count: 1
+  name: seven
+
+eight:
+  instance: eight
+  stores_count: 1
+  name: eight
+
+nine:
+  instance: nine
+  stores_count: 1
+  name: nine
+
+ten:
+  instance: ten
+  stores_count: 1
+  name: ten

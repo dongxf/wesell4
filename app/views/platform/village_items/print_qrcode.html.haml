@@ -1,0 +1,6 @@
+.container{style: "width: 880px; margin: 0 auto; position: relative;text-align:center;"}
+  = image_tag "foo2.png", width: '880px'
+  = image_tag @url, style: "width: 270px; position: absolute; left: 385px; top: 500px; margin-top: 20px;"
+  .middle{style: "position: absolute; left: 240px; top: 780px;text-align:center;"}
+    %p{style: "width: 400px; letter-spacing: 2; color: black; font-size: 42px; font-family: 'Microsoft YaHei', '微软雅黑'; itext-align: center; margin: 0px auto; "}微信扫一扫关注
+    %p{style: "width: 400px; letter-spacing: 2; color: black; font-size: 42px; font-family: 'Microsoft YaHei', '微软雅黑'; itext-align: center; margin: 0px auto; "}= @village_item.name

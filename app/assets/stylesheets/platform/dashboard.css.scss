@@ -1,0 +1,21 @@
+// .table {
+// 	thead {
+// 		position: relative;
+// 	}
+// 	tbody {
+// 		margin-top: 250px;
+//     tr:first-child {
+//     	padding-top: 250px;
+//     }
+// 	}
+// }
+
+.date_tabs {
+	li:nth-child(4) {
+		margin-top: -10px;
+	}
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: $orange;
+}

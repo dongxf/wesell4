@@ -1,0 +1,2 @@
+module Platform::KategoriesHelper
+end

@@ -1,0 +1,14 @@
+= "#{order_config.name} (#{order_config.human_style})"
+= link_to '编辑', edit_platform_store_order_config_path(@store, order_config)
+|
+= link_to '删除', platform_store_order_config_path(@store, order_config), method: 'delete', confirm: '确定删除？'
+%table.table
+  %thead
+    %tr
+      %th 名称
+      %th 价格
+  %tbody
+    - order_config.order_config_options.each do |order_config_option|
+      %tr
+        %td= order_config_option.name
+        %td= order_config_option.price

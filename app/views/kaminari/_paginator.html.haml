@@ -1,0 +1,19 @@
+:css
+  .pagination{padding:.3em;margin:.3em; font: 13.34px helvetica,arial,freesans,clean,sans-serif;}
+  .pagination a{padding:.1em .3em;margin:.2em;border:1px solid #111;text-decoration:none;color:#111;border-radius:2px;}
+  .pagination a:hover,.pagination a:active{border:1px solid #111;color:#000;}
+  .pagination span.current{padding:.1em .3em;margin:.2em;border:1px solid #111;font-weight:bold;background-color:#111;color:#FFF;}
+  .pagination span.disabled{padding:.1em .3em;margin:.2em;border:1px solid #eee;color:#ddd;}
+#pagination
+  = paginator.render do
+    .pagination<
+      = prev_page_tag
+      = next_page_tag
+      - unless params[:q]  #not pretty good, temp solution
+        = simple_form_for '', url: request.fullpath, method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+          = f.input :page, input_html: {name: 'page', class: 'form-control'}, label: false, placeholder: "#{current_page}"
+          %button.btn{type: "submit"}
+            %i.fa.fa-share.fa-2x
+    - unless params[:q]
+      %span.total_pages
+        = "#{current_page}/#{num_pages}"

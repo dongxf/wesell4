@@ -1,0 +1,236 @@
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+//cutsom-btn-label
+.btn-orange {
+  background-image: none;
+  background-color: lighten($orange, 10%);
+  color: $white;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none ! important;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover {
+    color: $orange;
+    background-color: $white;
+    border: 1px solid lighten($orange, 10%);
+    transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+.btn-orange-o {
+  background-image: none;
+  background-color: $white;
+  border: 1px solid $white;
+  opacity: .7;
+  color: $orange;
+  border: 1px solid $orange;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none ! important;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover {
+    color: $white;
+    opacity: 1;
+    border: 1px solid transparent;
+    background-color: lighten($orange, 10%);
+    transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+
+.btn-wine {
+  background-image: none;
+  background-color: $wine;
+  color: $white;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none ! important;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover {
+    color: $wine;
+    background-color: $white;
+    border: 1px solid $wine;
+    transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+.btn-wine-o {
+  background-image: none;
+  background-color: $white;
+  color: $wine;
+  border: 1px solid $wine;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-decoration: none ! important;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover {
+    color: $white;
+    opacity: 1;
+    border: 1px solid transparent;
+    background-color: lighten($wine, 10%);
+    transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+.btn-silver {
+  color: $orange;
+  letter-spacing: 1px;
+  background-color: $silver;
+  font-weight: 600;
+  background-color: transparent;
+  text-decoration: none ! important;
+  text-shadow: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out 0s;
+
+  &:hover {
+    background-color: $gray;
+    color: $orange;
+    transition: all 0.3s ease-in-out 0s;
+  }
+}
+
+// shared bootstrap navbar
+// .navbar {
+//   margin-bottom: 0;
+//   min-height: 30px;
+//   border-radius: 0;
+//   border: none;
+//   .navbar-brand {
+//     text-indent: -9999px;
+//     padding: 20px 40px;
+//     margin: 0 0 0 200px;
+//     background: image-url('fooways_logo1.png') no-repeat center;
+//   }
+//   .navbar-toggle {
+//     border: none;
+//   }
+
+//   .navbar-collapse {
+//     .navbar-nav {
+//       li {
+//         box-sizing: content-box !important;
+//         .active {
+//           background-color: #FF851B;
+//           color: #111;
+//         }
+//         a {
+//           color: #FF851B;
+//           padding-top: 20px;
+//           padding-bottom: 20px;
+//         }
+//         ul.dropdown-menu {
+//           a {
+//             color: black;
+//             padding-top: 5px;
+//             padding-bottom: 0;
+//           }
+//         }
+//       }
+//       a {
+//         font-size: 20px;
+//         font-weight: 500;
+//         &:hover {
+//           background-color: #FF851B;
+//           color: #111;
+//           transition: all 0.2s ease-in-out 0s;
+//         }
+//       }
+//     }
+//     .navbar-left {
+//       margin: 0 0 0 60px;
+//     }
+//     .navbar-right {
+//       margin: 0 150px 0 0;
+//     }
+//   }
+// }
+
+// @media (max-width: 970px) {
+
+//   .navbar {
+//     min-height: 60px;
+//     background: transparent;
+//     box-shadow: none;
+
+//     .navbar-header {
+//       background: #fff;
+//       .navbar-brand {
+//         margin: 0 0 0 10px;
+//         background-size: 100px;
+//         padding: 30px 80px;
+//       }
+//     }
+
+//     .navbar-toggle {
+//       border: none;
+//       margin-top: 20px;
+//     }
+
+//     .navbar-collapse {
+//       background-color: #fff;
+//       width: 150px;
+//       float: right;
+//       padding-left: 0;
+//       padding-right: 0;
+//       .navbar-nav {
+//         margin: 0;
+//         width: 150px;
+//         float: right;
+//         border: 1px solid #eee;
+
+//         li {
+//           margin-top: 0px;
+//           text-align: center;
+
+//           .active {
+//             background-color: #FF851B;
+//             color: #111;
+//           }
+//           a {
+//             color: #FF851B;
+//             padding-top: 10px;
+//             padding-bottom: 10px;
+//             line-height: 20px;
+//           }
+//           ul.dropdown-menu {
+//             a {
+//               color: black;
+//               padding-top: 5px;
+//               padding-bottom: 0;
+//             }
+//           }
+//         }
+//         a {
+//           font-size: 20px;
+//           font-weight: 500;
+//           &:hover {
+//             background-color: #FF851B;
+//             color: #111;
+//             transition: all 0.2s ease-in-out 0s;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

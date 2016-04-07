@@ -1,0 +1,19 @@
+.we-village
+  .row#search
+    #search_item
+      = simple_form_for 'search', url: search_community_instance_path(current_instance), method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+        = f.input_field :q, input_html: {name: 'q', class: 'form-control'}, label: false, placeholder: "搜索小区"
+        %span#close x
+        %button.btn{type: "submit"}
+          %i.fa.fa-search.fa-2x
+  %h2.wine 选择常驻小区
+  .row
+    .list-group.village_list
+      - @villages.each do |village|
+        .row.list-group-item
+          .col-xs-12.info
+            /= radio_button_tag 'default', current_customer.default_village_id == village.id, current_customer.default_village_id == village.id,class: "set_default", id: "village#{village.id}",  data: { village_id: village.id }
+            %label{:for => "village#{village.id}"}
+              /= link_to village.name, community_village_path(village), class: "vi-name set_default", data: { village_id: village.id }
+              = link_to "#{current_customer.default_village_id == village.id ? '[x]' : '[ ]' }#{village.name}", community_village_path(village), class: "vi-name set_default", data: { village_id: village.id }
+    -# = paginate @village_items

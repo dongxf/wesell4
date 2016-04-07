@@ -1,0 +1,42 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to '店铺管理', platform_stores_path
+    %span.divider
+  %li
+    =link_to @store.name, platform_store_path(@store)
+    %span.divider
+  %li.active
+    商品类别列表
+
+= paginate @categories
+%table.table.table-hover
+  %thead
+    %tr
+      %th 商品类别名称
+      %th 序号
+      %th 商品数量
+      %th 上架/下架所有商品
+      %th
+  %tbody
+    - @categories.each do |category|
+      %tr
+        %td= category.name
+        %td= category.sequence
+        %td
+          - if category.products_count && category.products_count > 0
+            = link_to category.products_count, platform_store_category_path(@store, category)
+          - else
+            = category.products_count
+        %td{style: 'max-width: 220px'}
+          %input.category_switch{type: "checkbox", name: "my-checkbox", checked: category.activated?, data: {category_id: category.id, store_id: @store.id}}
+        %td
+          = link_to '添加商品', new_platform_store_wesell_item_path(@store, category_id: category), class: 'btn btn-success'
+          = link_to '编辑', edit_platform_store_category_path(@store, category), class: 'btn btn-orange'
+          = link_to '删除', platform_store_category_path(@store, category), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+
+= paginate @categories
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建商品类目", new_platform_store_category_path(@store), class: 'btn btn-orange'

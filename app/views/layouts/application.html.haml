@@ -1,0 +1,45 @@
+!!!
+%html{lang: 'zh-CN'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: "app-version", content: "#{APP_VERSION}"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{name: "description", content: "为有同样梦想的社区O2O创业者提供技术、资金、培训、商品等多方面的有力支持"}
+    %meta{name: "keywords", content: "Fooways 赋为 社区 O2O 电商 服务 平台 创业 运营 微信 手机 外卖 订座 移动 互联网 智能 家政 快递 生活圈 订餐 o2o创业 社区生活服务平台 社区电商 微信创业 生活服务创业 o2o系统 微信订餐系统 外卖创业 外卖创业系统 手机外卖系统"}
+
+    %title= content_for?(:title) ? yield(:title) : "赋为 | 社区O2O创业首选"
+
+    %link{type: 'image/png', rel: 'shortcut icon', href: "#{asset_path('fooways_logo4.png')}"}
+    = stylesheet_link_tag  "application", media: "all"
+
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv'
+      = stylesheet_link_tag  "for_ie", media: "all"
+
+    = csrf_meta_tags
+    - if Rails.env.production?
+      = render 'layouts/baidu'
+
+  %body
+    = render 'layouts/menu'
+    .container-fluid
+      = yield
+      = render 'layouts/footer'
+      = javascript_include_tag "application"
+      = yield :js
+
+      = render 'layouts/sign_modal'
+      /<script src="https://meiqia.com/js/mechat.js?unitid=6465" charset="UTF-8" async="async"></script>
+      :javascript
+        $(document).ready( function() {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.charset = 'UTF-8';
+          ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'meiqia.com/js/mechat.js?unitid=6465';
+          //murl  = $('.mechat_url').data('url');
+          //ga.src = murl;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        } );

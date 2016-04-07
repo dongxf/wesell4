@@ -1,0 +1,2 @@
+module Platform::YellowPageHelper
+end

@@ -1,0 +1,22 @@
+- html = capture do
+  %li.list-group-item.clearfix
+    .col-xs-3
+      - if @comment.customer.avatar.present?
+        = image_tag(@comment.customer.avatar, size: "30x30")
+      - else
+        = image_tag('c-avatar.png', size: "30x30")
+      %p.user
+        = @comment.customer.try(:nickname)
+    .col-xs-9
+      %p= @comment.content
+- err = capture do
+  %p= @err
+
+- if @comment.errors.empty?
+  $('.comments-list').prepend("#{j html}");
+  $('.comment_content').val('');
+  $('.notice').html("<p> 提交成功 </p>");
+  $('.submit_comment').attr('disabled', 'disabled');
+- else
+  $('.notice').html("#{j err}");
+

@@ -1,0 +1,13 @@
+.we_sub_tag.we-village
+  %ul.breadcrumb
+    %li
+      =link_to '首页', community_village_path(@village)
+      %span.divider
+    %li
+      = link_to @tag.name, community_village_tag_path(@village, @tag)
+      %span.divider
+    %li.active
+      = @sub_tag.name
+
+  = render "community/villages/vi_list"
+  = render "community/common/share"

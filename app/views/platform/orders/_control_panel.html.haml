@@ -1,0 +1,25 @@
+%table.table
+  %thead
+    %tr
+      %td 姓名：
+      %td= @order.contact
+    %tr
+      %td 电话：
+      %td= @order.phone
+    - if @order.start_at
+      %tr
+        %td 预约时间：
+        %td= format_time @order.start_at
+    - if @order.address
+      %tr
+        %td 地址：
+        %td= @order.address
+    %tr
+      %td 会员信息：
+      %td= @customer.member.present? ? link_to('已绑定', platform_customer_path(@customer)) : '未绑定'
+    %tr
+      %td 下单次数:
+      %td= link_to "#{@customer.orders_count}次", platform_orders_path(customer_id: @customer.id)
+    %tr
+      %td 消费总金额:
+      %td= @customer.consumption

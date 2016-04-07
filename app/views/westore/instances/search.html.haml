@@ -1,0 +1,8 @@
+- if @stores.present?
+  = render_cell :westore, :stores_list, stores: @stores, instance: @instance
+- else
+  #page_intelOrder
+    %section
+      %article
+        %h3 没有找到相关的店铺
+        = link_to '返回', :back

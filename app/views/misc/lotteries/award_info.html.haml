@@ -1,0 +1,22 @@
+%h3 中奖纪录
+- if @datas.blank?
+  %p 您尚无中奖纪录
+- else
+  %table.table
+    %thead
+      %tr
+        %th 顺序号
+        %th 期号
+        %th 中奖等级
+        %th 奖金(元)
+
+    %tbody
+      - @datas.each do |data|
+        %tr
+          %td= data['seqNo']
+          %td= data['issue']
+          %td= data['grade']
+          %td= data['prize'].to_f/100
+
+%p= link_to '返回我的彩票', misc_lotteries_path
+%p= link_to '前往订购中心', westore_instance_path(@instance)

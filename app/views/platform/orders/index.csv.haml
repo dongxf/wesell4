@@ -1,0 +1,20 @@
+- headers = ['编号(流水号-ID)', '公众号', '店铺', '商品名', '提交时间', '总价', '姓名', '地址', '电话',  '预约时间', '备注', '评价', '订单状态', '支付方式']
+
+= CSV.generate_line headers
+- @orders.each do |order|
+  - id = "#{order.serial_number_instance}-#{order.id}"
+  - instance = order.instance.nick
+  - store = order.store.name
+  - inames = order.order_items.pluck(:name).join('    ')
+  - submit_at = format_time(order.submit_at) if order.submit_at
+  - amount = order.amount
+  - contact = order.contact
+  - addr = order.address
+  - phone = order.phone
+  - start_at = format_time(order.start_at) if order.start_at
+  - comment = order.comment.blank? ? "-" : order.comment
+  - desc = order.description.blank? ? "-" : order.description
+  - status = order.status
+  - payment_option = order.payment_option.blank? ? "-" : order.payment_option
+
+  = CSV.generate_line([id, instance, store, inames, submit_at, amount, contact, addr, phone, start_at, desc, comment, status, payment_option])

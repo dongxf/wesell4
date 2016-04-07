@@ -1,0 +1,30 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li.active
+    许可管理
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 名称
+      %th 价格
+      %th 公众号限制
+      %th 店铺限制
+      %th 订单限制
+      %th 注册用户数
+  %tbody
+    - @licenses.each do |license|
+      %tr
+        %td= license.id
+        %td= link_to license.name, edit_platform_license_path(license)
+        %td= license.price
+        %td= license.max_instance
+        %td= license.max_store
+        %td= license.max_order
+        %td= license.users_count
+
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建许可", new_platform_license_path, class: 'btn btn-orange'

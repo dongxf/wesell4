@@ -1,0 +1,100 @@
+#team {
+  padding-top: 130px;
+
+  .r1 {
+    margin: 10px auto 20px;
+    .bt {
+      border: 1px solid #eee;
+      text-align: center;
+      padding: 10px;
+
+      &:last-child {
+        margin-left: -1px;
+      }
+
+      a {
+        color: #009bad;
+      }
+    }
+  }
+
+  .people {
+    text-align: center;
+    .bio_box {
+      margin-bottom: 50px;
+
+      .info {
+        padding: 3px 10px;
+        background-color: rgba(#eee, 0.4);
+        border-radius: 5px;
+
+        .fa {
+          color: #009bad;
+        }
+
+        .area {
+          // font-style: italic;
+          font-style: 16px;
+          margin-bottom: 18px;
+          margin-top: 0;
+          text-align: center;
+
+          p {
+            line-height: 10px;
+            color: rgba(#111, .6)
+          }
+        }
+        p.name {
+          // font-style: italic;
+          margin: 10px;
+          margin-bottom: 0;
+          font-size: 21px;
+        }
+        a {
+          margin-right: 10px;
+          // text-decoration: none;
+          span {
+            display: inline-block;
+            width: 33px;
+            height: 33px;
+          }
+        }
+
+        span.ico4, span.ico4h {
+          background-position: -112px -1px;
+        }
+        span.ico3, span.ico3h {
+          background-position: -75px 0px;
+        }
+        span.ico2, span.ico2h {
+          background-position: -37px 0px;
+        }
+        span.ico6, span.ico6h {
+          background-position: -188px -1px;
+        }
+      }
+    }
+
+    .section_header {
+      margin: 20px 0;
+    }
+
+    .img-circle.team-ale {
+      width: 120px;
+      height: 120px;
+      border: 0;
+    }
+
+    .socialicons {
+      background: image-url("team/socialicons.png") no-repeat;
+      width: 265px;
+      height: 36px;
+    }
+    .socialicons_h {
+      background: image-url("team/socialicons_h.png") no-repeat;
+      width: 265px;
+      height: 36px;
+    }
+
+  }
+}

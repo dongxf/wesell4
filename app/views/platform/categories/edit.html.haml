@@ -1,0 +1,14 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to '店铺管理', platform_stores_path
+    %span.divider
+  %li
+    =link_to @store.name, platform_store_path(@store)
+    %span.divider
+  %li.active
+    编辑商品类目
+
+= render 'form'

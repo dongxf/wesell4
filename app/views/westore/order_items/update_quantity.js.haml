@@ -1,0 +1,14 @@
+- message = capture do
+  = render 'layouts/flash'
+
+$item = $("li#item_#{@item.id}")
+
+$("#num").html("#{@items_count}")
+$("#total").html("#{@amount}")
+- if @item.destroyed?
+  $item.remove()
+- else
+  $item.find('input.numBox').val("#{@item.quantity}")
+
+$('.flash_message').remove()
+$('body').prepend('#{j message}')

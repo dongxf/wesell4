@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  target: one (Instance)
+  customer: one
+
+two:
+  target: two (Store)
+  customer: two

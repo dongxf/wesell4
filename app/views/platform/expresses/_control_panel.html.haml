@@ -1,0 +1,15 @@
+-# %ul.list-unstyled
+-#   %li
+-#     = link_to '申请加盟', '#invite_instance', role: 'button', data: { toggle: 'modal'}
+-#     .modal{id: 'invite_instance', style: "display: none;"}
+-#       .modal-dialog
+-#         .modal-content
+-#           .modal-header
+-#             %a.close{"data-dismiss" => "modal"} ×
+-#             %h4 申请加盟运营
+-#           .modal-body
+-#             = simple_form_for 'instance', url: invite_platform_store_path(@store), remote: true, html: {method: 'get', class: 'form-horizontal'} do |f|
+-#               = f.input :name, placeholder: '请输入公众号的微信号', input_html: { class: 'form-control' }
+-#               = f.input :invite_code, placeholder: '请输入公众号的邀请码', hint: false, input_html: { class: 'form-control' }
+-#               = f.button :submit, '提交', class: 'btn btn-orange center-block'
+-#           .modal-footer

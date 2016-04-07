@@ -1,0 +1,6 @@
+$('.village').html("#{j(render "new_village")}")
+:plain
+  $('#edit-village').on('click', function() {
+    $('.update_village').slideToggle();
+    $('.village-link').toggle();
+  })

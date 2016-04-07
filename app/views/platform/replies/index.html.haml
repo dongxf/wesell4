@@ -1,0 +1,27 @@
+%ul.breadcrumb
+  %li
+    =link_to @instance.name, [:platform, @instance]
+    %span.divider
+  %li
+    =link_to @village.name, [:platform, @instance, @village]
+    %span.divider
+  %li.active
+    回复汇总
+
+.row
+  = paginate @replies
+  %table.table.table-striped
+    %thead
+      %tr
+        %th 回复时间
+        %th 回复内容
+        %th 回复状态
+        %th 回复源
+    %tbody
+      - @replies.each do |reply|
+        %tr
+          %td= format_time reply.created_at
+          %td{style: 'max-width: 220px; word-wrap: break-word'}= reply.hash_content
+          %td= reply.status
+          %td= reply.replyable_type
+  = paginate @replies

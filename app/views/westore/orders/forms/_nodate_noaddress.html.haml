@@ -1,0 +1,21 @@
+= minimal_form_for [:westore, @order], defaults: {input_html: {class: 'form-control'}} do |f|
+  = f.input :contact, placeholder: '联系人', required: true
+  = f.input :phone, placeholder: '联系电话'
+  = f.input :address, as: :hidden, input_html: {value: '为兼容微信支付由系统自动添加'}
+  = f.input :description, html_options: { rows: 6}, placeholder: @order.addon_hints
+
+  - @store.order_configs.each do |order_config|
+    - if order_config.style == 0 #任选一种
+      = f.association :order_config_options, as: :select,
+                      collection: order_config.order_config_options.map{|op| [op.label(@store), op.id] },
+                      label: order_config.name,
+                      include_blank: false,
+                      input_html: {multiple: false, name: "order[order_config_option_ids][]"}
+    - else
+      = f.association :order_config_options, as: :check_boxes,
+                      collection: order_config.order_config_options.map{|op| [op.label(@store), op.id] },
+                      label: order_config.name
+
+  = f.input :payment_option, collection: @payment_options, include_blank: false
+  %footer
+    %input{type: "submit", value: @order.store.stype=='normal' ? "立即预定" : "立即报名", class: "btn_2", id: "submit_form"}

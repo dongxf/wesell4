@@ -1,0 +1,13 @@
+####how config.tar.des3 came from
+tar cvf config.tar config
+openssl des3 < config.tar > config.tar.des3
+rm -rf config.tar
+
+####This will prompt you for a passphrase, which you will need to enter later when decrypting the file.
+####The default des3 password is six enquire digits
+
+#openssl des3 -d < yourfile.txt.des3 > yourfile.txt.decrypted
+
+tar cvf _git.tar .git
+openssl des3 < _git.tar > _git.tar.des3
+rm -rf _git.tar

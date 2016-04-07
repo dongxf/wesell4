@@ -1,0 +1,33 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    体验管理
+
+= paginate @showrooms
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 名称
+      %th 最大购买数量
+      %th
+
+  %tbody
+    - @showrooms.each do |showroom|
+      %tr
+        %td= showroom.id
+        %td= showroom.name
+        %td= showroom.max_quantity
+        %td
+          - if can? :edit, showroom
+            = link_to '设置', edit_platform_instance_showroom_path(@instance, showroom), class: 'btn btn-orange'
+            = link_to '删除', platform_instance_showroom_path(@instance, showroom), :method => :delete, :data => { :confirm => '所有数据将无法恢复，确定删除？' }, class: 'btn btn-danger'
+
+= paginate @showrooms
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建规则", new_platform_instance_showroom_path(@instance), class: 'btn btn-orange'

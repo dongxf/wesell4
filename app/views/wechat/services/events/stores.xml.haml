@@ -1,0 +1,35 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  - if @stores.length == 8 || @instance.sub_lottery? && @customer.lotteries.size < 1
+    = @stores.length + 2
+  - else
+    = @stores.length + 1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[#{@instance.slogan}]]>"
+    %Description
+      = raw "<![CDATA[#{@instance.description}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @instance.banner.url(:medium)}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_instance_url(@instance, customer_cid: @customer.cid)}]]>"
+  - @stores.each do |store|
+    %item
+      %Title
+        = raw "<![CDATA[#{store.name}\n#{store.human_distance}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url store.logo.url(:thumb)}]]>"
+      %Url
+        = raw "<![CDATA[#{westore_instance_store_url(@instance, store, customer_cid: @customer.cid)}]]>"
+  - if @instance.sub_lottery? && @customer.lotteries.size < 1
+    = render 'wechat/services/activities/lottery'
+  - elsif @stores.length == 8
+    %item
+      %Title
+        = raw "<![CDATA[更多店铺请猛击这里...]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url @instance.logo.url(:thumb)}]]>"
+      %Url
+        = raw "<![CDATA[#{westore_instance_url(@instance, customer_cid: @customer.cid)}]]>"

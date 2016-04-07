@@ -1,0 +1,22 @@
+- content_for :title do
+  = "赋为 | #{@topic.try(:subject)}"
+.news.container
+  .col-md-8.post
+    %header
+      %h3
+        = @topic.subject if @topic
+      .meta
+        %span
+          作者:
+          = @topic.user.name if @topic
+        %span.middle
+          点阅次数:
+          = @topic.views_count if @topic
+        %span
+          发表日期:
+          = @topic.created_at.strftime('%Y-%m-%d %H:%M') if @topic
+
+    %article
+      .text= sanitize(@post.text) if @post
+
+  = render 'right_panel'

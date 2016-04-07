@@ -1,0 +1,42 @@
+.container.exchange.none
+  .body
+    %ul.list_exchange
+    %footer
+      %nav.nav
+        %ul.box
+          %li
+            %a.on{href: "/Webnewmemberscore/index?pid=3436&wechatid=oJO_Pjru3MJK36bdQpPKuJdELn-Q"}
+              %p.card
+              %span 会员卡
+          %li
+            %a{href: "/Webnewmemannounce/notice?pid=3436&wechatid=oJO_Pjru3MJK36bdQpPKuJdELn-Q"}
+              %p#Js-msg-num.msg
+              %span 消息
+          %li
+            %a{href: "/Webnewmemintegral/signin?pid=3436&wechatid=oJO_Pjru3MJK36bdQpPKuJdELn-Q"}
+              %p.sign
+              %span 签到
+          %li
+            %a{href: "/Webnewmemberscore/share?pid=3436&wechatid=oJO_Pjru3MJK36bdQpPKuJdELn-Q"}
+              %p.share
+              %span 分享
+          %li
+            %a.my{href: "/Webnewmemberscore/my?pid=3436&wechatid=oJO_Pjru3MJK36bdQpPKuJdELn-Q"}
+              %p.my
+              %span 我的
+  :javascript
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+      WeixinJSBridge.call('hideToolbar');
+    });
+
+    window.shareData = {
+        "imgUrl": "",
+      "timeLineLink": "http://www.weimob.com/Webnewmemintegral/exchangelist?pid=3436&wechatid=fromUsername",
+      "sendFriendLink": "http://www.weimob.com/Webnewmemintegral/exchangelist?pid=3436&wechatid=fromUsername",
+      "weiboLink": "http://www.weimob.com/Webnewmemintegral/exchangelist?pid=3436&wechatid=fromUsername",
+      "tTitle": "会员卡",
+      "tContent": "微时代会员卡，方便携带，永不挂失。",
+      "fTitle": "会员卡",
+      "fContent": "微时代会员卡，方便携带，永不挂失。",
+      "wContent": "微时代会员卡，方便携带，永不挂失。"
+    };

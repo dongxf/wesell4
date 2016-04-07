@@ -1,0 +1,2 @@
+module Platform::ExpressesHelper
+end

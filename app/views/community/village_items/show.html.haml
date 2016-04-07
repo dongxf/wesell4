@@ -1,0 +1,107 @@
+- content_for :title do
+  = " #{@village_item.name} | #{@village.try(:name)} | #{@village.instance.nick}"
+.we-village.village-item
+  %ul.breadcrumb
+    - village = Village.find_by id: session[:default_village]
+    - if village.present?
+      %li
+        =link_to community_village_path(village) do
+          %i.fa.fa-chevron-left
+          返回
+        %span.divider
+    - else
+      %li
+        =link_to community_instance_path(@village_item.instance) do
+          %i.fa.fa-chevron-left
+          返回
+        %span.divider
+    %li.active
+      = @village_item.name
+  .row.mid
+    .col-xs-3.logo
+      = image_tag(@village_item.logo.url(:thumb), size: "80x80", id: "logo")
+      - if @village_item.approved?
+        = image_tag('community/v1.png', size: '20x20', class: 'v')
+    .col-xs-9.info
+      %h5
+        %i.fa.fa-home.bold
+        %span= @village_item.name
+      %h5
+        %i.fa.fa-phone.bold
+        = @village_item.tel
+        %span.pull-right.call_count.gray
+          %strong
+            = @village_item.call_count
+          次拨打
+      - if @village_item.addr.present?
+        %h5
+          %i.fa.fa-map-marker.bold
+          = @village_item.addr
+      %h5.pull-left
+        %i.fa.fa-clock-o.bold
+        = @village_item.human_opening_hours
+  .row.mid
+    .col-xs-8
+      - if @village_item.info.present?
+        %p.pull-left
+          %span
+            %i.fa.fa-info-circle.bold
+          %span.text= @village_item.info
+      - if @village_item.offer_available?
+        %p.pull-left
+          %span
+            %i.fa.fa-gift.bold
+          %span.text= @village_item.offers.last.title
+          %br/
+          %span.text= @village_item.offers.last.info
+    .col-xs-4
+      %h5.pull-right
+        .pull-right.favor-count{"data-vi" => @village_item.id}
+          - if current_customer.openid.present?
+            = render partial: 'community/villages/favor_vi', locals: { vi: @village_item }
+          - else
+            = link_to fa_icon('heart', text: "收藏"), "#", remote: true, method: :post, class: "favor_link gray"
+            %p.gray
+              = "#{@village_item.favor_count}人收藏"
+
+  %hr/
+  %ul.nav.nav-pills
+    %li
+      - if @village_item.approved?
+        = link_to "店铺详情", page_community_village_item_path(@village_item), class: "view-record", data: {id: @village_item.id }
+      - else
+        = link_to "店铺详情", "javascript:void(0)", class: 'gray', id: 'wechat', data: {toggle: "tooltip", placement: "bottom"}, "title" => "未提供详情，请致电了解"
+    %li
+      - if @village_item.approved?
+        - if @village_item.foo_url?
+          = link_to  "在线订购", @village_item.entry_url, class: "#{'gray' unless @village_item.enterable? } shop-record", data: { id: @village_item.id }
+        - else #using frame
+          = link_to  "在线订购", go_shop_community_village_item_path(@village_item), class: "#{'gray' unless @village_item.enterable? } shop-record", data: { id: @village_item.id }
+      - else
+        = link_to "在线订购", "javascript:void(0)", class: 'gray', id: 'onlinshop', data: {toggle: "tooltip", placement: "bottom"}, "title" => "请致电了解"
+    %li
+      = link_to "拨打电话", "tel:#{@village_item.tel}", id: "phone", data: { id: @village_item.id }, class: "call-record", data: {id: @village_item.id }
+  %hr/
+
+  .row.comments
+    - if current_customer.openid.present?
+      = form_for [:community, @village_item, Comment.new], html: { class: "vi_comment_form", relo: "form" }, remote: true do |f|
+        .form-group
+          .col-xs-12
+            = f.text_area :content, class: "form-control comment_content", placeholder: '请在此留下您的评论'
+        .form-group
+          .notice.col-xs-6
+          .col-xs-6
+            = f.submit "提交评论", class: "btn btn-wine-o pull-right submit_comment"
+    - else
+      %p="关注微信公众帐号 #{current_instance.name=='foowcn' ? '幸福大院' : current_instance.name} 后即可吐嘈评论"
+
+  .row
+    %ul.list-group.comments-list
+      = render 'comments_list'
+    - unless @comments.last_page?
+      .load-more
+        = link_to_next_page @comments, '点击加载更多', :remote => true, :id => "load_more_link", class: "btn btn-wine-o"
+        = image_tag 'loading.gif', size: "34x34", class: "loading"
+
+  = render "community/common/forward"

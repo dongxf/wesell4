@@ -1,0 +1,372 @@
+.info {
+  background-color: #f2f2e8;
+
+  h1 {
+    font-size: 2.8em;
+    font-weight: 900;
+    color: #FF851B;
+    text-align: center;
+    // text-shadow: 0 0 5px #666, 0 0 10px #666, 0 0 15px #666, 0 0 40px #F7E7CE, 0 0 70px #F7E7CE;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin: 14px 0;
+    font-weight: 200;
+    text-transform: capitalize;
+    color: #FF851B;
+    text-align: center;
+    // text-shadow: 0 0 5px #666, 0 0 10px #666, 0 0 15px #666, 0 0 40px #F7E7CE, 0 0 70px #F7E7CE;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 30px;
+    color: #111;
+    margin-top: 10px;
+  }
+
+  .fa {
+    color: #FF851B;
+    margin-top: 8px;
+  }
+
+  .row1 {
+    margin-top: 70px;
+    background: image-url("section16.jpg");
+    padding: 100px 0;
+    height: 900px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center !important;
+    position: relative;
+
+    h1 {
+      color: $white;
+      letter-spacing: 3px;
+    }
+    h2 {
+      margin-left: 180px;
+      color: $white;
+      letter-spacing: 3px;
+    }
+    h3 {
+      color: #666;
+      margin-left: -80px;
+    }
+    .qrcode {
+      margin: 50px 0 0 -80px;
+    }
+  }
+
+  .pros {
+    h3 {
+      color: #FF851B;
+      // width: 200px;
+      margin: 0 auto;
+    }
+    p {
+      color: #FF851B;
+      font-size: 1em;
+      text-align: center;
+    }
+    .fa {
+      margin-top: 8px;
+    }
+    .wrapper-box {
+      &:hover {
+        background-color: $white;
+        border-radius: 8px;
+        transition: all .5s ease-in-out;
+      }
+      .wrapper-icon {
+        text-align: center;
+        width: 60px;
+        height: 60px;
+        margin: 10px auto;
+        border: 3px solid #FF851B;
+        border-radius: 60px;
+      }
+    }
+  }
+
+  .sep {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .star {
+      display: block;
+      width: 30px;
+      margin: 0 auto;
+      margin-top: -20px;
+      color: #FF851B;
+
+      .fa {
+        text-align: center;
+        display: block;
+      }
+    }
+    .sep-l {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  #fw-video {
+    padding: 30px 0;
+  }
+
+  .carousel {
+    margin-bottom: 30px;
+    h2 {
+      width: 80%;
+      text-align: center;
+      margin: 30px auto;
+    }
+    p {
+      padding: 30px;
+      width: 700px;
+      margin: 0 auto;
+      font-size: 1.1em;
+    }
+    .carousel-control{
+      background-image: none;
+      .fa {
+        position: absolute;
+        top: 50%;
+      }
+
+      .fa-chevron-circle-left {
+        left: 25%;
+      }
+    }
+
+    .btn-lg {
+      display: block;
+      width: 300px;
+      margin: 30px auto;
+      padding: 30px;
+      background-color: #FF851B;
+    }
+  }
+
+  #o2o {
+    padding: 100px 0;
+
+    h3 {
+      color: #111;
+      margin: 15px;
+    }
+    .qrcode-wrapper {
+      margin-top: 30px;
+    }
+    .qrcode {
+      border-radius: 20px;
+    }
+  }
+
+  #about {
+    text-align: center;
+    padding: 100px 0;
+
+    p {
+      font-size: 1.1em;
+      text-align: left;
+    }
+
+    .btn-lg {
+      display: block;
+      width: 200px;
+      margin: 30px auto;
+      padding: 30px;
+      background-color: #FF851B;
+    }
+
+    .wrapper-icon {
+      width: 70px;
+      height: 70px;
+      margin: 20px auto;
+      border: 3px solid #FF851B;
+      border-radius: 70px;
+
+      .fa {
+        margin-top: 11px;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 970px) {
+  .navbar {
+    min-height: 60px;
+
+    .navbar-brand {
+      margin: 10px 0 0 80px;
+      padding: 30px 80px;
+      background-size: 100px;
+    }
+
+    .navbar-toggle {
+      border: none;
+      margin-top: 20px;
+    }
+
+    .navbar-collapse {
+      .navbar-nav {
+        li {
+          margin-top: 0px;
+
+          .active {
+            background-color: #FF851B;
+            color: #111;
+          }
+          a {
+            color: #FF851B;
+            padding-top: 20px;
+            padding-bottom: 20px;
+          }
+          ul.dropdown-menu {
+            a {
+              color: black;
+              padding-top: 5px;
+              padding-bottom: 0;
+            }
+          }
+        }
+        a {
+          font-size: 20px;
+          font-weight: 500;
+          &:hover {
+            background-color: #FF851B;
+            color: #111;
+            transition: all 0.2s ease-in-out 0s;
+          }
+        }
+      }
+    }
+  }
+
+  .info {
+    h1 {
+      font-size: 2em;
+    }
+
+    h2 {
+      font-size: 1.3em;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    p {
+      font-size: 0.6em;
+      line-height: 20px;
+    }
+
+    .row1 {
+      height: 600px;
+      margin-top: 50px;
+
+      h2 {
+        margin-left: 0;
+      }
+
+      h3 {
+        margin: 10px auto;
+      }
+      .qrcode {
+        margin: 0;
+      }
+    }
+
+    .pros {
+      h3 {
+        font-size: 1em;
+      }
+
+      p {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 970px) {
+
+  .navbar {
+    min-height: 60px;
+    background: transparent;
+    box-shadow: none;
+
+    .navbar-header {
+      background: $white;
+      border-bottom: 1px solid #eee;
+      .navbar-brand {
+        margin: 0 0 0 10px;
+        background-size: 100px;
+        padding: 30px 80px;
+      }
+    }
+
+    .navbar-toggle {
+      border: none;
+      margin-top: 20px;
+    }
+
+    .navbar-collapse {
+      background-color: $white;
+      width: 150px;
+      float: right;
+      padding-left: 0;
+      padding-right: 0;
+      .navbar-nav {
+        margin: 0;
+        width: 150px;
+        float: right;
+        border: 1px solid #eee;
+
+        li {
+          margin-top: 0px;
+          text-align: center;
+
+          .active {
+            background-color: #FF851B;
+            color: #111;
+          }
+          a {
+            color: #FF851B;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            line-height: 20px;
+          }
+          ul.dropdown-menu {
+            a {
+              color: black;
+              padding-top: 5px;
+              padding-bottom: 0;
+            }
+          }
+        }
+        a {
+          font-size: 20px;
+          font-weight: 500;
+          &:hover {
+            background-color: #FF851B;
+            color: #111;
+            transition: all 0.2s ease-in-out 0s;
+          }
+        }
+      }
+    }
+  }
+}

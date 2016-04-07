@@ -1,0 +1,37 @@
+.row
+  .list-group.village_items
+    - @village_items.each do |vi|
+      = link_to community_village_village_item_path(@village, vi), class: "list-group-item" do
+        .row
+          .col-xs-8.info
+            %h4
+              - if vi.approved?
+                = image_tag("community/v1.png", size: '16x16', class: 'list-v')
+              - else
+                %i.fa.fa-home.bold
+              %span.vi-name= truncate(vi.name, length: 12)
+            %p
+              %i.fa.fa-info-circle
+              = truncate(vi.info, length: 18)
+            /%p
+            /  %i.fa.fa-clock-o
+            /  = vi.human_opening_hours
+            - if vi.offer_available?
+              %p
+                %i.fa.fa-gift.wine= truncate(vi.offers.last.title, length:18)
+          .col-xs-4.activity
+            %p.favor-count{"data-vi" => vi.id}
+              %i.fa.fa-users.gray
+                = "#{vi.commenters_count} "
+              %i.gray.fa.fa-phone
+                = "#{vi.call_count} "
+              - if vi.favor_by?(current_customer)
+                %i.fa.fa-heart
+                  = "#{vi.favor_count} "
+              - else
+                %i.fa.fa-heart.gray
+                  = "#{vi.favor_count} "
+            %p
+              = "#{vi.takeout? ? '可外送' : ' '}"
+              /%i.fa.fa-clock-o= vi.human_opening_hours
+  = paginate @village_items

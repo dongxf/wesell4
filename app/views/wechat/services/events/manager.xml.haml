@@ -1,0 +1,18 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  = @village_items.length + 1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[管理我的黄页信息]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url 'fbooks-b.jpg'}]]>"
+  - @village_items.each do |vi|
+    %item
+      %Title
+        = raw "<![CDATA[#{vi.name}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url vi.logo.url(:thumb)}]]>"
+      %Url
+        = raw "<![CDATA[#{manager_community_village_item_url(vi, customer_cid: @customer.cid, instance_id: @instance.id)}]]>"

@@ -1,0 +1,6 @@
+- if vi.favor_by?(current_customer)
+  = link_to fa_icon('heart', text: "取消收藏"), favor_community_village_item_path(vi), remote: true, method: :post, class: "favor_link wine"
+- else
+  = link_to fa_icon('heart', text: "收藏"), favor_community_village_item_path(vi), remote: true, method: :post, class: "favor_link gray"
+%p.gray
+  = "#{vi.favor_count}人收藏"

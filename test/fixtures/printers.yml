@@ -1,0 +1,14 @@
+one:
+  store: one
+  imei: imei_1
+  model: feyin
+
+two:
+  store: one
+  imei: imei_2
+  model: feyin
+
+three:
+  store: two
+  imei: imei_3
+  model: huahao

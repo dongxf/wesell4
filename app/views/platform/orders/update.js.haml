@@ -1,0 +1,14 @@
+- html = capture do
+  %ul.list-unstyled.order_status{id: "actions_#{@order.id}"}
+    %li= order_status @order, :reject, remote: true
+    %li= order_status @order, :accept, remote: true
+    %li= order_status @order, :ship, remote: true
+    %li= order_status @order, :finish, remote: true
+    - unless @order.store.printers.blank?
+      %li= link_to "打印订单", print_platform_order_path(@order), class: "btn btn-warning"
+
+$("#actions_#{@order.id}").replaceWith('#{j html}')
+
+- if @order.payment_status == :paid
+  $("#status_#{@order.id}").text("#{@order.human_status}")
+  $("#payment_status_#{@order.id}").text("#{@order.human_payment_status}")

@@ -1,0 +1,39 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to '公众号管理', platform_instances_path
+    %span.divider
+  %li
+    =link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    店铺分类列表
+
+= paginate @kategories
+%table.table.table-hover
+  %thead
+    %tr
+      %th 店铺分类名称
+      %th 序号
+      %th 店铺数量
+      %th 描述
+      %th 图标
+      %th
+  %tbody
+    - @kategories.each do |kategory|
+      %tr
+        %td= kategory.name
+        %td= kategory.sequence
+        %td= kategory.stores_count
+        %td= kategory.description
+        -# %td= image_tag (kategory.logo.present? ? kategory.logo.url(:large) : kategory.stores.first.logo.url(:thumb))
+        %td= image_tag kategory.logo.url(:large)
+        %td
+          = link_to '编辑', edit_platform_instance_kategory_path(@instance, kategory), class: 'btn btn-orange'
+          = link_to '删除', platform_instance_kategory_path(@instance, kategory), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+
+= paginate @kategories
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建店铺分类", new_platform_instance_kategory_path(@instance), class: 'btn btn-orange'

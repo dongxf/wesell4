@@ -1,0 +1,41 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li.active
+    %span 商品列表
+
+= paginate @wesell_items
+%table.table.table-condensed.table-striped
+  %thead
+    %tr
+      %th 店铺
+      %th 分类
+      %th 名称
+      %th 序号
+      %th 单价标注
+      %th 现价
+      %th 库存
+      %th 售出
+      %th 状态
+      %th
+  %tbody
+    - @wesell_items.each do |wesell_item|
+      %tr
+        %td= link_to wesell_item.store.name, platform_store_path(wesell_item.store)
+        %td
+          = link_to wesell_item.category.name, platform_store_category_path(wesell_item.store, wesell_item.category) if wesell_item.category
+        %td= link_to wesell_item.name, platform_store_wesell_item_path(wesell_item.store, wesell_item)
+        %td
+          =link_to wesell_item.sequence, '#', data: {type: "text", pk: wesell_item.id, url: sequence_platform_store_wesell_item_path(wesell_item.store, wesell_item), name: 'sequence', title: '数字由小到大排序'}, class: 'editable'
+        %td=wesell_item.unit_name
+        %td=wesell_item.price
+        %td=wesell_item.quantity
+        %td=wesell_item.total_sold
+        %td
+          %input.product_switch{type: "checkbox", name: "my-checkbox", checked: wesell_item.online?, data: {wesell_item_id: wesell_item.id}}
+        %td
+          = link_to '设置', edit_platform_store_wesell_item_path(wesell_item.store, wesell_item), class: 'btn btn-info', target: '_blank'
+          = link_to '删除', platform_store_wesell_item_path(wesell_item.store, wesell_item), method: 'delete',
+            :data => { :confirm => '所有数据无法恢复，确定要下架？' }, class: 'btn btn-danger'
+= paginate @wesell_items

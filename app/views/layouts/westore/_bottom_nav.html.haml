@@ -1,0 +1,39 @@
+- unless @no_westore_footer
+  #footer_menu.footer.footer_menu
+    %ul.clear
+      = nav_link :guides do
+        = link_to westore_instance_path(current_instance) do
+          %span.icons.icons_1
+          %label 首页
+
+      = nav_link :orders do
+        = link_to westore_orders_path do
+          %span.icons.icons_3
+          %label 订单
+
+      = nav_link :store do
+        - if current_store.present?
+          = link_to about_westore_instance_store_path(current_instance, current_store) do
+            %span.icons.icons_2
+            %label 关于
+        - else
+          = link_to westore_instance_path(current_instance) do
+            %span.icons.icons_2
+            %label 关于
+
+      = nav_link :members do
+        - iwm_path = current_instance.fixed_mechat_url
+        - iwm_path ||= "tel:#{current_instance.phone}"
+        = link_to iwm_path do
+          %span.icons.icons_4
+          %label 客服
+
+      %li
+        - if current_order.present? && current_order.open? #&& current_order.items_count != 0
+          = link_to edit_westore_order_path(current_order, current_order: true), id: 'my_menu', data: {order_id: current_order.id} do
+            %span.icons.icons_5
+              %label#num.num
+                = current_order.items_count
+        - else
+          = link_to 'javascript:alert("空空如也")', id: 'my_menu' do
+            %span.icons.icons_5

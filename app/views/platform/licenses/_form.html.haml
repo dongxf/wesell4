@@ -1,0 +1,11 @@
+= simple_form_for [:platform, resource], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal', role: "form" } do |f|
+  = f.error_notification
+
+  = f.input :name
+  = f.input :price
+  = f.input :max_instance
+  = f.input :max_store
+  = f.input :max_order
+
+  = link_to '放弃返回', :back, class: 'btn btn-info'
+  = f.button :submit, '提交', class: 'btn btn-orange'

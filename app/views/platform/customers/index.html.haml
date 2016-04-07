@@ -1,0 +1,43 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    客户列表
+
+  .pull-right
+    %span
+      = link_to "所有顾客", platform_customers_path, class: add_class('all')
+    %span
+      = link_to "正在关注", platform_customers_path(status: "sub"), class: add_class("sub")
+    %span
+      = link_to "已取消关注", platform_customers_path(status: "unsub"), class: add_class("unsub")
+
+= paginate @customers
+%table.table.table-hover
+  %thead
+    %tr
+      %th 客户ID
+      %th 公众号名称
+      %th 订单数
+      %th 订单总额
+      %th 状态
+      %th
+  %tbody
+    - @customers.each do |customer|
+      %tr
+        %td= link_to customer.id, platform_customer_path(customer)
+        %td= link_to customer.instance.nick, platform_instance_path(customer.instance)
+        %td= link_to customer.orders_count, platform_orders_path(customer_id: customer.id)
+        %td= customer.orders.sum(:amount)
+        %td
+          - if !customer.subscribed
+            已取消关注
+          - else
+            %input.customer_switch{type: "checkbox", name: "my-checkbox", checked: customer.normal?, data: {customer_id: customer.id}}
+
+        %td
+          / - if can? :edit, customer.instance
+          /   = link_to '设置', edit_platform_customer_path(customer), class: 'btn btn-primary'
+
+= paginate @customers

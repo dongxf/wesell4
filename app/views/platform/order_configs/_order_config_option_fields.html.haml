@@ -1,0 +1,5 @@
+= f.link_to_remove 'X', class: 'btn pull-right'
+.well
+  = f.input :store_id, as: :hidden, input_html: {value: @store.id}
+  = f.input :name
+  = f.input :price, label: '价格'

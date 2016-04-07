@@ -1,0 +1,139 @@
+// wemall template store show
+#wemall_store {
+  h3 {
+    margin-top: 5px;
+  }
+
+  #search {
+    position: relative;
+    input {
+      margin: 5px auto;
+      box-sizing: border-box;
+      border-color: $wine;
+    }
+
+    #close {
+      position: absolute;
+      top: 5px;
+      right: 40px;
+      width: 15%;
+      display: none;
+      font-size: 20px;
+      color: $gray;
+    }
+
+    .btn {
+      background-color: $wine;
+      border: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      position: absolute;
+      top: 5px;
+      right: 0;
+      width: 15%;
+      height: 34px;
+
+      .fa {
+        color: $white;
+        line-height: 0.8;
+        margin-left: -3px;
+      }
+    }
+  }
+
+  #categories {
+    .carousel-control {
+      background-image: none;
+      top: 0;
+      bottom: 0;
+      width: 5%;
+
+      .fa::before {
+        line-height: 90px; // make it vertical middle
+      }
+    }
+
+    .left {
+      left: -15px;
+    }
+    .right {
+      right: -15px;
+    }
+
+    ul {
+      width: 100%;
+      margin: 10px auto;
+
+      li {
+        float: left;
+        margin-bottom: 3px;
+        padding-right: 0;
+        padding-left: 0;
+        border: none;
+        text-align: center;
+        a {
+          display: block;
+          color: $wine;
+          padding: 10px 0;
+          margin: 3px;
+          border: 1px solid $wine;
+          border-radius: 3px;
+          letter-spacing: 2px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .products-list {
+    .products {
+      .product {
+        overflow: auto;
+        padding: 5px 0;
+        border-bottom: 1px solid #ddd;
+        border-left: none;
+        border-right: none;
+
+        &:first-child {
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
+        }
+
+        &:last-child {
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+
+        h3 {
+          color: $black;
+          margin-top: 0;
+          margin-bottom: 4px;
+        }
+
+        .col-xs-3 {
+          padding: 0;
+        }
+
+        .col-xs-9 {
+          padding-right: 0;
+        }
+
+        .dpNum {
+          margin-right: 10px;
+        }
+
+        .price {
+          color: red;
+          margin: 15px 5px 5px 5px;
+        }
+        .old-price {
+          margin: 5px;
+          clear: both;
+        }
+        .sold-count {
+          clear: both;
+        }
+      }
+    }
+  }
+}

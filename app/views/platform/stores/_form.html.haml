@@ -1,0 +1,65 @@
+= simple_form_for [:platform, @store], defaults: {input_html: {class: 'form-control'}}, html: {class: 'form-horizontal', role: "form"} do |f|
+  = f.error_notification
+  %ul.nav.nav-tabs
+    %li.active
+      %a{href: "#junior", data: {toggle: "tab"}} 基本设置
+    %li
+      %a{href: "#senior", data: {toggle: "tab"}} 高级设置
+
+  .tab-content
+    %fieldset#junior.tab-pane.active
+      %legend
+
+      = f.input :instance_id, as: :hidden
+
+      = f.input :name
+      = f.input :stype, as: :select, collection: Store::STYPE.invert, label: '商店类型'
+      = f.input :slogan
+      = f.input :description, label: '介绍', as: :text, input_html: {rows: 5}
+      = f.input :phone
+      = f.input :email
+      = f.input :require_confirm, as: :boolean, input_html: { class: 'btn-radio' }
+      = f.input :monetary_unit, collection: Monetary::TAGS.keys, include_blank: false
+      = f.input :open, as: :select, collection: [['营业', true],['打烊', false]], include_blank: false
+      = f.input :notice, placeholder: '留空则不显示'
+      = f.input :opening_hours
+      = f.input :street
+      = f.input :link, hint: '非空则跳转到指定地址，请以http开头，支持各钟微店及淘宝店'
+      = f.input :guide, input_html: { rows: 5 }, hint: '活动场地的行为指引', label: '进店行为守则', hint: '一般用于客户签到前的提示阅读'
+      .form-group
+        = f.label '在商品(活动）中显示已预订客户'
+        .col-md-8
+          = f.check_box :show_buyers
+      = f.input :logo do
+        = f.input_field :logo
+        = image_tag @store.logo.url(:large)
+
+      = f.input :banner do
+        = f.input_field :banner
+        = image_tag @store.banner.url(:large)
+
+
+    %fieldset#senior.tab-pane
+      %legend
+      = f.input :latitude
+      = f.input :longitude
+      = f.input :service_radius
+      = f.input :time_setting, as: :radio_buttons, collection: Store::TIME_SETTING.invert,
+                input_html: { class: 'btn-radio' }
+      = f.input :address_setting, as: :radio_buttons, collection: Store::ADDRESS_SETTING.invert,
+                input_html: { class: 'btn-radio' }
+      = f.input :min_charge
+      = f.input :shipping_charge
+      = f.input :shipping_charge_option, as: :select, collection: Store::SHIPPING_CHARGE_OPTIONS.to_a
+
+      = f.input :show_total_sold, as: :boolean, input_html: { class: 'btn-radio' }
+      = f.input :show_phone, as: :boolean, input_html: { class: 'btn-radio' }
+      = f.input :order_offline, as: :boolean, input_html: { class: 'btn-radio' }
+      = f.input :payment_options, as: :check_boxes, collection: Store::HUMAN_PAYMENT_OPTIONS.invert,
+                input_html: { class: 'btn-radio' }
+      = f.input :template, as: :select, collection: Store::TEMPLATES.invert
+
+
+  .row
+    .col-md-4= link_to '放弃返回', :back, class: 'btn btn-info'
+    .col-md-4= f.button :submit, '提交', class: 'btn btn-orange  center-block'

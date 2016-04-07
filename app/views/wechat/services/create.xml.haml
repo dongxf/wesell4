@@ -1,0 +1,14 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[#{@instance.nick}]]>"
+    %Description
+      = raw "<![CDATA[#{@instance.description}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{@instance.banner.url(:large)}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_instance_url(@instance, customer_cid: @customer.cid)}]]>"

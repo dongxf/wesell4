@@ -1,0 +1,95 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: "app-version", content: "#{APP_VERSION}"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
+    %meta{name: "description", content: "为有同样梦想的社区O2O创业者提供技术、资金、培训、商品等多方面的有力支持"}
+    %meta{name: "keywords", content: "赋为 社区 O2O 电商 服务 平台 创业 运营 微信 手机 外卖 订座 移动 互联网 智能 家政 快递 生活圈 订餐 o2o创业 社区生活服务平台 社区电商 微信创业 生活服务创业 o2o系统 微信订餐系统 外卖创业 外卖创业系统 手机外卖系统"}
+
+    - if content_for?(:title)
+      %title= yield(:title)
+    - elsif current_instance
+      %title= current_instance.nick
+    - else
+      %title= '社区O2O平台'
+
+    = stylesheet_link_tag  "community", media: "all"
+
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv'
+
+    = csrf_meta_tags
+    - if Rails.env.production?
+      = render 'layouts/baidu2'
+
+  %body#community_top{class: "#{params[:controller]}_#{params[:action]}".gsub('/','_'), data: {instance_id: "#{current_instance.id if current_instance}"}}
+    = image_tag 'fbooks.jpg', style: "display: none"
+    - tip = nil
+    - tip = current_customer.get_tip! if current_customer.present?
+    - if tip.present?
+      /<script type="text/javascript">$(window).load(function(){$('#tipModal').modal('show');});</script>
+      #tipModal.modal.fade.in{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+        .modal-dialog
+          .modal-content
+            .modal-header
+            .modal-body
+              .r2.row
+                .col-xs-12
+                  %p= tip
+            .modal-footer
+              %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} 我知道了
+    - if false && current_customer.openid.nil? #disabled for better improved, maybe a button on bottom of page
+      .alert.alert-warning.alert-dismissible{role: "alert"}
+        .r1
+          %button.close{"data-dismiss" => "alert", type: "button"}
+            %span{"aria-hidden" => "true"} ×
+            %span.sr-only Close
+          %span.tips= "温馨提示: 您当前尚未关注公众号 '#{current_instance.name}'"
+          = link_to "查看更多", "javascript:void(0)", class: 'btn btn-default', id: "sub", data: { target: "#subModal", toggle: "modal" }
+      #subModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+        .modal-dialog
+          .modal-content
+            .modal-header
+            .modal-body
+              .r2.row
+                .col-xs-12
+                  %p= "返回微信搜索并关注: "
+                  .fake-input
+                    %span
+                      %i.fa.fa-wechat.fa-2x
+                    %span.mp-name= current_instance.name=='foowcn' ? '幸福大院' : current_instance.name
+                    %span.pull-right
+                      %i.fa.fa-search.fa-2x
+                - if current_instance.name == 'foowcn'
+                  .col-xs-12
+                    %p 或保存二维码用以扫描
+                    = image_tag('qrcode_foowcn.jpg', size: "200x200")
+            .modal-footer
+              %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} 我知道了
+    = render 'layouts/flash'
+    .container
+      = yield
+    /= link_to image_tag('lattern.png', size: "70x80"), "#community_top", id: "back_to_top"
+    = javascript_include_tag "community"
+    / - unless @no_hidetoolbar
+    /   :javascript
+    /     document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { WeixinJSBridge.call('hideToolbar'); });
+    = yield :js
+    - if tip.present?
+      <script>$('#tipModal').modal('show');</script>
+    - if current_instance.present? && current_instance.float_mechat_url.present?
+      /<script src="#{current_instance.float_mechat_url}" charset="UTF-8" async="async"></script>
+      %div.mechat_url{data: {url: current_instance.float_mechat_url} }
+      :javascript
+        $(document).ready( function() {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.charset = 'UTF-8';
+          //ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'meiqia.com/js/mechat.js?unitid=6465';
+          murl  = $('.mechat_url').data('url');
+          ga.src = murl;
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        } );

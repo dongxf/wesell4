@@ -1,0 +1,82 @@
+%h3= "最新数据统计"
+
+.col-md-2
+  %ul.nav.nav-pills.nav-stacked
+    %li.active
+      %a{href: "#table-1", "data-toggle" => "tab"} 公众号统计
+    %li
+      %a{href: "#table-2", "data-toggle" => "tab"} 转化率统计
+    %li
+      %a{href: "#table-3", "data-toggle" => "tab"} 订单总览
+    / %li
+    /   %a{href: "#table-4", "data-toggle" => "tab"} 客户总览
+
+.tab-content.col-md-10
+  #table-1.tab-pane.active
+    .nav.nav-tabs.date_tabs
+      %li.active.date_nav= link_to "今日", root_path(time_mark: "day", table: "t1"), remote: true
+      %li.date_nav= link_to "过去一周", root_path(time_mark: "week", table: "t1"), remote: true
+      %li.date_nav= link_to "过去一月", root_path(time_mark: "month", table: "t1"), remote: true
+      %li
+        = simple_form_for 'data', url: root_path(time_mark: "someday", table: "t1"), method: :get, remote: true do |f|
+          .input-group
+            = f.input_field :time_pick,
+                            placeholder: "选取一天...",
+                            name: 'time_pick',
+                            class: 'form-control datepicker',
+                            value: params[:time_pick],
+                            style: "width: 250px;"
+            = f.submit '确定', class: 'btn btn-orange form-control input-group-addon pick-date', style: "width: 50px;", disabled: true
+    #t1
+      = render "t1"
+  #table-2.tab-pane
+    .nav.nav-tabs.date_tabs
+      %li.date_nav.active= link_to "今日", root_path(time_mark: "day", table: "t2"), remote: true
+      %li.date_nav= link_to "过去一周", root_path(time_mark: "week", table: "t2"), remote: true
+      %li.date_nav= link_to "过去一月", root_path(time_mark: "month", table: "t2"), remote: true
+      %li
+        = simple_form_for 'data', url: root_path(time_mark: "someday", table: "t2"), method: :get, remote: true do |f|
+          .input-group
+            = f.input_field :time_pick,
+                            placeholder: "选取一天...",
+                            name: 'time_pick',
+                            class: 'form-control datepicker',
+                            value: params[:time_pick],
+                            style: "width: 250px;"
+            = f.submit '确定', class: 'btn btn-orange form-control input-group-addon pick-date', style: "width: 50px;", disabled: true
+    #t2
+      = render "t2"
+  #table-3.tab-pane
+    .nav.nav-tabs.date_tabs
+      %li.date_nav.active= link_to "今日", root_path(time_mark: "day", table: "t3"), remote: true
+      %li.date_nav= link_to "过去一周", root_path(time_mark: "week", table: "t3"), remote: true
+      %li.date_nav= link_to "过去一月", root_path(time_mark: "month", table: "t3"), remote: true
+      %li
+        = simple_form_for 'data', url: root_path(time_mark: "someday", table: "t3"), method: :get, remote: true do |f|
+          .input-group
+            = f.input_field :time_pick,
+                            placeholder: "选取一天...",
+                            name: 'time_pick',
+                            class: 'form-control datepicker',
+                            value: params[:time_pick],
+                            style: "width: 250px;"
+            = f.submit '确定', class: 'btn btn-orange form-control input-group-addon pick-date', style: "width: 50px;", disabled: true
+    #t3
+      = render "t3"
+  #table-4.tab-pane
+    .nav.nav-tabs.date_tabs
+      %li.date_nav.active= link_to "今日", root_path(time_range: "day", table: "t4"), remote: true
+      %li.date_nav= link_to "过去一周", root_path(time_range: "week", table: "t4"), remote: true
+      %li.date_nav= link_to "过去一月", root_path(time_range: "month", table: "t4"), remote: true
+      %li
+        = simple_form_for 'data', url: root_path(time_range: "someday", table: "t4"), method: :get, remote: true do |f|
+          .input-group
+            = f.input_field :time_pick,
+                            placeholder: "选取一天...",
+                            name: 'time_pick',
+                            class: 'form-control datepicker',
+                            value: params[:time_pick],
+                            style: "width: 250px;"
+            = f.submit '确定', class: 'btn btn-orange form-control input-group-addon pick-date', style: "width: 50px;", disabled: true
+    #t4
+      = render "t4"

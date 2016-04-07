@@ -1,0 +1,7 @@
+= f.link_to_remove 'X', class: 'btn pull-right'
+.well
+  = f.input :sequence
+  = f.input :name
+  = f.input :menu_type, collection: WechatMenu::MENU_TYPES.invert, input_html: {class: 'form-control wechat_menu_type'}
+  = f.input :key, collection: @instance.menu_keys_options, wrapper_html: {class: 'wechat_menu_key'}
+  = f.input :url, wrapper_html: {class: 'wechat_menu_url'}

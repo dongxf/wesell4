@@ -1,0 +1,13 @@
+- @comments.each do |comment|
+  %li.list-group-item.clearfix.comment{class: (comment.root? ? "root" : "child")}
+    .col-xs-3
+      - if comment.customer.avatar.present?
+        = image_tag(comment.customer.avatar, size: "30x30")
+      - else
+        = image_tag('c-avatar.png', size: "30x30")
+      %p.user
+        = comment.customer.try(:nickname)
+
+    .col-xs-9
+      %p= comment.content
+      %p.pull-right.date= format_time comment.created_at

@@ -1,0 +1,43 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li.active
+    黄页录入管理
+
+.row.alert.alert-info
+  = simple_form_for 'filter', url: logging_data_platform_instance_village_items_path(@instance), method: :get, html: {class: 'filter_orders'} do |f|
+    .col-md-6
+      = f.input :created_at_1, as: :string,
+                              wrapper: :search,
+                              input_html: { class: 'datepicker2', name: 'created_at_1', value: params[:created_at_1] },
+                              label: '起始时间',
+                              required: false
+
+      = f.input :created_at_2, as: :string,
+                              wrapper: :search,
+                              input_html: { class: 'datepicker2', name: 'created_at_2', value: params[:created_at_2] },
+                              label: '~',
+                              required: false
+
+    .col-md-3
+      = f.submit '筛选', { name: 'commit', class: 'btn btn-default' }
+      = f.submit '导出', { name: 'export', class: 'btn btn-default'}
+
+
+
+
+-# = paginate @user_vis
+%table.table.table-hover
+  %thead
+    %tr
+      %th 小管家ID
+      %th 小管家邮箱
+      %th 录入条目数
+
+  %tbody
+    - @user_vis.each do |user_vi|
+      %tr
+        %td= user_vi.first
+        %td= User.find(user_vi.first).email
+        %td= user_vi.last

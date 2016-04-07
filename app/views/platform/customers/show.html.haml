@@ -1,0 +1,51 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '会员管理', platform_customers_path
+    %span.divider
+  %li.active
+    会员详情
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          会员信息
+          .pull-right
+            = link_to edit_platform_customer_path(@customer) do
+              %i.fa.fa-pencil-square-o
+      .panel-body
+        %dl.dl-horizontal
+          %dt 状态
+          %dd= @customer.human_status
+          %dt 会员卡
+          %dd= @member.present? ? '已绑定' : '未绑定'
+          %dt 余额
+          %dd= @customer.balance
+
+          - if @member.present?
+            %dt 姓名
+            %dd= @member.name
+
+            %dt 电话
+            %dd= @member.phone
+
+            %dt 生日
+            %dd= @member.birthday
+
+          %dt 下单次数
+          %dd= @customer.orders_count
+
+          %dt 下单总金额
+          %dd= @customer.consumption
+
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 控制面板
+      .panel-body
+        = render 'control_panel'

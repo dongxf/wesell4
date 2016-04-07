@@ -1,0 +1,27 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li
+    =link_to '公众号管理', platform_instances_path
+    %span.divider
+  %li
+    =link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li.active
+    编辑公众账号
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 公号信息
+      .panel-body
+        = render 'form', url: platform_instance_path(@instance)
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 控制面板
+      .panel-body
+        = render 'control_panel'

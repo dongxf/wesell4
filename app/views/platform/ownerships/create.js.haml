@@ -1,0 +1,15 @@
+- html = capture do
+  %ul{id: "manager_list"}
+    - @store.employee_ownerships.each do |eo|
+      %li
+        = eo.user.email
+        %span= link_to '删除', platform_ownership_path(eo), method: 'delete', remote: true, data: { confirm: '确定删除？' }
+
+- if resource
+  - content = "<p class='center-block'>添加成功</p>"
+  $('.modal-footer').html("#{content.html_safe}")
+  $('#manager_list').html("#{j html}")
+- else
+  $('.modal-footer').html('添加失败')
+
+setTimeout(function(){$('.modal-footer').html('')}, 1000)

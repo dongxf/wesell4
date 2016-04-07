@@ -1,0 +1,2 @@
+module Community::VillageItemsHelper
+end

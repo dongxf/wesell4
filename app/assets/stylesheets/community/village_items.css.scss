@@ -1,0 +1,187 @@
+// Place all the styles related to the Community::VillageItems controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.village-item {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .mid {
+    margin-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    h4 {
+      margin-bottom: 5px;
+      font-size: 15px;
+    }
+
+    .v {
+      position: absolute;
+      bottom: 3px;
+      right: -3px;
+    }
+
+    .col-xs-8, .col-xs-4 {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .text {
+      font-size: 0.8em;
+    }
+
+    .fa-home + span {
+      font-weight: bold;
+    }
+
+    .bold {
+      color: $gray;
+      font-size: 1.2em;
+    }
+
+    .favor_link {
+      padding: 4px;
+      color: $gray;
+      border: 1px solid $gray;
+      font-size: 1.1em;
+      vertical-align: vertical-text;
+      border-radius: 3px;
+
+      .fa {
+        padding-top: 8px;
+        font-size: 1.2em;
+      }
+
+      & + p {
+        margin-top: 10px;
+      }
+    }
+
+    .wine {
+      border-color: $wine;
+      color: $wine;
+    }
+  }
+
+  .fa-3x {
+    color: $wine;
+    font-size: 2.5em;
+  }
+
+  .nav-pills {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      float: none;
+
+      a {
+        padding: 4px 8px;
+        color:  $wine;
+        border: 1px solid $wine;
+      }
+
+      .gray {
+        color:  $gray;
+        border: 1px solid $gray;
+      }
+
+      span.icons {
+        display: block;
+        background: image-url('village_item.png') no-repeat 0 0;
+        width: 41px;
+        height: 40px;
+      }
+
+      span.phone_icon {
+        background-position: -223px -6px;
+        width: 42px;
+        height: 40px;
+      }
+      span.wechat_icon {
+        background-position: -119px -6px;
+        width: 42px;
+        height: 40px;
+      }
+      span.store_icon {
+        background-position: -21px -6px;
+        width: 42px;
+        height: 40px;
+      }
+    }
+  }
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .comments {
+    h5 {
+      color: $wine;
+      margin-left: 20px;
+      margin-top: 5px;
+    }
+    .comment_content {
+      margin-bottom: 3px;
+    }
+    .btn-wine-o {
+      margin-bottom: 3px;
+    }
+  }
+  .comments-list {
+    .root {
+      border-bottom: none;
+    }
+
+    .child {
+      border-bottom: none;
+      border-top: none;
+    }
+
+    .comment {
+      &:first-child {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+      }
+      &:last-child {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: 1px solid $silver;
+      }
+
+      .col-xs-3 {
+        padding-left: 0;
+      }
+      p {
+        font-size: 0.8em;
+        margin-bottom: 2px;
+        word-wrap: break-word;
+      }
+      .date {
+        color: $gray
+      }
+    }
+  }
+}
+
+.create_village_item {
+  .form-group {
+    margin-bottom: 5px;
+  }
+}
+.load-more {
+  margin: 20px auto;
+  text-align: center;
+
+  .loading {
+    display: none;
+  }
+}
+
+.loader {
+  display: none
+}

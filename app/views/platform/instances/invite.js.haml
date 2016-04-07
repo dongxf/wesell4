@@ -1,0 +1,9 @@
+- html = capture do
+  - if @store.present?
+    %p.text-success.text-center 邀请成功！
+  - else
+    %p.text-danger.text-center 邀请失败，请确认信息正确！
+
+$("#invite_store .modal-footer").html('#{j html}')
+
+setTimeout(function(){$("#invite_store .modal-footer").html('')}, 1000)

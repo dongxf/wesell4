@@ -1,0 +1,146 @@
+.info
+  %section.row1
+    .row
+      .col-md-6.col-md-offset-1
+        %h1 赋你所能, 为你所想
+        %h2 掘金社区服务电商
+        = image_tag "static/qrcode_foowcn.jpg", class: "qrcode", size: "180x180"
+        %h3 扫一扫, 立即体验
+  .row
+    .sep
+      .sep-l.col-xs-3.col-xs-offset-1
+        %span.star-l
+      .col-xs-offset-1.col-xs-2
+        %span.star
+          %i.fa.fa-star-o.fa-2x
+      .sep-l.col-xs-offset-1.col-xs-3
+        %span.star-r
+
+  .container.pros
+    .row
+      .col-md-4.wrapper-box.col-sm-4.col-xs-4
+        .wrapper-icon
+          %i.fa.fa-rmb.fa-3x
+        %h3 稳涨收益
+        %p 抢占社区电商先机
+        %p 整合周边商业资源
+        %p 无须拼爹安做土豪
+      .col-md-4.wrapper-box.col-sm-4.col-xs-4
+        .wrapper-icon
+          %i.fa.fa-thumbs-o-up.fa-3x
+        %h3 极易上手
+        %p 极速注册马上收益
+        %p 手机管理直观便捷
+        %p 运营培训全程指导
+      .col-md-4.wrapper-box.col-sm-4.col-xs-4
+        .wrapper-icon
+          %i.fa.fa-check.fa-3x
+        %h3 超低成本
+        %p 会用微信即可经营
+        %p 团队规模弹性可控
+        %p 试运营期全额退款
+  .row
+    .sep
+      .sep-l.col-xs-3.col-xs-offset-1
+        %span.star-l
+      .col-xs-offset-1.col-xs-2
+        %span.star
+          %i.fa.fa-star-o.fa-2x
+      .sep-l.col-xs-offset-1.col-xs-3
+        %span.star-r
+
+  %section#fw-video.container
+    .col-md-10.col-md-offset-1
+      #dream-carousel.carousel.slide{"data-ride" => "carousel", "data-interval" => "3000"}
+        .carousel-inner
+          - (1..11).each do |a|
+            - if a == 1
+              .item.active
+                = image_tag("static/dream/dream#{a}.jpg")
+            - else
+              .item
+                = image_tag("static/dream/dream#{a}.jpg")
+
+        / Controls
+        %a.left.carousel-control{"data-slide" => "prev", href: "#dream-carousel"}
+          %span.fa.fa-chevron-circle-left.fa-2x
+        %a.right.carousel-control{"data-slide" => "next", href: "#dream-carousel"}
+          %span.fa.fa-chevron-circle-right.fa-2x
+
+  .row
+    .sep
+      .sep-l.col-xs-3.col-xs-offset-1
+        %span.star-l
+      .col-xs-offset-1.col-xs-2
+        %span.star
+          %i.fa.fa-star-o.fa-2x
+      .sep-l.col-xs-offset-1.col-xs-3
+        %span.star-r
+  .col-md-8.col-md-offset-2.intro-carousel
+    #carousel-generic.carousel.slide{"data-ride" => "carousel"}
+      .carousel-inner
+        .item.active
+          %h2 什么是社区服务运营商
+          %p
+            社区服务运营商在赋为Ｏ２Ｏ平台(指将线上Online和线下Offline连接起来）上整合社区周边商业资源及服务项目，用微信公众帐号、ＡＰＰ或手机网站方式向社区消费者呈现，使居民足不出户，即可通过手机、iPad等移动互联网的方式享受优质、便捷和全方位的社区生活服务。从消费者的角度，社区服务运营商是社区生活的贴心管家，是优质商业资源和服务资源的综合代理和管理入口。
+          %a.btn.btn-primary.btn-lg{href: "tel:4000432013"} 加盟热线 4000432013
+        .item
+          %h2 社区Ｏ２Ｏ前景如何
+          %p 随着中国社区化发展的快速进程，消费将回归社区，未来70%居民的工作、生活、学习、休闲娱乐等各方面的需求将在社区得到满足，社区Ｏ２Ｏ必将是下一个万亿级的创业乐园。目前，无论是传统行业巨头，如万科、彩生活、还是电商和互联网巨头，如京东、ＢＡＴ都已经在开展社区商业Ｏ２Ｏ布局。
+        .item
+          %h2 社区Ｏ２Ｏ收入来源
+          %p 运营商通过三种方式获得收益：一是帮助社区商家设立自己的微信商店等Ｏ２Ｏ系统完成线上和线下的整合，收取年度技术服务费，主要收入归运营商，平台提供技术支持；二是整合周边商家和服务并向社区消费者推广，对商品订单和服务工单做全程质量管理并收取交易佣金；三是通过组织第三方配送、社区团购、商业广告导入、顾客精确营销等方式获得增值服务收入。
+        .item
+          %h2 社区Ｏ２Ｏ收益如何
+          %p 我们把社区服务运营商按照投入资源和是否拥有自营业务（包括配送）分为四种模式。以投入量级最轻的兼职社区整合运营为例，创业者只需要拥有一台智能手机，投入千余元的平台及物料费用，在大部分社区可以通过每周十多个小时的兼职时间，实现每年约一万五千元的净收益；如果采用标准的从传统社区商家升级的社区服务运营模式，两至三万元的投入，约可以实现九万八千元的年净利润。
+      / Controls
+      %a.left.carousel-control{"data-slide" => "prev", href: "#carousel-generic"}
+        %span.fa.fa-chevron-circle-left.fa-2x
+      %a.right.carousel-control{"data-slide" => "next", href: "#carousel-generic"}
+        %span.fa.fa-chevron-circle-right.fa-2x
+  .row
+    .sep
+      .sep-l.col-xs-3.col-xs-offset-1
+        %span.star-l
+      .col-xs-offset-1.col-xs-2
+        %span.star
+          %i.fa.fa-star-o.fa-2x
+      .sep-l.col-xs-offset-1.col-xs-3
+        %span.star-r
+  %section#about
+    .row
+      .col-md-6.col-md-offset-3
+        %h1 赋你所能，为你所想
+        %p
+          赋为是中国领先的社区生活服务平台，向社区服务运营商及创业者提供从技术平台到运营培训、投资融资等全方位的服务。
+        %p
+          赋为聚集了来自IT界、商业界、传媒界等各行业的精英,在各自领域深挖多年,有着丰富的经验和资源。团队在很短时间内就引起众多著名投资界人士的关注和认可,目前已获得其中一互联网界知 名投资机构的投资, 另外有家政界和物业界的龙头老大的鼎力支持。
+        %p
+          如果世间已无桃花源,那么我们将着手打造一个人们心目中的"新桃花源"；更美好的社区,更美好的生活,是我们致力于打造的未来。
+    .row.r2
+      .col-md-3.col-xs-6
+        .wrapper-icon
+          %i.fa.fa-group.fa-3x
+        %h2.count-number
+          = @customers_count + 141874
+        %h3 社区用户正在使用
+      .col-md-3.col-xs-6
+        .wrapper-icon
+          %i.fa.fa-sitemap.fa-3x
+        %h2.count-number
+          = @instances_count + 923
+        %h3 服务网点成功加盟
+      .col-md-3.col-xs-6
+        .wrapper-icon
+          %i.fa.fa-pencil-square-o.fa-3x
+        %h2.count-number
+          = @orders_count + 900865
+        %h3 微信订单顺利成交
+      .col-md-3.col-xs-6
+        .wrapper-icon
+          %i.fa.fa-money.fa-3x
+        %h2.count-number
+          = @orders_income + 6894640
+        %h3 服务收益已经创造
+    /%a.btn.btn-primary.btn-lg{href: "/about.pdf", target: "_blank"} 更多关于赋为
+    %a.btn.btn-primary.btn-lg{href: "/team", target: "_blank"} 关于赋为

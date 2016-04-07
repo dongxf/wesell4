@@ -1,0 +1,63 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '店铺管理', platform_stores_path
+    %span.divider
+  %li
+    = link_to @store.name, platform_store_path(@store)
+    %span.divider
+  %li
+    = link_to '商品列表', platform_store_wesell_items_path(@wesell_item.store)
+    %span.divider
+  %li.active
+    = "商品详情(#{@wesell_item.name})"
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          商品信息
+          - if can? :edit, @wesell_item
+            .pull-right
+              = link_to edit_platform_store_wesell_item_path(@store, @wesell_item) do
+                %i.fa.fa-pencil-square-o
+      .panel-body
+        %dl.dl-horizontal
+          %dt 类目
+          %dd= @wesell_item.category_name
+
+          %dt 名称
+          %dd= @wesell_item.name
+
+          %dt 描述
+          %dd= @wesell_item.description
+
+          %dt 现价
+          %dd= @wesell_item.price
+
+          %dt 原价
+          %dd= @wesell_item.original_price
+
+
+          %dt 库存
+          %dd= @wesell_item.quantity
+
+          %dt 销量
+          %dd= @wesell_item.total_sold
+
+          %dt 图片
+          %dd= image_tag @wesell_item.image.url(:large)
+
+          %dt 商品选项
+          %dd
+            = render partial: 'options_group', collection: @options_groups
+            %p= link_to '添加商品选项', new_platform_wesell_item_options_group_path(@wesell_item)
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 控制面板
+      .panel-body
+        = render 'control_panel'

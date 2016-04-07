@@ -1,0 +1,19 @@
+.we-village
+  %ul.breadcrumb
+    %li
+      =link_to community_village_path(@village) do
+        %i.fa.fa-chevron-left
+        返回
+      %span.divider
+    %li.active
+      = "#{@rmsg}"
+  - if @village_items.empty?
+    - if params[:action]=='search'
+      %h5 非常抱歉没有收录相关内容，我们已记下您希望寻找的内容并将进一步收录。如果您有任何建议或推荐信息可以在此提交
+    - if params[:action]=='favor'
+      %h5 您还没有收藏任何条目
+    - if params[:action]=='offers'
+      %h5 当前没有优惠信息，欢迎点击右下角客服对话窗口提供消息
+
+  = render "community/villages/vi_list"
+  = render "community/common/share"

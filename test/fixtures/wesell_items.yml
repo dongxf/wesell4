@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  name: item_1
+  description: MyText
+  price: 1.00
+  original_price: 1.99
+  unit_name: 个
+  quantity: 1
+  status: 0
+
+two:
+  store: one
+  name: item_2
+  description: MyText
+  price: 1.00
+  original_price: 1.99
+  unit_name: 个
+  quantity: 1
+  status: 0
+
+three:
+  store: two
+  name: item_3
+  description: MyText
+  price: 1.00
+  original_price: 1.99
+  unit_name: 个
+  quantity: 1
+  status: 0
+  deleted: true
+
+four:
+  store: two
+  name: item_4
+  description: MyText
+  price: 1.00
+  original_price: 1.99
+  unit_name: 个
+  quantity: 1
+  status: 10
+
+five:
+  store: five
+  name: item_5
+  description: MyText
+  price: 1.00
+  original_price: 1.99
+  unit_name: 个
+  quantity: 100
+  status: 0
+  sequence: 100

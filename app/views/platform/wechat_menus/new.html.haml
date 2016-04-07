@@ -1,0 +1,27 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '公众号管理', platform_instances_path
+    %span.divider
+  %li
+    = link_to @instance.nick, platform_instance_path(@instance)
+    %span.divider
+  %li
+    = link_to '自定义菜单', platform_instance_wechat_menus_path(@instance)
+    %span.divider
+  %li.active
+    新建菜单
+
+.row
+  .col-md-12
+    %h3.page-title
+      新建菜单
+      .pull-right
+        = link_to :back, class: 'btn btn-info' do
+          %i.icon-caret-left
+          返回
+    %section.widget
+      .tab-content
+        = render 'form'

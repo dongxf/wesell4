@@ -1,0 +1,20 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  1
+%Articles
+  %item
+    %Title
+      - if @village_item.offer_available?
+        = raw "<![CDATA[今日优惠：#{@village_item.offers.last.title}]]>"
+      - else
+        = raw "<![CDATA[欢迎光临！#{@village_item.name}]]>"
+    %Description
+      - if @village_item.offer_available?
+        = raw "<![CDATA[#{@village_item.offers.last.info}\n请点击此处了解更多详情。。。\n]]>"
+      - else
+        = raw "<![CDATA[#{@village_item.info}\n请点击此处了解更多详情。。。\n]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @village_item.banner.url(:medium)}]]>"
+    %Url
+      = raw "<![CDATA[#{community_village_village_item_url(@village, @village_item, instance_id: @instance.id, customer_cid: @customer.cid)}]]>"

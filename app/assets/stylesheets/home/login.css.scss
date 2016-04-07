@@ -1,0 +1,58 @@
+.login-panel {
+  .wrapper {
+    margin-bottom: 10px;
+    .input-pre {
+      display: inline-block;
+      width: 34px;
+      height: 34px;
+      text-align: center;
+      line-height: 34px;
+
+      .fa {
+        color: $gray;
+      }
+    }
+
+    input {
+      width: 200px;
+      height: 34px;
+      padding: 5px 12px;
+    }
+  }
+
+  div.gray {
+    margin-bottom: 10px;
+  }
+
+  p > a {
+    color: $orange;
+  }
+
+  .btn-orange {
+    margin-left: 100px;
+  }
+
+  // .login-tips {
+  //   margin-left: 150px;
+  // }
+}
+
+#signin, #signup {
+  margin-top: 80px;
+}
+
+.qrcode-panel {
+  border-left: 1px solid $gray;
+}
+
+
+.sign {
+  padding-top: 200px;
+  padding-bottom: 200px;
+
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,48 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    店铺管理
+
+= paginate @stores
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 店铺名称
+      %th 地址/电话/邮件
+      %th 描述
+      %th 营业状态
+      %th 相关节点
+      %th
+  %tbody
+    - @stores.each do |store|
+      %tr
+        %td= store.id
+        %td{style: 'max-width: 220px'}
+          = link_to store.name, platform_store_path(store)
+        %td.scrollx{style: 'max-width: 220px'}
+          地址：#{store.street} (#{store.latitude},#{store.longitude})
+          %br
+          电话：#{store.phone}
+          %br
+          邮件：#{store.email}
+        %td{style: 'max-width: 220px'}
+          = store.description
+        %td{style: 'max-width: 220px'}
+          %input.store_switch{type: "checkbox", name: "my-checkbox", checked: store.open?, data: {store_id: store.id}}
+        %td
+          %ul.list-unstyled
+            %li= link_to "商品类目(#{store.categories.count})", platform_store_categories_path(store)
+            %li= link_to "商品(#{store.wesell_items.online.count})", platform_store_wesell_items_path(store)
+            %li= link_to "订单(#{store.orders_count})", platform_orders_path(store_id: store.id)
+            %li= link_to "打印机(#{store.printers.count})", platform_store_printers_path(store)
+        %td
+          - if can? :edit, store
+            = link_to '设置', edit_platform_store_path(store), class: 'btn btn-orange'
+            = link_to '删除', platform_store_path(store), :method => :delete, :data => { :confirm => '所有数据将无法恢复，确定删除？' }, class: 'btn btn-danger'
+
+= paginate @stores
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建店铺", new_platform_store_path, class: 'btn btn-orange'

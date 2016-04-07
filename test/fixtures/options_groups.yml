@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  style: 0  #任选一种
+  wesell_item: one
+
+two:
+  style: 1  #组合
+  wesell_item: one

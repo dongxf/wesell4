@@ -1,0 +1,2 @@
+module Platform::OperationsHelper
+end

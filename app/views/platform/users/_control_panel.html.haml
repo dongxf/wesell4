@@ -1,0 +1,9 @@
+- if current_user.name == "幸福大院"
+  = form_for :manager, url: new_manager_platform_user_path, remote: true do |f|
+    = f.label '名称'
+    = f.text_field :name
+    = f.label '邮箱'
+    = f.text_field :email
+    = f.label '电话'
+    = f.text_field :phone
+    = f.submit "提交"

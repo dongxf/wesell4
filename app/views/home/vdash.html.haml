@@ -1,0 +1,33 @@
+%h3= "数据统计"
+%table.table
+  %tr
+    %th 条目编号
+    %th 条目名称
+    %th 总访问量
+    %th 总拨打量
+    %th 总收藏量
+    %th 排序权重
+    %th
+  - @current_user.owner_village_items.each do |vitem|
+    %tr
+      %td= vitem.id
+      %td= vitem.name
+      %td= vitem.click_count
+      %td= vitem.call_count
+      %td= vitem.favor_count
+      %td= vitem.vscore
+      %td= link_to '修改', edit_platform_instance_village_item_path(vitem.instance, vitem)
+%table.table
+  %tr
+    %th 商店编号
+    %th 商店名称
+    %th 总订单量
+    %td 未完成数
+    %th
+  - @current_user.owner_stores.each do |store|
+    %tr
+      %td= store.id
+      %td= store.name
+      %td= store.orders.unopen.count
+      %td= store.orders.open.count
+      %td= link_to '修改', edit_platform_store_path(store)

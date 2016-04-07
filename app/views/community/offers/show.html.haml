@@ -1,0 +1,13 @@
+%h1 最新优惠信息
+%h2= @offer.title
+%hr/
+%h2= @offer.info
+%hr/
+%h3
+  起始日期:
+  = @offer.started_at.strftime('%Y-%m-%d')
+%hr/
+%h3
+  有效期:
+  = @offer.duration
+  天

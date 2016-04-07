@@ -1,0 +1,120 @@
+.link_tel {
+  display: block !important;
+  line-height: 40px !important;
+  margin: 5px 5px 0 5px;
+  // margin-top: 10px !important;
+  background: #ea5946;
+  color: #fff !important;
+  text-align: center;
+  border-radius: 5px;
+  word-spacing: nowrap;
+  overflow: hidden;
+  font-size: 18px;
+  position: relative;
+
+  &::before {
+    font-size: 20px;
+    margin-left: 0;
+    position: absolute;
+    left: 10px;
+    top: 2px;
+    font-size: 25px;
+  }
+}
+
+.store_tel {
+  display: block !important;
+  line-height: 40px !important;
+  background: #009bad;
+  color: #fff !important;
+  text-align: center;
+  word-spacing: nowrap;
+  overflow: hidden;
+  font-size: 1em;
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+//*****************for font template**********************************//
+.body {
+  max-width: 640px;
+  margin: auto;
+  min-height: 100%;
+  background-color: #f4f4f4;
+  position: relative;
+  -webkit-box-sizing: border-box;
+
+  footer {
+    text-align: center;
+    position: relative;
+    &.order_actions {
+      height: 40px;
+    }
+  }
+
+}
+
+body.westore_kategories_show{
+  background-color: #fff;
+}
+
+.list-status {
+  margin-top: 15px;
+  text-align: center;
+
+  .loading {
+    display: none;
+  }
+
+  li {
+    margin: 10px auto;
+    width: 50%;
+    display: block;
+
+    a {
+      display: block;
+      padding: 20px;
+    }
+
+    .btn-default {
+      color: $black;
+      background-color: $silver;
+      border-color: $black;
+    }
+    .btn-success {
+      color: white;
+      background-color: $olive;
+      border-color: #F17860;
+    }
+    .btn-info {
+      color: white;
+      background-color: $aqua;
+      border-color: #F17860;
+    }
+    .btn-danger {
+      color: white;
+      background-color: $red;
+      border-color: #F17860;
+    }
+    .btn-salmon {
+      color: white;
+      background-color: #f07057;
+      border-color: #F17860;
+    }
+    .btn-wine {
+      display: inline-block;
+      padding: 20px;
+      color: white;
+      background-color: $wine;
+      border-color: $wine;
+    }
+  }
+}
+
+.flash_message {
+  .alert p {
+    font-size: 20px;
+    font-weight: bolder;
+  }
+}

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  report_date: 2014-03-18
+  store_id: 1
+
+two:
+  report_date: 2014-03-18
+  store_id: 1

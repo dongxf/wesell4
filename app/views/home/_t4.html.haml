@@ -1,0 +1,21 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th 姓名
+      %th 订单数
+      %th 消费总额
+      %th 联系电话
+      %th 地址
+      %th 最近消费时间
+  %tbody
+    - @customers.each do |c|
+      -  orders = c.orders.where(submit_at: @time_range, is_test: false)
+      %tr
+        %td= c.name
+        %td= link_to orders.count, platform_orders_path(customer_id: c.id), target: "_blank"
+        %td= orders.sum(:amount)
+        %td= c.phone
+        %td= c.member.try(:address)
+        %td= orders.order("submit_at desc").last.try(:submit_at)
+
+= paginate @customers, params: {table: 't4'} , remote: true

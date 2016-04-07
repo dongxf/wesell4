@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wesell_item: one
+  options_group: one
+  name: option_1
+  price: 1.00
+  deleted: false
+  sequence: 1
+
+two:
+  wesell_item: one
+  options_group: one
+  name: option_2
+  price: 1.00
+  deleted: false
+  sequence: 1

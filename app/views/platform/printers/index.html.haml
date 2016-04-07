@@ -1,0 +1,37 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '店铺管理', platform_stores_path
+    %span.divider
+  %li
+    = link_to @store.name, platform_store_path(@store)
+    %span.divider
+  %li.active
+    打印终端
+
+%table.table
+  %tr
+    %th ID
+    %th 店铺
+    %th 型号
+    %th 串号
+    %th 份数
+    %th 状态
+    %th
+
+  - @printers.each do |printer|
+    %tr
+      %td= printer.id
+      %td= printer.store.name if printer.store
+      %td= printer.model
+      %td= printer.imei
+      %td= printer.copies
+      %td= printer.status
+      %td
+        = link_to '设置', edit_platform_store_printer_path(@store, printer), class: 'btn btn-info'
+        = link_to '删除', platform_store_printer_path(@store, printer), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+
+=link_to "返回首页", root_path, class: 'btn'
+=link_to "添加打印机", new_platform_store_printer_path(@store), class: 'btn btn-orange'

@@ -1,0 +1,2 @@
+module Platform::OptionsGroupsHelper
+end

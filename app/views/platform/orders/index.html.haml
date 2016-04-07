@@ -1,0 +1,77 @@
+%ul.breadcrumb
+  %li
+    =link_to '控制面板', root_path
+    %span.divider
+  %li.active
+    订单管理
+
+.alert.alert-success
+  %h4
+    提示：
+    %span.index_tips 测试订单不会被纳入统计范围
+  - if params[:action] == "index"
+    %span.index_tips
+      %b 公众号订单
+      , 指通过您所拥有的公众号下的订单, 如果您想看到您管理的店铺的所有订单, 请点击
+      = link_to "这里", stores_manager_platform_orders_path, class: 'alert-warning'
+
+  - elsif params[:action] == "stores_manager"
+    %span.index_tips
+      %b 店铺订单
+      , 指通过您所管理的店铺下的订单, 如果您想看到您管理的公众号的所有订单, 请点击
+      = link_to "这里", platform_orders_path, class: 'alert-warning'
+
+- if params[:action] == "index"
+  - url = platform_orders_path
+- elsif params[:action] == "stores_manager"
+  - url = stores_manager_platform_orders_path
+= render 'filter', url: url
+
+= paginate @orders
+%table.table.table-hover
+  %thead
+    %tr
+      %th 编号(oid-sid-cid)
+      %th 提交时间
+      %th 总价
+      %th 详情
+      %th 客户评价
+      %th 订单状态
+      %th
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= link_to "#{order.id}-#{order.serial_number_instance}-#{order.customer_id}", platform_order_path(order)
+        %td
+          = format_time order.submit_at unless order.submit_at.blank?
+          %div
+            %input.order_switch{type: "checkbox", name: "my-checkbox", checked: order.is_test?, data: {order_id: order.id}}
+          %div
+          = link_to '编辑', edit_platform_order_path(order), class: 'btn btn-warning'
+        %td
+          = order.amount
+        %td{style: 'max-width: 220px'}
+          /= "店铺：#{order.store.name}"
+          %div= "商品名: #{order.wesell_items.pluck(:name).join("|")}"
+          %div= "姓名：#{order.contact}"
+          %div= "电话：#{order.phone}"
+          -if !order.address_needless?
+            %div= "地址：#{order.address}"
+          - if order.start_at
+            %div= "预约时间：#{format_time order.start_at}"
+          %div= "备注：#{order.description}"
+        %td{style: 'max-width: 220px'}
+          = order.comment
+        %td
+          %div{id: "status_#{order.id}"}= order.human_status
+          %div= order.human_payment_option
+          %div{id: "payment_status_#{order.id}"}= order.human_payment_status
+        %td
+          %ul.list-unstyled.order_status{id: "actions_#{order.id}"}
+            %li= order_status order, :reject, remote: true
+            %li= order_status order, :accept, remote: true
+            %li= order_status order, :ship, remote: true
+            %li= order_status order, :finish, remote: true
+            - unless order.store.printers.blank?
+              %li= link_to "打印订单", print_platform_order_path(order), class: "btn btn-warning"
+= paginate @orders

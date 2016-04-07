@@ -1,0 +1,29 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  = @wesell_items.length + 2
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[#{@store.name}]]>"
+    %Description
+      = raw "<![CDATA[#{@store.description}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @store.banner.url(:large)}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_instance_store_url(@instance, @store, customer_cid: @customer.cid)}]]>"
+  - @wesell_items.each do |item|
+    %item
+      %Title
+        = raw "<![CDATA[#{item.name}\n#{item.price.to_f}#{@store.monetary_unit}/#{item.unit_name}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url item.image.url(:thumb)}]]>"
+      %Url
+        = raw "<![CDATA[#{westore_wesell_item_url(item, customer_cid: @customer.cid, instance_id: @instance.id)}]]>"
+  %item
+    %Title
+      = raw "<![CDATA[更多信息请猛击这里...]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @instance.logo.url(:thumb)}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_instance_url(@instance, customer_cid: @customer.cid)}]]>"

@@ -1,0 +1,14 @@
+- content_for :title do
+  = "#{@village_item.instance.nick} | #{@village_item.name}"
+
+%div.we-village.village-item
+  %ul.breadcrumb
+    %li
+      =raw "<a href='/community/village_items/#{@village_item.id}'><span class='fa fa-chevron-left'/>返回</a>"
+      %span.divider
+    %li.active= @village_item.name
+
+/<iframe src="#{@village_item.entry_url}" style="border:none !important" width="100%" height="720px"><p>手机不给力无法显示</p></iframe>
+%iframe{src: "#{@village_item.entry_url}", style: "border:none !important", width: "100%", height: "720px"}
+  %p
+    =raw "手机不给力，打电话吧<a href='tel:#{@village_item.tel}'>#{@village_item.tel}</a>"

@@ -1,0 +1,49 @@
+.container.card.body
+  %header
+    .header.card
+      #card{"data-role" => "card"}
+        .front
+          = image_tag current_instance.member_card.url(:large)
+          %span.name{style: "color:#FFFFFF"} vip会员
+          %span.no{style: "color:#FFFDFC;"}= "会员ID：#{@member.id}"
+    / %div
+    /   %ul.box.group_btn
+    /     %li
+    /       %a{href: "javascript:charge();"} 充值
+    /     %li
+    /       %a{href: "javascript:pay();"} 付款
+  .body
+    %ul.list_ul
+      %div
+        %li.li_b
+          = link_to none_westore_members_path do
+            %label.label
+              %i>  
+              会员优惠
+              %span  
+        %li.li_c
+          = link_to none_westore_members_path do
+            %label.label
+              %i>  
+              积分兑换
+              %span  
+        %li.li_d
+          = link_to edit_westore_member_path(@member) do
+            %label.label
+              %i>  
+              完善会员卡资料
+              %span  
+        -# - if current_instance.village.present?
+        -#   %li.li_d
+        -#     = link_to community_village_path(current_instance.village) do
+        -#       %label.label
+        -#         %i>  
+        -#         我的社区
+        -#         %span  
+      %div
+      %div
+        %li.li_i
+          %a.label{href: "tel:#{current_instance.phone}"}
+            %i>  
+            = current_instance.phone
+            %span  

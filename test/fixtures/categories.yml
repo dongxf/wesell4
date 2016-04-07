@@ -1,0 +1,42 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  name: one
+
+two:
+  store: two
+  name: two
+
+three:
+  store: three
+  name: three
+
+four:
+  store: four
+  name: four
+
+five:
+  store: five
+  name: five
+
+six:
+  store: six
+  name: six
+
+seven:
+  store: seven
+  name: seven
+
+eight:
+  store: eight
+  name: eight
+
+nine:
+  store: nine
+  name: nine
+
+ten:
+  store: one
+  name: ten
+

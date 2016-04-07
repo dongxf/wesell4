@@ -1,0 +1,15 @@
+.lottery {
+  float: left;
+  text-align: center;
+  width: 35px;
+  height: 40px;
+  line-height: 36px;
+  color: #fff;
+  font-weight: bold;
+}
+.lottery-red {
+  background: image-url('misc/lottery-red.png') no-repeat;
+}
+.lottery-blue {
+  background: image-url('misc/lottery-blue.png') no-repeat;
+}

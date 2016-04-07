@@ -1,0 +1,27 @@
+.we-village.manager
+  %ul.breadcrumb
+    %li
+      =link_to "#{@village_item.name}", manager_community_village_item_path(@village_item)
+      %span.divider
+    %li.active
+      管理黄页信息
+  %ul.list-group
+    - if @village_item.approved?
+      %li.list-group-item
+        = link_to '基础信息管理', edit_community_village_item_path(@village_item)
+      %li.list-group-item
+        - if @offer.present? && @offer.effective?
+          = link_to '编辑优惠信息', edit_community_village_item_offer_path(@village_item, @village_item.offers.last)
+        - else
+          = link_to '新建优惠信息', new_community_village_item_offer_path(@village_item)
+      %li.list-group-item
+        = link_to '我的二维码', qrcode_community_village_item_path(@village_item)
+    - else
+      %li.list-group-item
+        = link_to '开通增值服务(4000432013)', 'tel:4000432013'
+      %li.list-group-item
+        基础信息管理
+      %li.list-group-item
+        优惠信息管理
+      %li.list-group-item
+        推广工具管理

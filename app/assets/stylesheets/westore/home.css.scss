@@ -1,0 +1,109 @@
+.list_font {
+  margin: 0 0 5px 0;
+  width: 100%;
+  li {
+    display:  inline-block;
+    overflow: hidden;
+    color:            #fff;
+    background-color: #fff;
+    box-sizing:  border-box;
+    position:    relative;
+    float:       left;
+    text-align:  center;
+    width:       33.3% !important;
+    height:      100px;
+    line-height: 1.5em;
+    font-size: 16px;
+    padding:   2px;
+    div {
+      height: 100%;
+      margin: 0;
+      margin-bottom: 5px;
+      background-color: #d87570;
+
+    }
+    a {
+      color: #fff;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      p {
+        width: 90%;
+        padding: 15px 5% 0;
+        color: #fff;
+        text-align: center;
+      }
+    }
+  }
+
+  li:nth-of-type(3n+2) div:first-child {
+    background: #bbd1c4;
+  }
+
+  li:nth-of-type(3n+3) div:first-child {
+    background: #febf02;
+  }
+
+  li:nth-of-type(6n-2) div:first-child {
+    background: #bc4040;
+  }
+
+  li:nth-of-type(6n-1) div:first-child {
+    background: #6f9c97;
+  }
+
+  li:nth-of-type(6n) div:first-child {
+    background: #ff8b00;
+  }
+}
+
+.list_ul_small {
+  margin: 10px;
+  overflow: hidden;
+  padding: 5px;
+  width: 260px;
+  margin: auto;
+  padding-top: 50px;
+
+  li {
+    padding: 2px;
+    display: inline-block;
+    width: 50%;
+    float: left;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+  }
+
+  a {
+    color: #666;
+    display: block;
+    background: rgba(255, 255, 255, 0.7);
+    line-height: 35px;
+    overflow: hidden;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.35);
+  }
+}
+
+.flash_message {
+  background-color: #fff;
+  padding: 12px 13px;
+  border-top: 0;
+  border-radius: 8px;
+
+  .alert {
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    &.alert-danger {
+      background-color: #f2dede;
+      border-color: #ebccd1;
+      color: #a94442;
+    }
+    &.alert-success {
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      color: #3c763d;
+    }
+  }
+}

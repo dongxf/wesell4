@@ -1,0 +1,8 @@
+%xml
+  %ToUserName
+    = raw "<![CDATA[#{params['xml'][:FromUserName]}]]>"
+  %FromUserName
+    = raw "<![CDATA[#{params['xml'][:ToUserName]}]]>"
+  %CreateTime
+    = Time.now.to_i
+  = yield

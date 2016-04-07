@@ -1,0 +1,19 @@
+.row.share
+  %ul
+    %li
+      = link_to "最新优惠", offers_community_village_path(@village), id: "addCollect"
+    %li
+      = link_to "提供信息", "javascript:void(0)", id: "recommend", data: { target: "#newInfo", toggle: "modal" }
+    %li
+      = link_to "我的收藏", community_favor_path(current_customer), id: "addCollect"
+
+  #newInfo.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "basicModal", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          .col-xs-12
+            %h4
+              .modal-title免费发布服务信息到小区黄页
+              .feed-title
+        .modal-body
+          = render 'community/villages/form'

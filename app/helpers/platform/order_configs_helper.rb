@@ -1,0 +1,2 @@
+module Platform::OrderConfigsHelper
+end

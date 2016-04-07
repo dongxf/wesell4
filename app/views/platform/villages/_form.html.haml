@@ -1,0 +1,21 @@
+= simple_form_for [:platform, @instance, @village], defaults: {input_html: {class: 'form-control'}}, html: {class: 'form-horizontal', role: "form"} do |f|
+  = f.error_notification
+  = f.input :name, placeholder: "请输入社区名称"
+  = f.input :slogan
+  = f.input :desc, label: '介绍', as: :text, input_html: {rows: 5}
+  = f.input :css_id, collection: @instance.csss.pluck(:email,:id)#, include_blank: false
+  = f.input :latitude
+  = f.input :longitude
+
+  = f.input :logo do
+    = f.input_field :logo
+    = image_tag @village.logo.url(:large)
+
+  = f.input :banner do
+    = f.input_field :banner
+    = image_tag @village.banner.url(:large)
+
+  .row
+    .col-md-4= link_to '放弃返回', :back, class: 'btn btn-info'
+    .col-md-4= f.button :submit, '提交', class: 'btn btn-orange  center-block'
+

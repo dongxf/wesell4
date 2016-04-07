@@ -1,0 +1,8 @@
+%MsgType
+  = raw "<![CDATA[text]]>"
+- if @instance.csa
+  %Content
+    = raw "<![CDATA[您好, 请问有什么可以帮到您?]]>"
+- else
+  %Content
+    = raw "<![CDATA[客服君暂不在线, 回来第一时间回复你哦!【紧急电话】#{@instance.phone}]]>"

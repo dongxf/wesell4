@@ -1,0 +1,110 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: one
+  description: MyText
+  phone: 18600000001
+  email: one@stores.com
+  street: 祈福新村126号
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours:
+  open: true
+  wesell_items_count: 2
+  monetary_unit: 元
+
+two:
+  name: two
+  description: MyText
+  phone: 18500000002
+  email: two@stores.com
+  street: 祈福新村226号
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: true
+
+three:
+  name: three
+  description: MyText
+  phone: 18600000003
+  email: three@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: true
+
+four:
+  name: four
+  description: MyText
+  phone: 18600000004
+  email: four@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: false
+
+five:
+  name: five
+  description: MyText
+  phone: 18600000005
+  email: five@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours:
+  open: true
+  min_charge: 10.00
+  shipping_charge_option: 1
+  shipping_charge: 10
+  time_setting: nodate
+  address_setting: address
+
+six:
+  name: six
+  description: MyText
+  phone: 18600000004
+  email: four@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: false
+
+seven:
+  name: seven
+  description: MyText
+  phone: 18600000004
+  email: four@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: false
+
+eight:
+  name: eight
+  description: MyText
+  phone: 18600000004
+  email: four@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: false
+
+nine:
+  name: nine
+  description: MyText
+  phone: 18600000004
+  email: four@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: false
+
+ten:
+  name: ten
+  description: MyText
+  phone: 18600000004
+  email: four@stores.com
+  latitude: 1.5
+  longitude: 1.5
+  opening_hours: 09:00~21:00
+  open: false

@@ -1,0 +1,26 @@
+- if $wesell_status == 'clean'
+  .alert.alert-warning
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    ="系统正在进行每日清算处理，在此期间您可继续使用但系统处理性能会有所下降。若需协助请联系客服，我们将竭诚为您服务"
+- if $wesell_status == 'service'
+  .alert.alert-error
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    ="系统正在进行程序更新和维护，在此期间请避免作任何数据提交或者修改动作。若需协助请联系客服，我们将竭诚为您服务"
+/ - if current_westore && !current_westore.orderable
+/   .alert.alert-warning
+/     = "温馨提示：#{current_westore.status}，如需帮助请联系客服"
+- flash.each do |name, msg|
+  /- if msg.is_a?(String)
+  /  %div{:class => "alert alert-block alert-#{name == :notice ? "success" : "error"}"}
+  /    %a.close{"data-dismiss" => "alert"}
+  /      %i.icon-remove
+  /    = content_tag :div, msg, :id => "flash_#{name}"
+  - if msg.is_a?(String)
+    - if name == :notice
+      .alert.alert-success
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        =simple_format(msg).html_safe
+    - else
+      .alert.alert-danger
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        =simple_format(msg).html_safe

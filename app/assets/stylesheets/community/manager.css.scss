@@ -1,0 +1,21 @@
+.we-village.manager {
+  padding: 0 5px;
+  .list-group .list-group-item {
+    padding: 0;
+    &:first-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    a {
+      display: block;
+      color: $wine;
+      padding: 10px 15px;
+    }
+  }
+}

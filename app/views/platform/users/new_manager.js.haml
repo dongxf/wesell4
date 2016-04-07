@@ -1,0 +1,18 @@
+- html = capture do
+  - if @store && @village_item
+    .pull-right
+      %h3 成功录入小管家信息!
+      %h4= "编号为 #{@user.keeper_id}"
+      %h4
+        店铺
+        = link_to @store.name, platform_store_path(@store), class: 'wine', target: "_blank"
+        = "的邀请码为 #{@store.invite_code}"
+      %h4
+        黄页条目
+        = link_to @village_item.name, edit_platform_instance_village_item_path(@instance, @village_item), class: "wine", target: "_blank"
+        = "的 PIN 码为 #{@village_item.pin}"
+      = link_to "打印二维码", user_print_path(@user, village_item_id: @village_item.id, store_id: @store.id), target: "_blank"
+  - else
+    %p.pull-right 信息输入有误, 请检查.
+
+$('.col-md-9 .panel-default').append("#{j html}")

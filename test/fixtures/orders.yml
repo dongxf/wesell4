@@ -1,0 +1,52 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  store: one
+  instance: one
+  customer: one
+  status: open
+  amount: 1.00
+  contact: contact_one
+  phone: 18620728375
+  address: address_one
+
+two:
+  store: one
+  instance: two
+  customer: two
+  status: sent
+  payment_option: cash
+  payment_status: paid
+  amount: 1.00
+
+three:
+  store: two
+  instance: two
+  customer: two
+  amount: 1.00
+
+four:
+  store: two
+  instance: two
+  customer: three
+  amount: 1.00
+
+five:
+  store: five
+  instance: two
+  customer: three
+  amount: 1.00
+
+six:
+  store: five
+  instance: two
+  customer: two
+  status: open
+  amount: 1.00
+
+seven:
+  store: five
+  instance: two
+  customer: two
+  status: require_payment
+  amount: 1.00

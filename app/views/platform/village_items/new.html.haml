@@ -1,0 +1,8 @@
+%ul.breadcrumb
+  %li
+    =link_to @instance.name, [:platform, @instance]
+    %span.divider
+  %li.active
+    新建黄页条目
+
+= render "form"

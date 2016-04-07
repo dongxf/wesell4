@@ -1,0 +1,13 @@
+= simple_form_for [:platform, @instance, @kategory], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal', role: "form" } do |f|
+  = f.error_notification
+
+  = f.input :instance_id, as: :hidden
+  = f.input :name
+  = f.input :sequence
+  = f.input :description
+  = f.input :logo do
+    = f.input_field :logo
+    = image_tag @kategory.logo.url(:large) if @kategory.logo
+
+  = link_to '放弃返回', :back, class: 'btn btn-info'
+  = f.button :submit, '提交', class: 'btn btn-orange'

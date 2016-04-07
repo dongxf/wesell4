@@ -1,0 +1,31 @@
+%table.table.table-hover.t1
+  %thead
+    %tr
+      %th 公众号
+      %th 店铺数
+      %th 最多订单店铺
+      %th 订单量
+      %th 销售额
+      %th 现有用户数
+      %th 有下单顾客
+      %th 新增关注
+      %th 流失关注
+      %th 活跃用户
+
+  %tbody
+    - @instances.each do |instance|
+      - y_order = instance.orders.where(submit_at: @time_range, is_test: false)
+      / - max_store = Order.where(store_id: instance.stores, submit_at: @time_range).group(:store_id).count.max_by {|k,v| v}
+      %tr
+        %td= instance.nick
+        %td= instance.stores_count
+        %td=# max_store.nil? ? "无" : Store.find(max_store.first).name
+        %td= y_order.count
+        %td= y_order.sum(:amount)
+        %td= instance.customers.where("openid IS NOT NULL").count
+        %td= Order.where(customer_id: instance.customers, submit_at: @time_range).group(:customer_id).length
+        %td= instance.customers.where("openid IS NOT NULL").where(created_at: @time_range).count
+        %td= instance.customers.where("openid IS NOT NULL").where(updated_at: @time_range, subscribed: false).count
+        %td= instance.customers.where(last_visit_at: @time_range).count
+
+= paginate @instances, params: {table: 't1'} , remote: true

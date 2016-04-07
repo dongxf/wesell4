@@ -1,0 +1,50 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instance: one
+  store: one
+  kategory: one
+
+two:
+  instance: two
+  store: two
+  kategory: two
+
+three:
+  instance: three
+  store: three
+  kategory: three
+
+four:
+  instance: four
+  store: four
+  kategory: four
+
+five:
+  instance: five
+  store: five
+  kategory: five
+
+six:
+  instance: six
+  store: six
+  kategory: six
+
+seven:
+  instance: seven
+  store: seven
+  kategory: seven
+
+eight:
+  instance: eight
+  store: eight
+  kategory: eight
+
+nine:
+  instance: nine
+  store: nine
+  kategory: nine
+ten:
+  instance: ten
+  store: ten
+  kategory: ten

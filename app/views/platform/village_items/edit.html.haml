@@ -1,0 +1,6 @@
+%ul.breadcrumb
+  %li
+    =link_to '编辑黄页条目', platform_instance_village_items_path(@instance)
+  %li.active
+    = @village_item.try(:name)
+= render "form"

@@ -1,0 +1,29 @@
+- content_for :title do
+  = @store.name
+
+#wemall_store.container
+  .row#search
+    = simple_form_for 'product_search', url: search_westore_instance_store_path(current_instance, @store), method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+      = f.input_field :q, input_html: {name: 'q', class: 'form-control'}, label: false, placeholder: "#{@q || '商品搜索'}"
+      %span#close x
+      %button.btn{type: "submit"}
+        %i.fa.fa-search.fa-2x
+  .products-list
+    - if @products.empty?
+      %p 没有查找到商品
+    = render 'westore/categories/mall_products'
+
+    - unless @products.last_page?
+      .load-more
+        = link_to_next_page @products, '点击加载更多',params: { product_search: {q: @q }}, :remote => true, :id => "load_more_link", class: "btn btn-wine-o"
+        = image_tag 'loading.gif', size: "34x34", class: "loading"
+  .direction
+    = link_to :back do
+      %span.back
+        %i.fa.fa-reply
+        返回上一页
+    = link_to westore_instance_store_path(current_instance, @store) do
+      %span.back
+        回商店首页
+        %i.fa.fa-share
+

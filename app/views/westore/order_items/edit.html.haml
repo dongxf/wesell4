@@ -1,0 +1,37 @@
+%section#wesell_item_show.container
+  %article
+    %h1.wine= @wesell_item.name
+    %span.wine= @wesell_item.human_price(@store)
+    - if @wesell_item.original_price != 0
+      %span.gray
+        %del= @wesell_item.human_original_price(@store)
+
+    %article
+      = simple_form_for [:westore, @item], defaults: {input_html: {class: 'form-control'}}, method: 'put', html: { class: 'form-horizontal' } do |f|
+        = f.input :quantity, label_html: { class: 'col-xs-3' } do
+          .wrapper-icon
+            %span.minus#minus_quantity
+              %i.fa.fa-minus.fa-2x
+            = f.input_field :quantity, class: "quantity col-xs-3", id: 'order_item_quantity'
+            %span.add#plus_quantity
+              %i.fa.fa-plus.fa-2x
+        - @wesell_item.options_groups.each do |options_group|
+          - if options_group.style == 0 #任选一种
+            = f.association :wesell_item_options, as: :select,
+                            collection: options_group.wesell_item_options.map{|op| [op.label(@store), op.id] },
+                            label: options_group.name,
+                            label_html: { class: 'col-xs-3' },
+                            include_blank: false,
+                            input_html: {multiple: false, name: "order_item[wesell_item_option_ids][]"}
+
+          - else
+            = f.association :wesell_item_options, as: :check_boxes,
+                            collection: options_group.wesell_item_options,
+                            include_blank: false,
+                            label: options_group.name,
+                            label_html: { class: 'col-xs-3' },
+                            input_html: { class: 'cb' }
+        - if @wesell_item.sold_out?
+          %p.btn.btn-default.center-block= '非常抱歉，已经订完'
+        - else
+          = f.button :submit, '确定', class: 'btn btn-wine-o submit center-block'

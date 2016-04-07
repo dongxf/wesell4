@@ -1,0 +1,42 @@
+.row.share
+  %ul
+    %li
+      - if @village_item.present?
+        = link_to '黄页首页', community_village_path(@village)
+    %li
+      /= link_to "信息反馈", "javascript:void(0)", class: 'gray', id: 'wechat', data: {toggle: "tooltip", placement: "bottom"}, "title" => "建设中，请致电"
+    %li
+      = link_to "推荐分享", "javascript:void(0)", id: "shareTimeline", data: { target: "#timeline", toggle: "modal" }
+
+  / Button trigger modal
+  #timeline.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          = image_tag 'community/direct.png', size: "100x50", class: "direct"
+        .modal-body
+          %p.badge 1
+          %p.text
+            点击右上角的
+            = image_tag('community/1.png', size: "45x30")
+            或
+            = image_tag('community/11.png', size: "30x45")
+          %p.badge 2
+          %p.text
+            发送给朋友点击
+            = image_tag('community/2.png', size: "45x30")
+            %br/
+            分享朋友圈点击
+            = image_tag('community/4.png', size: "45x30")
+          %p.text
+            收藏本页面点击
+            = image_tag('community/3.png', size: "45x30")
+          %p.text 可与小伙伴们共享或收藏
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", type: "button"} 我知道了
+  #newFeedback.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", role: "dialog", tabindex: "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-body
+          %h4 提供对本信息的改进意见或者反馈
+          = render 'community/village_items/feedback'

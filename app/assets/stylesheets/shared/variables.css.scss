@@ -1,0 +1,191 @@
+// 颜色变量, 及前景色, 背景色
+$aqua: #7FDBFF;
+$blue: #0074D9;
+$navy: #001F3F;
+$teal: #39CCCC;
+$green: #2ECC40;
+$olive: #3D9970;
+$lime: #01FF70;
+
+// Warm
+$champagne: #F7E7CE;
+$salmon: #f07057;
+$yellow: #FFDC00;
+$orange: #F7931D;
+$red: #FF4136;
+$fuchsia: #F012BE;
+$purple: #B10DC9;
+$maroon: #85144B;
+$wine: #9A1A2E;
+
+// Gray Scale
+
+$white: #fff;
+$silver: #ddd;
+$gray: #aaa;
+$black: #111;
+
+/*
+
+   SKINS
+   • Backgrounds
+   • Colors
+
+*/
+
+/* Backgrounds */
+
+.bg-navy {
+  background-color: $navy;
+}
+
+.bg-blue {
+  background-color: $blue;
+}
+
+.bg-aqua {
+  background-color: $aqua;
+}
+
+.bg-teal {
+  background-color: $teal;
+}
+
+.bg-olive {
+  background-color: $olive;
+}
+
+.bg-green {
+  background-color: $green;
+}
+
+.bg-lime {
+  background-color: $lime;
+}
+
+.bg-yellow {
+  background-color: $yellow;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.bg-red {
+  background-color: $red;
+}
+
+.bg-fuchsia {
+  background-color: $fuchsia;
+}
+
+.bg-purple {
+  background-color: $purple;
+}
+
+.bg-maroon {
+  background-color: $maroon;
+}
+
+.bg-white {
+  background-color: $white;
+}
+
+.bg-gray {
+  background-color: $gray;
+}
+
+.bg-silver {
+  background-color: $silver;
+}
+
+.bg-black {
+  background-color: $black;
+}
+
+.bg-wine {
+  background-color: $wine;
+}
+
+.bg-champagne {
+  background-color: $champagne;
+}
+
+
+/* Colors */
+
+.navy {
+  color: $navy;
+}
+
+.blue {
+  color: $blue;
+}
+
+.aqua {
+  color: $aqua;
+}
+
+.teal {
+  color: $teal;
+}
+
+.olive {
+  color: $olive;
+}
+
+.green {
+  color: $green;
+}
+
+.lime {
+  color: $lime;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.orange {
+  color: $orange;
+}
+
+.red {
+  color: $red;
+}
+
+.fuchsia {
+  color: $fuchsia;
+}
+
+.purple {
+  color: $purple;
+}
+
+.maroon {
+  color: $maroon;
+}
+
+.white {
+  color: $white;
+}
+
+.silver {
+  color: $silver;
+}
+
+.gray {
+  color: $gray;
+}
+
+.black {
+  color: $black;
+}
+
+.wine {
+	color: $wine;
+}
+
+.champagne {
+  color: $champagne;
+}

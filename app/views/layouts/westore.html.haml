@@ -1,0 +1,36 @@
+!!!
+%html{lang: 'en'}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: "app-version", content: "#{APP_VERSION}"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"}
+    %meta{name: "description", content: "为有同样梦想的社区O2O创业者提供技术、资金、培训、商品等多方面的有力支持"}
+    %meta{name: "keywords", content: "赋为 社区 O2O 电商 服务 平台 创业 运营 微信 手机 外卖 订座 移动 互联网 智能 家政 快递 生活圈 订餐 o2o创业 社区生活服务平台 社区电商 微信创业 生活服务创业 o2o系统 微信订餐系统 外卖创业 外卖创业系统 手机外卖系统"}
+
+    - if content_for?(:title)
+      %title= yield(:title)
+    - elsif current_instance
+      %title= current_instance.nick
+    - else
+      %title= '社区O2O平台'
+
+    = stylesheet_link_tag  "westore", media: "all"
+
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv'
+
+    = csrf_meta_tags
+    - if Rails.env.production?
+      = render 'layouts/baidu'
+
+  %body{class: "#{params[:controller]}_#{params[:action]}".gsub('/','_'), data: {instance_id: "#{current_instance.id if current_instance}"}}
+    = render 'layouts/flash'
+    = yield
+    - unless params['controller'] == 'westore/instances' || params['controller'] == 'westore/kategories'
+      = render 'layouts/westore/bottom_nav' unless @no_bottom
+
+    = javascript_include_tag "westore"
+    - unless @no_hidetoolbar
+      :javascript
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { WeixinJSBridge.call('hideToolbar'); });
+    = yield :js

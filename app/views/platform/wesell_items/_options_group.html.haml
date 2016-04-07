@@ -1,0 +1,16 @@
+= "#{options_group.name} (#{options_group.human_style})"
+= link_to '编辑', edit_platform_wesell_item_options_group_path(@wesell_item, options_group)
+|
+= link_to '删除', platform_wesell_item_options_group_path(@wesell_item, options_group), method: 'delete', data: { confirm: '确定删除？' }
+%table.table
+  %thead
+    %tr
+      %th 名称
+      %th 价格
+      %th 顺序
+  %tbody
+    - options_group.wesell_item_options.each do |wesell_item_option|
+      %tr
+        %td= wesell_item_option.name
+        %td= wesell_item_option.price
+        %td= wesell_item_option.sequence

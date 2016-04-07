@@ -1,0 +1,27 @@
+- content_for :title do
+  = "#{@village_item.instance.nick} | #{@village_item.name}"
+.we-village
+  %ul.breadcrumb
+    - village = Village.find_by id: session[:default_village]
+    - if village.present?
+      %li
+        =link_to community_village_path(village) do
+          %i.fa.fa-chevron-left
+          返回
+        %span.divider
+    - else
+      %li
+        =link_to community_instance_path(@village_item.instance) do
+          %i.fa.fa-chevron-left
+          返回
+        %span.divider
+    %li.active
+      = @village_item.name
+  .container.page
+    = sanitize @village_item.page
+    %hr/
+    .row.share
+      %ul
+        %li= link_to "返回上页", :back
+        %li= link_to  "在线订购", @village_item.entry_url, class: "#{'gray' unless @village_item.enterable? } shop-record", data: { id: @village_item.id }
+        %li= link_to "拨打电话", "tel:#{@village_item.tel}", id: "phone", data: { id: @village_item.id }, class: 'call-record', data: {id: @village_item.id }

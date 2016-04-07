@@ -1,0 +1,105 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}/
+    %title 404 找不到页面 | 赋为
+    :css
+      body {
+        padding: 30px 0;
+        background-color: #eee;
+        text-align: center;
+      }
+
+      div.dialog {
+        width: 25em;
+        margin: 1em auto 0 auto;
+        padding: 7px 4em 0 4em;
+        position: relative;
+
+      }
+
+      h1 {
+        font-size: 100%;
+        color: #428bca;
+        line-height: 2em;
+      }
+
+      h4 {
+        margin-bottom: 10px;
+        color: #428bca;
+      }
+
+      p {
+        margin: 0;
+        color: #428bca;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      ul li {
+        float: left;
+        /*margin-left: 10px;*/
+        padding: 10px 20px 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #FF851B;
+      }
+
+      a:visited {
+        color: #FF851B;
+      }
+
+      a:hover {
+        color: #555;
+      }
+
+      .list2 .contacts {
+        position: absolute;
+        width: 500px;
+        z-index: 10000;
+        background: #fff;
+        visibility: hidden;
+        list-style: none;
+        border: 1px solid gray;
+        margin-left: -250px;
+        margin-top: 20px;
+        padding: 40px  30px 30px;
+      }
+
+      .list2:hover .contacts {
+        visibility: visible;
+      }
+
+      .contact {
+        display: inline-block;
+        margin: 20px
+      }
+  %body
+    .dialog
+      = image_tag "static/qrcode_foowcn.jpg", class: "qrcode", size: "250x250"
+      %h1 404! 找不到这个页面, 到别处瞧瞧吧!
+      %ul
+        %li
+          = link_to "返回首页", main_app.root_path
+        %li.list2
+          %a{href: "#"} 联系我们
+          .contacts
+            .contact
+              :javascript
+                var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ffb341c8a5635598c10d3e090d76057e3' type='text/javascript'%3E%3C/script%3E"));
+              #BDBridgeFixedWrap{style: "margin: 10px auto"}
+            .contact
+              %h4 联系电话:
+              %p
+                %i.fa.fa-phone-square
+                4000432013
+            .contact
+              %a{href: "http://wpa.qq.com/msgrd?v=3&uin=527618010&site=qq&menu=yes", target: "_blank"}
+                %img{alt: "点击这里给我发消息", border: "0", height: "100", src: "http://wpa.qq.com/pa?p=2:527618010:53", title: "点击这里给我发消息"}/
+        %li
+          = link_to "进入论坛", forem.root_path

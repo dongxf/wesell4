@@ -1,0 +1,20 @@
+@import "shared/variables";
+@import "shared/variable_reset";
+@import "bootstrap";
+@import "font-awesome";
+@import "shared/bootstrap-custom";
+@import "misc/lottery";
+
+.btn_2{
+  display: block;
+  width: 150px;
+  margin: auto;
+  line-height: 35px;
+  text-align: center;
+  padding: 0;
+  color: #fff;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#2ec366), to(#2ec366));
+  border: 1px solid #40bb6e;
+  border-radius: 3px;
+  font-size: 15px;
+}

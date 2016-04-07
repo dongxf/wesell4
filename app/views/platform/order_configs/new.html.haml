@@ -1,0 +1,24 @@
+%ul.breadcrumb
+  %li
+    = link_to '控制面板', root_path
+    %span.divider
+  %li
+    = link_to '店铺管理', platform_store_path(@store)
+  %li.active
+    %span.divider
+    %span= @store.name
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 店铺信息
+      .panel-body
+        = render 'form'
+
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title 控制面板
+      .panel-body
+        / = render 'control_panel'

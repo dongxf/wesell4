@@ -1,0 +1,2 @@
+module Platform::RecordsHelper
+end

@@ -1,0 +1,9 @@
+- html = capture do
+  - if @express.present?
+    %p.text-success.text-center 加盟成功！
+  - else
+    %p.text-danger.text-center 加盟失败，请确认信息正确！
+
+$(".modal-footer").html('#{j html}')
+
+setTimeout(function(){$(".modal-footer").html('')}, 5000)

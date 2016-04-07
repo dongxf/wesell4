@@ -1,0 +1,4 @@
+- html = capture do
+  = render partial: 'community/villages/favor_vi', locals: { vi: @village_item }
+
+$('div[data-vi="#{@village_item.id}"]').html("#{j html}")

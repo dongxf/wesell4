@@ -1,0 +1,287 @@
+article {
+  margin-bottom: 10px;
+}
+
+.nav > li {
+  float: left;
+  position: relative;
+  display: block;
+  padding: 10px;
+}
+
+.btn_1, .btn_2 {
+  display: block;
+  width: 120px;
+  margin: auto;
+  line-height: 35px;
+  text-align: center;
+  padding: 0;
+  color: $wine;
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+.btn_1 {
+  background: $white;
+  border: 1px solid $wine;
+}
+
+.btn_2 {
+  background: $white;
+  border: 1px solid $wine;
+}
+
+.badge {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 28px;
+  background-color: $wine;
+  color: $white;
+}
+
+.banner {
+  padding: 5px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  img {
+    width: 100%;
+  }
+}
+
+section article dl .btn {
+  background-color: transparent;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  cursor: pointer;
+  padding: 3px;
+  height: 26px;
+  a {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+  }
+  i {
+    display: none;
+    width: 24px;
+    text-align: center;
+    font-style: normal;
+    vertical-align: top;
+    margin: 9px 0 0;
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+section article dl .btn button, .wrapper-icon button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  &.minus {
+    margin-right: -10px;
+  }
+  &.add {
+    margin-left:-10px;
+  }
+
+  strong {
+    font-size: 15px;
+    display: inline-block;
+    text-indent: -100px;
+    padding: 5px 11px;
+    height: 12px;
+    width: 0;
+  }
+}
+
+section article button.add {
+  strong {
+    background: image-url('wei_canyin/typebtn2a.png') no-repeat;
+    background-size: 22px 22px;
+  }
+}
+
+section article button.minus {
+  strong {
+    background: image-url('wei_canyin/typebtn1a.png') no-repeat;
+    background-size: 22px 22px;
+  }
+}
+
+section article dl .btn button.add {
+  strong {
+    background: image-url('wei_canyin/typebtn2a.png') no-repeat;
+    background-size: 22px 22px;
+  }
+}
+
+section article dl .btn button.minus {
+  strong {
+    background: image-url('wei_canyin/typebtn1a.png') no-repeat;
+    background-size: 22px 22px;
+  }
+}
+
+.vcode_button {
+  display: inline-block;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 5px;
+  background: #4dbfd0;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 1px;
+  border-width: 0;
+  font-size: 16px;
+  width: 100px;
+}
+
+.pagination {
+  margin-top: 10px;
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+  span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-left: -1px;
+    a {color: #428bca;}
+  }
+}
+
+#member_birthday_1i, #member_birthday_2i, #member_birthday_3i {
+  width: 30%;
+  display: inline-block;
+}
+
+#search_store{
+  display: inline-block;
+  // padding: 0 10px;
+  width: 100%;
+  height: 50px;
+
+  #search_q {
+    // float: left;
+    // margin-left: 15px;
+    width: 95%;
+    margin: 10px auto;
+    box-sizing: border-box;
+  }
+  input[name='commit'] {
+    position: relative;
+    top: -52px;
+    right: 5px;
+    float: right;
+    width: 20%;
+    height: 38px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .btn {
+    background-color: transparent;
+    border: none;
+    position: relative;
+    top: -48px;
+    // right: -5px;
+    float: right;
+    width: 20%;
+    height: 38px;
+    display: inline-block;
+
+
+    .fa-search {
+      color: #aaa;
+    }
+
+  }
+}
+
+#edit_order_action {
+  position: relative;
+  float: right;
+  top: -20px;
+}
+.red{color: red;}
+
+.wrapper-icon {
+  display: block;
+  height: 36px;
+  margin: 0;
+  button.add, button.minus {
+    float: left;
+    display: inline-block;
+    margin: 0 2px;
+  }
+  .quantity {
+    display: inline;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    margin: 0 2px;
+    line-height: 20px;
+    border-radius: 4px;
+    border: 1px solid $silver;
+  }
+}
+
+.order_item_wesell_item_options {
+  clear: both;
+}
+
+dd.shopping{
+  height: 32px;
+  button.shopping {
+    border: 1px solid $wine;
+    border-radius: 4px;
+    background-color: $wine;
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 4px 6px;
+    color: #fff;
+  }
+}
+
+h5.description {
+  font-size: 0.8em;
+  color: #aaa;
+  margin: 5px 0;
+  max-width: 80%;
+}
+
+#page_intelOrder  {
+  h3 {
+    text-align: center;
+    margin-top: 5px;
+
+    a {
+      display: block;
+      border: 1px solid $wine;
+      color: $wine;
+      width: 50%;
+      margin: 0 auto;
+      padding: 10px;
+
+      &:hover {
+        color: $white;
+        background-color: $wine;
+      }
+    }
+  }
+
+  section article dl dd img {
+    width: 80px;
+    height: 80px;
+    border: 0;
+    border-radius: 40px;
+  }
+}

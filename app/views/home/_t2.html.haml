@@ -1,0 +1,20 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th 店铺名
+      %th 店铺浏览次数
+      %th 成交次数
+      %th 销售额
+      %th 转化率
+  %tbody
+    - @operated_stores.each do |store|
+      %tr
+        %td= store.name
+        - total = store.orders.where(created_at: @time_range, is_test: false)
+        - deal = store.orders.where(submit_at: @time_range, is_test: false)
+        %td= total.count
+        %td= deal.count
+        %td= deal.sum(:amount)
+        %td= total.count == 0 ? 0 : number_to_percentage(deal.count / total.count.to_f * 100)
+
+= paginate @operated_stores, params: {table: 't2'} , remote: true

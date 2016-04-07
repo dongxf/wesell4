@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  target_id: 1
+  target_type: MyString
+  duration: MyString
+  frequency: MyString
+  click_count: 1
+  name: MyString
+  url: MyString
+  comment: MyString
+
+two:
+  customer_id: 1
+  target_id: 1
+  target_type: MyString
+  duration: MyString
+  frequency: MyString
+  click_count: 1
+  name: MyString
+  url: MyString
+  comment: MyString

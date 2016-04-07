@@ -1,0 +1,69 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li.active
+    运营管理
+
+= paginate @operations
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 公众号
+      %th 店铺名称
+      %th 店铺排序
+      %th 店铺分类
+      %th
+  %tbody
+    - @operations.each do |operation|
+      %tr
+        %td= operation.id
+        %td= link_to operation.instance.nick, platform_instance_path(operation.instance)
+        %td
+          = link_to operation.store.name, platform_store_path(operation.store)
+        %td= link_to operation.sequence, '#', data: {type: "text", pk: operation.id, url: platform_operation_path(operation), name: 'sequence', title: '数字由小到大排序'}, class: 'editable'
+        %td
+          - kategory = operation.store.get_kategory(operation.instance)
+          = select_tag :kategory, options_for_select(operation.instance.kategories.pluck(:name, :id), (kategory.id if kategory)), include_blank: true, class: 'select2', data: {store_id: operation.store_id, instance_id: operation.instance_id}
+          %br
+          = link_to '新建分类', "#new_kategory_#{operation.id}", role: 'button', data: { toggle: 'modal'}
+          .modal{id: "new_kategory_#{operation.id}", style: "display: none;"}
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  %a.close{"data-dismiss" => "modal"} ×
+                  %h4 新建分类
+                .modal-body
+                  = simple_form_for [:platform, operation.instance, operation.instance.kategories.build], :defaults => { :input_html => { :class => 'form-control' } }, html: { class: 'form-horizontal', role: "form" }, remote: true do |f|
+                    = f.error_notification
+                    = f.input :instance_id, as: :hidden
+                    = f.input :name
+                    = f.button :submit, '提交', class: 'btn btn-orange center-block'
+                .modal-footer
+
+
+
+        %td
+          = link_to '停止运营', platform_operation_path(operation), :method => :delete, :data => { :confirm => '所有数据将无法恢复，是否确认？' }, class: 'btn btn-danger'
+          %p= link_to '推广二维码', spread_qrcode_platform_operation_path(operation), remote: true
+          /- if current_user.admin? && operation.instance.name == 'foowcn'
+          /  %p= link_to '幸福大院推广', spread_qrcode_platform_operation_path(operation), remote: true
+          /- else
+          /  = link_to '推广二维码', "#spread_qrcode_#{operation.id}", role: 'button', data: { toggle: 'modal'}
+          /  .modal{id: "spread_qrcode_#{operation.id}", style: "display: none;"}
+          /    .modal-dialog
+          /      .modal-content
+          /        .modal-header
+          /          %a.close{"data-dismiss" => "modal"} ×
+          /          %h4 为店铺生成推广二维码
+          /          %i 只有服务号和认证的订阅号可以生成推广二维码
+          /        .modal-body
+          /          = simple_form_for 'store', url: spread_qrcode_platform_operation_path(operation), remote: true, html: {method: 'post', class: 'form-horizontal'} do |f|
+          /            = f.input :name, placeholder: '请输入店铺名称', input_html: { class: 'form-control', name: 'store_name' }
+          /            = f.button :submit, '提交', class: 'btn btn-orange center-block'
+          /        .modal-footer
+
+
+
+= paginate @operations

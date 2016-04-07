@@ -1,0 +1,88 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '店铺管理', platform_stores_path
+    %span.divider
+  %li.active
+    店铺详情
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          店铺信息
+          - if can? :edit, @store
+            .pull-right
+              = link_to edit_platform_store_path(@store) do
+                %i.fa.fa-pencil-square-o
+      .panel-body
+        %dl.dl-horizontal
+          %dt 名称
+          %dd= @store.name
+
+          %dt 类型
+          %dd= Store::STYPE[@store.stype.to_sym]
+
+          %dt 服务口号
+          %dd= @store.slogan
+
+          %dt 店铺介绍
+          %dd= @store.description
+
+          %dt 邀请码
+          %dd#invite_code= @store.invite_code
+          %dd
+            = link_to '更新邀请码', invite_code_platform_store_path(@store), data: {remote: true}
+            %p.help-block
+              关注公众号 '赋为网络科技(fwdesk)' 可以使用微信接收订单
+
+          %dt 地址
+          %dd= @store.street
+
+          %dt 营业时间
+          %dd= @store.human_opening_hours
+
+          %dt 电话
+          %dd= @store.phone
+
+          %dt 电子邮箱
+          %dd= @store.email
+
+          %dt 是否需要电话确认
+          %dd= t @store.require_confirm.to_s
+
+          %dt 品牌标识
+          %dd= image_tag @store.logo.url(:large)
+
+          %dt 宣传横幅
+          %dd= image_tag @store.banner.url(:large)
+
+          %dt 经度
+          %dd= @store.longitude
+
+          %dt 纬度
+          %dd= @store.latitude
+
+          %dt 服务半径
+          %dd
+            = "#{@store.service_radius}公里" if @store.service_radius.present?
+
+          %dt 店铺模板
+          %dd
+            = @store.human_template
+
+          %dt 订单选项
+          %dd
+            = render partial: 'order_config', collection: @order_configs
+            %p= link_to '添加订单选项', new_platform_store_order_config_path(@store)
+
+  - if can? :edit, @store
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title 控制面板
+        .panel-body
+          = render 'control_panel'

@@ -1,0 +1,12 @@
+%ul.breadcrumb
+  %li
+    =link_to '首页', root_path
+    %span.divider
+  %li.active
+    黄页管理
+
+%ul.list-group
+  - @vitems.each do |vitem|
+  - ii = vitem.instance
+    %li.list-group-item
+      =link_to vitem.name, edit_platform_instance_village_item_path(ii, vitem)

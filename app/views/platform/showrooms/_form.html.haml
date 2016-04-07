@@ -1,0 +1,9 @@
+= simple_form_for [:platform, @instance, @showroom], defaults: {input_html: {class: 'form-control'}}, html: {class: 'form-horizontal', role: "form"} do |f|
+  = f.error_notification
+
+  = f.input :name
+  = f.input :max_quantity
+
+  .row
+    .col-md-4= link_to '放弃返回', :back, class: 'btn btn-info'
+    .col-md-4= f.button :submit, '提交', class: 'btn btn-orange  center-block'

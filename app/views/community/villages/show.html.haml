@@ -1,0 +1,26 @@
+- content_for :title do
+  - if @title.present?
+    = @title
+  - else
+    = "#{current_instance.nick} | #{@village.name}"
+.we-village
+  .row#search
+    #search_item
+      = simple_form_for '', url: search_community_village_path(@village), method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+        = f.input_field :q, input_html: {name: 'q', class: 'form-control'}, label: false, placeholder: "搜索#{@village.name}"
+        %span#close x
+        %button.btn{type: "submit"}
+          %i.fa.fa-search.fa-2x
+  .row.tag_row
+    .tags#tags
+      - @tags.includes(:sub_tags).each_with_index do |tag, index|
+        .col-xs-4.tag.collapse-group{ class: "tag#{index}"}
+          .thumbnail
+            %a.wrapper{ "data-target" => "#tag#{index}", "data-toggle" => "collapse", "data-parent" => "#tags", 'id' => "tag-#{tag.id}" }
+              = tag.name
+            .sub_tags.collapse.row{ id: "tag#{index}"}
+              - tag.sub_tags.each do |sub_tag|
+                .col-xs-4.sub_tag
+                  = link_to sub_tag.name, community_village_sub_tag_path(@village, sub_tag), class: "sub_tag_link", id: "subtag-#{sub_tag.id}"
+  = render "community/villages/vi_list"
+  = render "community/common/share"

@@ -1,0 +1,57 @@
+%article
+  %h2
+    = "我的订单 - 编号 #{ @order.id }"
+  %ul.myorder
+    - @order.order_items.each do |item|
+      %li
+        %span.dishName= item.name
+        %i= item.human_price
+        - item.order_item_options.each do |option|
+          %span.yuanjia
+            + #{option.label}
+        %section.bbox
+          %span.badge= item.quantity
+
+  - if @order.shipping_charge.present? || @order.order_options.present?
+    %table.order_table
+      %tbody
+        - if @order.shipping_charge.present?
+          %tr
+            %th 运费
+            %td.red= @order.shipping_charge
+        - @order.order_options.each do |order_option|
+          %tr
+            %th= order_option.name
+            %td.red= order_option.price
+
+%article
+  %h2 客户信息
+  %table.order_table
+    %tbody
+      %tr
+        %th 联系人
+        %td= @order.contact
+      %tr
+        %th 电话
+        %td= @order.phone
+      - if @order.address.present?
+        %tr
+          %th 地址
+          %td= @order.address
+      - if @order.start_at.present?
+        %tr
+          %th 预约时间
+          %td= @order.start_at
+
+      %tr
+        %th 支付方式
+        %td= @order.human_payment_option
+
+      %tr
+        %th 备注
+        %td= @order.description
+
+      - if @order.confirmed?
+        %tr
+          %th 我的评价
+          %td= @order.comment

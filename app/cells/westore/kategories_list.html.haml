@@ -1,0 +1,28 @@
+.body
+  %section
+    %article.banner= image_tag @instance.banner.url(:large)
+  - unless @instance.name == "foowcn"
+    %section
+      %a.link_tel.icon-phone{href: "tel:#{@instance.phone}"}
+        客服电话:
+        = @instance.phone
+  %section#search_store
+    = simple_form_for 'search', url: search_westore_instance_path(@instance), method: :get, defaults: {input_html: {class: 'form-control'}} do |f|
+      = f.input_field :q, input_html: {name: 'q', class: 'form-control'}, label: false, placeholder: '搜索店铺'
+      -# = button do
+      -#   = content_tag(:i, class: "fa fa-search")
+      %button.btn.btn-success{type: "submit"}
+        %i.fa.fa-search.fa-2x
+
+  %section
+    %ul.list_font
+      - if @instance.villages.count > 0
+        %li
+          = link_to community_instance_path(@instance) do
+            %div
+              %p 小区黄页
+      - @kategories.each do |kategory|
+        %li
+          = link_to westore_instance_kategory_path(@instance, kategory) do
+            %div
+              %p= kategory.name

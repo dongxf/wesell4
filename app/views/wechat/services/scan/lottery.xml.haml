@@ -1,0 +1,20 @@
+:ruby
+  content = <<-END
+  来天使湾，做一回天使送一回礼～
+
+  咱既要跟土豪做朋友，也要跟朋友一起做土豪～
+  END
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[欢迎天使湾的朋友们~]]>"
+    %Description
+      = raw "<![CDATA[#{content}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{@instance.banner.url}]]>"
+    %Url
+      = raw "<![CDATA[#{new_misc_lottery_url(customer_cid: @customer.cid, instance_id: @instance.id)}]]>"

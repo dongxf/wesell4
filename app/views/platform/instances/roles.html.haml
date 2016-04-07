@@ -1,0 +1,24 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th ID
+      %th 姓名
+      %th 邮箱
+      %th 公众号
+      %th 店铺
+      %th 许可
+      %th
+  %tbody
+    - @ownerships.each do |ownership|
+      - user = ownership.user
+      %tr
+        %td= ownership.id
+        %td= link_to "#{user.name} [#{ownership.role_identifier}]", platform_user_path(user)
+        %td= user.email
+        %td= user.instances.count
+        %td= user.stores.count
+        %td= user.license
+        %td= link_to '登入', login_platform_user_path(user)
+
+= link_to "返回", :back, class: 'btn btn-default'
+= link_to "新建许可", new_platform_license_path, class: 'btn btn-orange'

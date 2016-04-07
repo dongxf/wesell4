@@ -1,0 +1,12 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[#{@wesell_item.name}]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @wesell_item.image.url(:large)}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_wesell_item_url(@wesell_item, instance_id: 38, customer_cid: @customer.cid)}]]>"

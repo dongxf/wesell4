@@ -1,0 +1,13 @@
+#page_intelOrder.body
+  %header
+    %span.pCount
+
+  %section
+    %article
+      %h2
+        历史订单
+        - iwo_path = "#{westore_orders_path}?instance_id=#{current_instance.try(:id)}"
+        = link_to iwo_path do
+          %button.btn_add 返回当前订单
+    %article
+      = render 'orders'

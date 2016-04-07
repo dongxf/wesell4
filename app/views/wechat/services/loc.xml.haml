@@ -1,0 +1,13 @@
+- content = capture do
+  当前位置信息
+  －－－－－－－－－－
+  【纬度】#{@loc.latitude}
+  【经度】#{@loc.longitude}
+  －－－－－－－－－－
+  1。发送位置信息
+  2。输入'loc' 或者 '位置' 文本命令
+
+%MsgType
+  = raw "<![CDATA[text]]>"
+%Content
+  = raw "<![CDATA[#{content}]]>"

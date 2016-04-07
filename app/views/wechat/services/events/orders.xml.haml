@@ -1,0 +1,25 @@
+%MsgType
+  = raw "<![CDATA[news]]>"
+%ArticleCount
+  = @orders.size + 1
+%Articles
+  %item
+    %Title
+      = raw "<![CDATA[#{@instance.order_tips(@customer)}]]>"
+    %Description
+      - if @orders.blank?
+        = raw "<![CDATA[咨询电话：#{@instance.phone}]]>"
+      - else
+        = raw "<![CDATA[]]>"
+    %PicUrl
+      = raw "<![CDATA[#{asset_url @instance.banner.url}]]>"
+    %Url
+      = raw "<![CDATA[#{westore_orders_url(customer_cid: @customer.cid, instance_id: @instance.id)}]]>"
+  - @orders.each do |order|
+    %item
+      %Title
+        = raw "<![CDATA[#{order.status_digest}]]>"
+      %PicUrl
+        = raw "<![CDATA[#{asset_url order.store.logo.url}]]>"
+      %Url
+        = raw "<![CDATA[#{westore_order_url(order, customer_cid: @customer.cid, instance_id: @instance.id)}]]>"

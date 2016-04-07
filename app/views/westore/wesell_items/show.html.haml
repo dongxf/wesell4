@@ -1,0 +1,96 @@
+- content_for :title do
+  = "#{@wesell_item.store.name} | #{@wesell_item.name}"
+#wesell_item_show
+  - if params[:comment]
+    %h3.bg-wine.white.remark_tips= @wesell_item.remark
+
+  /%section.menu
+  /  %ul.nav.nav-tabs
+  /    %li{class: "#{params[:comment] != "true" ? 'active' : ''}"}
+  /      = link_to "商品详情", "#wi_info", role: "tab", data: { toggle: "tab" }, class: "gray"
+  /    %li{class: "#{params[:comment] == "true" ? 'active' : ''}"}
+  /      = link_to "买家评论", "#wi_rate", role: "tab", data: { toggle: "tab" }, class: "gray"
+
+  %section.container
+    .tab-content
+      #wi_info.tab-pane{class: "#{params[:comment] != "true" ? 'active' : ''}"}
+        %article
+          %h1.wine= @wesell_item.name
+          %span.wine= @wesell_item.human_price(@store)
+          - if @wesell_item.original_price != 0
+            %span.gray
+              %del= @wesell_item.human_original_price(@store)
+        %article
+          = simple_form_for [:westore, @order_item], defaults: {input_html: {class: 'form-control'}}, html: { class: 'form-horizontal' } do |f|
+            = f.input :order_id, as: :hidden
+            = f.input :wesell_item_id, as: :hidden
+            = f.input :quantity, label_html: { class: 'col-xs-3' } do
+              .wrapper-icon
+                %span.minus#minus_quantity
+                  %i.fa.fa-minus.fa-2x
+                = f.input_field :quantity, class: "quantity col-xs-3", id: 'order_item_quantity'
+                %span.add#plus_quantity
+                  %i.fa.fa-plus.fa-2x
+            - @wesell_item.options_groups.each do |options_group|
+              - if options_group.style == 0 #任选一种
+                = f.association :wesell_item_options, as: :select,
+                                collection: options_group.wesell_item_options.map{|op| [op.label(@store), op.id] },
+                                label: options_group.name,
+                                label_html: { class: 'col-xs-3' },
+                                include_blank: false,
+                                input_html: {multiple: false, name: "order_item[wesell_item_option_ids][]"}
+              - else
+                = f.association :wesell_item_options, as: :check_boxes,
+                                collection: options_group.wesell_item_options.map{|op| [op.label(@store), op.id] },
+                                label_html: { class: 'col-xs-3' },
+                                label: options_group.name,
+                                input_html: { class: 'cb' }
+            - if @wesell_item.sold_out? || @wesell_item.status == 2
+              %p.btn.btn-default.center-block= @wesell_item.human_status
+            - else
+              = f.button :submit, @wesell_item.store.stype == 'normal' ? '提交订单' : ' 立即报名', class: 'btn btn-wine-o submit center-block'
+          - if @wesell_item.show_buyers?
+            %hr/
+            %p= "共有#{@wesell_item.buyers.count}位成功报名者" 
+            - @wesell_item.buyers.each do |buyer|
+              -if buyer.present?
+                %li.list-group-item.clearfix.comment{class: "root"}
+                  .col-xs-3
+                    %div= buyer.avatar.present? ? image_tag(buyer.avatar, size: "30x30") : image_tag('c-avatar.png',size: "30x30")
+                    %div= buyer.nickname
+                    %div= buyer.id
+                  .col-xs-9
+                    - order = @wesell_item.the_order_by buyer
+                    - info = "<div>#{order.human_status}</div>"
+                    - info += "<div>#{order.description}</div>"
+                    %div= link_to raw(info), "/westore/wesell_items/#{@wesell_item.id}/add_info?instance_id=#{current_customer.try(:instance_id)}"
+          %hr/
+          %article#more_info
+            = sanitize @wesell_item.info
+      #wi_rate.tab-pane{class: "#{params[:comment] == "true" ? 'active' : ''}"}
+        .comments
+          - if current_customer.ever_buy? @wesell_item
+            = form_for [:westore, @wesell_item, Comment.new], html: { class: "vi_comment_form", relo: "form" }, remote: true do |f|
+              .form-group
+                .col-xs-12
+                  = f.text_area :content, class: "form-control comment_content"
+              .form-group
+                .notice.col-xs-6
+                .col-xs-6
+                  = f.submit "提交评论", class: "btn btn-wine-o pull-right submit_comment"
+
+        %ul.list-group.comments-list.clearfix
+          = render 'comments_list'
+        - unless @comments.last_page?
+          .load-more
+            = link_to_next_page @comments, '点击加载更多', :remote => true, :id => "load_more_link", class: "btn btn-wine-o"
+
+  .direction
+    = link_to :back do
+      %span.back
+        %i.fa.fa-reply
+        返回上一页
+    = link_to westore_instance_store_path(current_instance, @store) do
+      %span.back
+        回商店首页
+        %i.fa.fa-share

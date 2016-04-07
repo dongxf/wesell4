@@ -1,0 +1,67 @@
+#footer {
+  padding: 30px 0;
+  margin-top: 10px;
+  text-align: center;
+  color: $orange;
+  border-top: 1px solid $silver;
+  a {
+    padding-right: 10px;
+    margin-left: 10px;
+    color: $orange;
+  }
+}
+
+// contact-fixed panel
+.contact {
+  z-index: 1000;
+  position: fixed;
+  top: 120px;
+  right: -200px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  &:hover {
+    right: 0;
+    transition: right .5s linear;
+  }
+  .arrow-left {
+    position: relative;
+    left: -90px;
+    top: 160px;
+    width: 0;
+    height: 0;
+
+    h3 {
+      position: absolute;
+      top: -30px;
+      right: -35px;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 1em;
+      letter-spacing: 1px;
+      color: $orange;
+    }
+    .fa {
+      color: $orange;
+      position: absolute;
+      top: -60px;
+      right: -80px;
+      font-size: 6em;
+    }
+  }
+  .phone {
+    margin: 35px 30px 0;
+    p {
+      color: #111;
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 40px #39CCCC, 0 0 70px #39CCCC;
+    }
+  }
+
+  a {
+    display: block;
+    padding: 35px;
+  }
+}
+
+#BDBridgeLS {
+  display: none !important;
+}

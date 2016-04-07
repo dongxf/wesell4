@@ -1,0 +1,14 @@
+= form_for [:community, @village_item, @offer], html: { role: 'form' } do |f|
+  .form-group
+    = f.label "标题"
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label "内容"
+    = f.text_area :info, class: "form-control"
+  .form-group
+    = f.text_field :started_at, placeholder: "起始时间", class: 'form-control offer_datepicker'
+  .form-group
+    = f.label "有效天数"
+    = f.select :duration, 1..7,class: "form-control"
+  = link_to '返回', :back, class: 'btn btn-default'
+  = f.submit '提交', class: 'btn btn-wine-o'

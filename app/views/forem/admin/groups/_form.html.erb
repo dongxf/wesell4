@@ -1,0 +1,4 @@
+<%= simple_form_for([forem, :admin, @group], html: { class: 'form-horizontal', role: "form" }) do |f| %>
+  <%= f.input :name %>
+  <%= f.submit :class => "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,66 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  instance: one
+  status: 0
+  openid: openid_1
+  cid: cid_1
+  credit: 1
+
+two:
+  instance: two
+  status: 0
+  openid: openid_2
+  cid: cid_2
+  credit: 1
+
+three:
+  instance: three
+  status: 1
+  openid: openid_3
+  cid: cid_3
+  credit: 1
+
+four:
+  instance: four
+  status: 0
+  openid: openid_4
+  cid: cid_1
+  credit: 1
+
+five:
+  instance: five
+  status: 0
+  openid: openid_5
+  cid: cid_2
+  credit: 1
+
+six:
+  instance: six
+  status: 1
+  openid: openid_6
+  cid: cid_3
+  credit: 1
+
+seven:
+  instance: seven
+  status: 0
+  openid: openid_7
+  cid: cid_1
+  credit: 1
+
+eight:
+  instance: eight
+  status: 0
+  openid: openid_8
+  cid: cid_2
+  credit: 1
+
+nine:
+  instance: nine
+  status: 1
+  openid: openid_9
+  cid: cid_3
+  credit: 1
+
+

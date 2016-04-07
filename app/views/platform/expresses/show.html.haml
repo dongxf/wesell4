@@ -1,0 +1,44 @@
+%ul.breadcrumb
+  %li
+    = link_to '首页', root_path
+    %span.divider
+  %li
+    = link_to '配送管理', platform_expresses_path
+    %span.divider
+  %li.active
+    配送详情
+
+.row
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title
+          配送信息
+          - if can? :edit, @express
+            .pull-right
+              = link_to edit_platform_express_path(@express) do
+                %i.fa.fa-pencil-square-o
+      .panel-body
+        %dl.dl-horizontal
+          %dt 名称
+          %dd= @express.name
+
+          %dt 电话
+          %dd= @express.phone
+
+          %dt 介绍
+          %dd= @express.desc
+
+          %dt 邀请码
+          %dd#invite_code= @express.invite_code
+
+          %dt 地址
+          %dd= @express.addr
+
+  - if can? :edit, @express
+    .col-md-3
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title 控制面板
+        .panel-body
+          = render 'control_panel'
